@@ -4,7 +4,7 @@ import type { LoadEvent } from '@sveltejs/kit'
 import type { HttpMethod } from '@sveltejs/kit/types/private'
 
 
-export const apiPath = 'https://bfd4-79-139-200-32.ngrok-free.app/api'
+export const apiPath = 'https://9e1e-5-61-62-221.ngrok-free.app/api'
 export interface IApiReturn<T = unknown> {
     error: T | Error,
     fetchErrorStatus: number,
