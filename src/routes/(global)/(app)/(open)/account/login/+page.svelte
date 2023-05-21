@@ -12,6 +12,8 @@
     let className = ''
     export { className as class }
 
+    let valid = true
+
     const handler = {
         ok() {
             window.location.href = '/tokens'
@@ -26,9 +28,9 @@
 
 <main class={`account-login-page ${className}`}>
     <SectionContainer class='account-login-page__container'>
-        <h2>🫵🏻Входи</h2>
+        <h2>{valid ? '🫵🏻' : '🖕🏻'}Входи</h2>
         <p>Очередь не задерживаем.</p>
-        <Login on:ok={handler.ok}/>
+        <Login on:ok={handler.ok} bind:valid/>
     </SectionContainer>
 </main>
 

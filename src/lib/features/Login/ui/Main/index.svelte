@@ -28,6 +28,20 @@
 
 	const dispatch = createEventDispatcher()
 
+	const speak = {
+		create(text:string) {
+			const speech = new SpeechSynthesisUtterance(text)
+			speech.pitch = 2
+			speech.lang = 'ru'
+			speech.volume = 1
+			speech.rate = .76
+			return speech
+		},
+		error() {
+			window.speechSynthesis.speak(this.create('А НУ ГОВОРИ!!!!'))
+		}
+	}
+
 	const controller = {
 		async login(data:Parameters<AuthRequests['login']>[0]) {
 			if ($state.fetching) return
@@ -47,6 +61,7 @@
 				dispatch('ok')
 			} catch (error) {
 				valid = false
+				speak.error()
 				console.error(error)
 			} finally {
 				$state.fetching = false
