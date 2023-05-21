@@ -1,20 +1,14 @@
-import { redirect, type Handle } from "@sveltejs/kit";
+import type { Handle } from '@sveltejs/kit';
 import cookie from 'cookie';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	const cookies = cookie.parse(event.request.headers.get('cookie') || '');
     const token = cookies.token as App.Locals['token']
 
-    const isProtected = !!event.route.id?.includes('(protected)')
-
-    if (isProtected) {
-        if (!token) {
-            return new Response(null, redirect(300, '/'))
-        }
-    }
-
+    event.locals.token = token
+    
     const response = await resolve(event);
-
+    
     return response;
 };
 

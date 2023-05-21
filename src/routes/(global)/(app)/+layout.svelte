@@ -9,7 +9,6 @@
 
 <style lang='sass' global>
     @import '../../../styles/global.sass'
-    // @import '../../../styles/smui-theme.scss'
     h1
         font-weight: 700
         font-size: 50px
