@@ -1,0 +1,112 @@
+:root
+    --green800: #377D73
+    --green700: #52B29F
+    --green600: #60D089
+    --green500: #6EEDAB
+
+    --blue800: #102D4C
+    --blue600: #194194
+
+    --containerPadding: 20px
+#app
+    min-height: 100vh
+    display: flex
+    flex-direction: column
+    position: relative
+*
+    min-width: 0
+    min-height: 0
+    margin: 0
+    padding: 0
+    outline: none
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+    -webkit-font-smoothing: antialiased
+    -moz-osx-font-smoothing: grayscale
+    // -webkit-appearance: none
+    box-sizing: border-box
+    &:before, &:after
+        box-sizing: border-box
+
+h1,h2,h3,h4,h5,h6
+    font-weight: 700
+
+html
+    background: var(--violet)
+
+html, body
+    scroll-behavior: smooth
+    min-width: 320px
+body
+    display: flex
+    flex-direction: column
+    width: 100%
+    font-size: 16px
+    background: #fff
+    color: var(--gray800)
+    font-family: 'Montserrat', sans-serif
+    position: relative
+    will-change: scroll-position
+
+a
+    text-decoration: none
+    color: inherit
+
+p
+    & > a
+        color: var(--violet)
+        transition: .3s ease-in-out
+        transition-property: color
+        &:hover
+            @media (min-width: $sm)
+                color: var(--aubergine400)
+
+blockquote, q
+    margin: 0
+    padding: 0
+    border: 0
+    outline: 0
+    vertical-align: baseline
+    background: transparent
+    quotes: none
+
+blockquote:before, blockquote:after,
+q:before, q:after
+    content: ''
+    content: none
+
+ul, ol
+    list-style: none
+
+picture, img
+    display: block
+    object-fit: cover
+picture
+    img
+        width: 100%
+
+button
+    font-size: 1em
+    cursor: pointer
+
+address
+    text-decoration: none
+    font-style: inherit
+    font-weight: inherit
+
+input, button
+    background: none
+    border: none
+
+input, textarea, button
+    border-radius: 0
+    font-family: inherit
+    font-weight: inherit
+
+input[type=text]::-ms-clear
+    display: none
+    width: 0
+    height: 0
+input[type=text]::-ms-reveal
+    display: none
+    width: 0
+    height: 0
