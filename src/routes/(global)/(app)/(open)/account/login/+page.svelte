@@ -1,7 +1,9 @@
 <script lang='ts'>
+	import { goto } from "$app/navigation";
 	import { Login } from "$features/Login";
 	import { CONFIG } from "$shared/config";
     import { SectionContainer } from "$shared/ui/Section";
+	import { tick } from "svelte";
 
     interface $$Props {
         class?:string
@@ -9,6 +11,12 @@
     
     let className = ''
     export { className as class }
+
+    const handler = {
+        ok() {
+            window.location.href = '/tokens'
+        }
+    }
     
 </script>
 
@@ -20,7 +28,7 @@
     <SectionContainer class='account-login-page__container'>
         <h2>🫵🏻Входи</h2>
         <p>Очередь не задерживаем.</p>
-        <Login/>
+        <Login on:ok={handler.ok}/>
     </SectionContainer>
 </main>
 

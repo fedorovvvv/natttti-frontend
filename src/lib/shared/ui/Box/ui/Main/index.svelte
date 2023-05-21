@@ -23,5 +23,5 @@
 		border: 1px solid var(--gray50)
 		padding: 20px
 		&[data-size='m']
-			padding: 10px
+			padding: 10px var(--containerPadding)
 </style>

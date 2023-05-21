@@ -7,12 +7,14 @@ export class AuthRequests extends Requests {
     async login(data:{
         accessToken:string
     }) {
-        return await this.api({
+        return await this.createApi({
             method: 'POST',
             path: 'auth/login',
             body: {
                 accessToken: data.accessToken
             }
+        }).call({
+            responseParser: 'text'
         })
     }
 }

@@ -2,10 +2,9 @@ import type { Handle } from '@sveltejs/kit';
 import cookie from 'cookie';
 
 export const handle: Handle = async ({ event, resolve }) => {
-	const cookies = cookie.parse(event.request.headers.get('cookie') || '');
-    const token = cookies.token as App.Locals['token']
+	const cookies = cookie.parse(event.request.headers.get('cookie') || '') as App.Locals;
 
-    event.locals.token = token
+    event.locals.accessToken = cookies.accessToken
     
     const response = await resolve(event);
     

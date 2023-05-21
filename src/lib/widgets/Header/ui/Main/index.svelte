@@ -1,5 +1,7 @@
 <script lang='ts'>
 	import { Logo } from '$entities/Logo';
+	import { Auth } from '$shared/lib/Auth';
+	import { session } from '$shared/stores/session';
 	import Button from '@smui/button'
 	interface $$Props {
 		class?:string
@@ -7,14 +9,26 @@
 	
 	let className = ''
 	export { className as class }
+
+	const handler = {
+		logoutClick() {
+			Auth.logout()
+		}
+	}
 	
 </script>
 
 <header class={`Header ${className}`}>
 	<Logo class='Header__logo'/>
-	<Button href='/account/login' variant='unelevated'>
-		Вход
-	</Button>
+	{#if $session.accessToken}
+		<Button variant='unelevated' on:click={handler.logoutClick}>
+			Выход
+		</Button>
+	{:else}
+		<Button href='/account/login' variant='unelevated'>
+			Вход
+		</Button>
+	{/if}
 </header>
 
 <style lang='sass'>

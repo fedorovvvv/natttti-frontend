@@ -11,8 +11,8 @@ export interface IApiReturn<T = unknown> {
     message: string,
 }
 
-export const genError = (data:IApiError, message = 'Fetch error') => {
-    const _message = data.message || data.message || message
+export const genError = (data:IApiError, title = 'Fetch error') => {
+    const _message = data.title || data.title || title
     // captureException(new Error(_message))
     return error(data.status, _message)
 }
@@ -22,7 +22,7 @@ export interface IApiError<R = object | undefined> {
     name:string
     status:number,
     statusCode?:number
-    message:string,
+    title:string,
     response:R
 }
 
@@ -96,7 +96,11 @@ export class Api<T = unknown, R = object> {
         })
     }
     
-    async call<R = object>():Promise<T & {
+    async call<R = object>({
+        responseParser = 'json'
+    }:{
+        responseParser?: 'json' | 'text',
+    } = {}):Promise<T & {
         _error?: false
     } | IApiError<R> & {
         _error: true
@@ -113,7 +117,7 @@ export class Api<T = unknown, R = object> {
                 throw await res.json()
             }
 
-            const json = await res.json()
+            const json = await res[responseParser]()
 
             return await json
         } catch (error) {
@@ -122,7 +126,7 @@ export class Api<T = unknown, R = object> {
             // captureException(_error)
             console.error(`Api fetch <${this.#url}> Error: <${JSON.stringify(_error)}>. JSON: ${JSON.stringify(_error)}`)
 
-            if (_error.message === 'Unauthorized') {
+            if (_error.title === 'Unauthorized') {
                 // await logout()
             }
 

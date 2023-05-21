@@ -1,14 +1,14 @@
-export enum TokenAccessTypes {
-    User = 0,
-    Admin = 1,
-    Full = 2
+export enum ETokenAccessTypes {
+    User = 1,
+    Admin = 2,
+    Full = 3
 }
 
 export interface IToken {
     id: number
     issuedAt: string
-    expiresAt: string
+    expiresAt: string | Date
     grantedTo: string
     accessToken: string
-    accessType: TokenAccessTypes
+    accessType: ETokenAccessTypes
 }

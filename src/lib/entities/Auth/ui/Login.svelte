@@ -9,6 +9,8 @@
 
     interface $$Props {
         class?:string
+        valid?:boolean
+        disabled?:boolean
     }
 
     interface $$Events {
@@ -19,6 +21,8 @@
     
     let className = ''
     export { className as class }
+    export let valid:$$Props['valid'] = false
+    export let disabled:$$Props['disabled'] = false
 
     export const fields = writable<Parameters<AuthRequests['login']>[0]>({
         accessToken: ''
@@ -40,11 +44,11 @@
     <Form on:submit={handler.submit}>
         <FormCol>
             <FormRow>
-                <Textfield bind:value={$fields.accessToken} name='token' label="Код говори"/>
+                <Textfield invalid={!valid} bind:value={$fields.accessToken} name='token' label="Код говори"/>
             </FormRow>
         </FormCol>
         <svelte:fragment slot='button'>
-            <Button variant='unelevated'>
+            <Button variant='unelevated' disabled={disabled || !$fields.accessToken}>
                 Подходит?
             </Button>
         </svelte:fragment>
