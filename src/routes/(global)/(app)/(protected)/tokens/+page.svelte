@@ -1,6 +1,6 @@
 <script lang='ts'>
-	import { Token } from "$entities/Token";
-	import { TokenAccessTypes } from "$shared/types/token";
+	import { Tokens } from "$features/Tokens";
+	import { CONFIG } from "$shared/config";
 	import { SectionContainer } from "$shared/ui/Section";
 
     interface $$Props {
@@ -12,20 +12,17 @@
     
 </script>
 
+<svelte:head>
+    <title>{CONFIG.APP.NAME} | Токены</title>
+</svelte:head>
+
 <main class={`tokens-page ${className}`}>
     <SectionContainer>
-        <Token data={{
-            id: 0,
-            issuedAt: new Date().toString(),
-            expiresAt: new Date().toString(),
-            grantedTo: new Date().toString(),
-            accessToken: 'qwertyuiopasdfghjklzxcvbnm,',
-            accessType: TokenAccessTypes.Admin,
-
-        }}/>
+        <Tokens/>
     </SectionContainer>
 </main>
 
 <style lang='sass'>
     .tokens-page
+        padding-top: 100px
 </style>

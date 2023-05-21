@@ -22,10 +22,12 @@
 <style lang='sass'>
 	.Form
 		--gap: 16px
+		display: grid
+		grid-template-columns: 1fr
+		gap: 20px
 		&__button
 			width: 100%
-			margin-top: 20px
-			& > *
+			& > *, .mdc-button
 				@at-root :global &
 					width: 100%
 					flex: 1
