@@ -26,7 +26,7 @@
 </script>
 
 <a href='/' class={`Logo ${className}`}>
-	na{#each repeat.t as {color}, i}<span style:--color={color} style:transition-delay={`${i * 50}ms`}>t</span>{/each}i<span class='Logo__dot'>.</span>
+	na{#each repeat.t as {color}, i}<span style:--color={color} style:transition-delay={`${i * 50}ms`}>t</span>{/each}i<i class='Logo__dot'>.</i>
 </a>
 
 <style lang='sass'>
@@ -43,8 +43,11 @@
 			transition: .3s ease-in-out
 			transition-property: color
 		&__dot
+			font-style: normal
 			position: relative
 			color: var(--blue400)
+			transition: .3s ease-in-out
+			transition-property: color
 			&::before, &::after
 				content: '.'
 				display: block
