@@ -9,7 +9,7 @@ export class AuthRequests extends Requests {
     }) {
         return await this.api({
             method: 'POST',
-            path: '/auth/login',
+            path: 'auth/login',
             body: {
                 token: data.token
             }
