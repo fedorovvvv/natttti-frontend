@@ -21,7 +21,7 @@
     export { className as class }
 
     export const fields = writable<Parameters<AuthRequests['login']>[0]>({
-        token: ''
+        accessToken: ''
     })
 
     const dispatch = createEventDispatcher()
@@ -40,7 +40,7 @@
     <Form on:submit={handler.submit}>
         <FormCol>
             <FormRow>
-                <Textfield bind:value={$fields.token} name='token' label="Код говори"/>
+                <Textfield bind:value={$fields.accessToken} name='token' label="Код говори"/>
             </FormRow>
         </FormCol>
         <svelte:fragment slot='button'>

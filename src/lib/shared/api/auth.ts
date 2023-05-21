@@ -5,13 +5,13 @@ export class AuthRequests extends Requests {
         super(...params)
     }
     async login(data:{
-        token:string
+        accessToken:string
     }) {
         return await this.api({
             method: 'POST',
             path: 'auth/login',
             body: {
-                token: data.token
+                accessToken: data.accessToken
             }
         })
     }
