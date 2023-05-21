@@ -86,6 +86,4 @@
 	.Tokens
 		&__list
 			margin-top: 30px
-		&__create
-			margin-top: 20px
 </style>
