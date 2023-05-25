@@ -4,7 +4,7 @@ import type { LoadEvent } from '@sveltejs/kit'
 import type { HttpMethod } from '@sveltejs/kit/types/private'
 
 
-export const apiPath = 'https://9e1e-5-61-62-221.ngrok-free.app/api'
+export const apiPath = 'https://e1f4-79-139-200-32.ngrok-free.app/api'
 export interface IApiReturn<T = unknown> {
     error: T | Error,
     fetchErrorStatus: number,
@@ -68,6 +68,8 @@ export class Api<T = unknown, R = object> {
         this.#url = `${this.base}${this.path ? '/' + this.path : ''}`
         this.#headers = {
             Accept: 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'ngrok-skip-browser-warning': '69420',
             'Content-Type': 'application/json; charset=UTF-8',
             ...(this.token ? { 'X-Pfz-Token': `${this.token}` } : {}),
             ...(this.headers || {})
@@ -90,7 +92,6 @@ export class Api<T = unknown, R = object> {
             method: this.method,
             headers: {
                 ...this.#headers,
-                Accept: '*/*'
             },
             ...(this.#getBody())
         })
@@ -113,6 +114,7 @@ export class Api<T = unknown, R = object> {
                 ...(this.#getBody())
             })
             
+
             if (!res.ok) {
                 throw await res.json()
             }
