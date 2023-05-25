@@ -1,6 +1,5 @@
 <script lang='ts'>
 	import { CategoryScale, Chart, Filler, LinearScale, LineElement, PointElement, Tooltip, type ChartOptions } from "chart.js"
-	import { merge } from "lodash"
 	import { Line } from "svelte-chartjs"
 	import { assignData } from "../../lib/assignData"
 	import type { ChartGridInstance, IChartGridData } from "../../types"
@@ -8,7 +7,7 @@
 	import { ScaleGenerator } from "../../lib/ScaleGenerator"
 	import dayjs from "dayjs"
 	import { verticalLinePointPlugin } from "$shared/lib/Chart/plugins"
-	import { cloneDeep } from "lodash"
+	import _ from "lodash"
 	import { onMount, tick } from "svelte"
 
 	interface $$Props {
@@ -125,22 +124,22 @@
 	}
 
 	//@ts-ignore
-	$: assignedOptions = merge(defaultOptions, options)
+	$: assignedOptions = _.merge(defaultOptions, options)
 
 	const controller = {
 		getData: assignData
 	}
 
 
-	let assignedData = controller.getData(cloneDeep(data), chart)
+	let assignedData = controller.getData(_.cloneDeep(data), chart)
 	
 	onMount(() => {
 		tick().then(() => {
-			assignedData = controller.getData(cloneDeep(data), chart)
+			assignedData = controller.getData(_.cloneDeep(data), chart)
 		})
 	})
 
-	$: assignedData = controller.getData(cloneDeep(data), chart)
+	$: assignedData = controller.getData(_.cloneDeep(data), chart)
 
 </script>
 

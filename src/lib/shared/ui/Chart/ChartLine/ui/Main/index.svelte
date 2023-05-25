@@ -11,7 +11,7 @@
 		Filler,
 	} from 'chart.js';
 	import type { ChartLineInstance, IChartLineData } from '../../types'
-	import { cloneDeep } from 'lodash'
+	import _ from 'lodash'
 	import { onMount, tick } from 'svelte'
 
 	interface $$Props {
@@ -62,15 +62,15 @@
 		getData: assignData,
 	}
 
-	let assignedData = controller.getData(cloneDeep(data), chart)
+	let assignedData = controller.getData(_.cloneDeep(data), chart)
 	
 	onMount(() => {
 		tick().then(() => {
-			assignedData = controller.getData(cloneDeep(data), chart)
+			assignedData = controller.getData(_.cloneDeep(data), chart)
 		})
 	})
 
-	$: assignedData = controller.getData(cloneDeep(data), chart)
+	$: assignedData = controller.getData(_.cloneDeep(data), chart)
 </script>
 
 <Line bind:chart data={assignedData} {options} width='100%' height='100%' class={`ChartLine ${className}`}/>
