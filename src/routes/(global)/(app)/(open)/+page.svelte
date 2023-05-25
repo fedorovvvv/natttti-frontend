@@ -33,6 +33,17 @@
                 data: {
                     datasets: [
                         {
+                            label: 'Вступило',
+                            data: data.map(s => {
+                                return {
+                                    x: s.x,
+                                    y: s.newMembersCount
+                                }
+                            }),
+                            backgroundColor: 'blue',
+                            borderColor: 'blue',
+                        },
+                        {
                             label: 'Сообщений',
                             data: data.map(s => {
                                 return {
@@ -43,17 +54,6 @@
                             backgroundColor: 'green',
                             borderColor: 'green',
                         },
-                        {
-                            label: 'Вступило',
-                            data: data.map(s => {
-                                return {
-                                    x: s.x,
-                                    y: s.newMembersCount
-                                }
-                            }),
-                            backgroundColor: 'blue',
-                            borderColor: 'blue',
-                        }
                     ]
                 },
                 register: [TimeScale],
