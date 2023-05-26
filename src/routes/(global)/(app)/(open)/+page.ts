@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 import { StatsRequests } from "$shared/api/stats";
 
 export const load:Load = async ({fetch}) => {
-    const statsRequests = new StatsRequests('Efgwc3/0vEGk/+eS0HP0Hw==', fetch)
+    const statsRequests = new StatsRequests('kOvSQ0NMSEujpASj67xjhQ==', fetch)
 
     return {
         streamed: {
