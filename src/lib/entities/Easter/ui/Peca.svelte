@@ -41,8 +41,7 @@
     })
 
     $: hours = $easterContext?.date.getHours()
-    $: show = hours ? (hours >= 0 && hours <= 4) : false
-    
+    $: show = hours !== undefined ? (hours >= 0 && hours <= 4) : false
 </script>
 {#if show}
     <!-- svelte-ignore a11y-click-events-have-key-events -->
