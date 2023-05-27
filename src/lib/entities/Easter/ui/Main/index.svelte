@@ -1,8 +1,10 @@
 <script lang='ts'>
-	import { setContext } from "svelte";
 	import { writable } from "svelte/store";
+	import { browser } from "$app/environment";
 	import { onDestroy, onMount } from "svelte";
 	import { EasterContext } from "$entities/Easter/model";
+	//@ts-ignore
+	import devtools from 'devtools-detect'
 
 	interface $$Props {
 		class?:string
@@ -11,8 +13,11 @@
 	let className = ''
 	export { className as class }
 	const easterContext = new EasterContext().set(writable({
-		date: new Date()
+		date: new Date(),
+		isDevToolsOpen: false,
+		isDevToolsChange: false
 	}))
+
 
 
 	const controller:{
@@ -31,21 +36,37 @@
 			clearInterval(this.timeInterval)
 		}
 	}
+
+	const handler = {
+		devToolsChange(e:CustomEvent<typeof devtools>, change?:boolean) {
+			console.log(e)
+			if ($easterContext) {
+				$easterContext.isDevToolsOpen = e.detail.isOpen
+				$easterContext.isDevToolsChange = change ?? true
+			}
+		}
+	}
 	
 	onMount(() => {
 		controller.startTimeInterval()
+		if (browser) {
+			handler.devToolsChange(new CustomEvent('devtoolschange', {
+				detail: devtools
+			}), false)
+			//@ts-ignore
+			window.addEventListener('devtoolschange', handler.devToolsChange)
+		}
 	})
 
 	onDestroy(() => {
 		controller.stopTimeInterval()
+		if (browser) {
+			//@ts-ignore
+			window.removeEventListener('devtoolschange', handler.devToolsChange)
+		}
 	})
 	
 </script>
-
-<div class={`Easter ${className}`}>
+{#if !$easterContext?.isDevToolsChange}
 	<slot/>
-</div>
-
-<style lang='sass'>
-	.Easter
-</style>
+{/if}

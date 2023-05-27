@@ -53,6 +53,7 @@
 		"cookie": "^0.5.0",
 		"date-picker-svelte": "^2.4.3",
 		"dayjs": "^1.11.7",
+		"devtools-detect": "^4.0.1",
 		"js-cookie": "^3.0.5",
 		"lodash": "^4.17.21",
 		"sass": "^1.62.1",

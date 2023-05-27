@@ -13,7 +13,3 @@
 <Easter class={`EasterEggs ${className}`}>
 	<EasterPeca/>
 </Easter>
-
-<style lang='sass'>
-	.EasterEggs
-</style>
