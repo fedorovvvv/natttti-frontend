@@ -30,7 +30,7 @@
     })
 
     $: hours = $easterContext?.date.getHours()
-    $: show = hours ? (hours >= 22 || hours <= 1) : false
+    $: show = hours ? (hours >= 0 || hours <= 4) : false
     
 </script>
 {#if show}
