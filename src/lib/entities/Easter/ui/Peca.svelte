@@ -13,28 +13,40 @@
     let voice:HTMLAudioElement | undefined
     const easterContext = new EasterContext().get()
 
-    const handler = {
-        mouseenter() {
+    const controller = {
+        playVoice() {
             voice?.play()
         },
-        mouseleave() {
-            if (!voice) return
+        stopVoice() {
+            if (!voice)return
             voice.pause()
             voice.currentTime = 0
+        }
+    }
+
+    const handler = {
+        click() {
+            controller.playVoice()
+        },
+        mouseenter() {
+            controller.playVoice()
+        },
+        mouseleave() {
+            controller.stopVoice()
         },
     }
 
     onMount(() => {
         voice = new Audio('/voice/easter/peca.mp3')
-        voice.loop = true
     })
 
     $: hours = $easterContext?.date.getHours()
-    $: show = hours ? (hours >= 0 || hours <= 4) : false
+    $: show = hours ? (hours >= 0 && hours <= 4) : false
     
 </script>
 {#if show}
-    <div class={`EasterPeca ${className}`} on:mouseenter={handler.mouseenter} on:mouseleave={handler.mouseleave}>
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <div class={`EasterPeca ${className}`} on:click={handler.click} on:mouseenter={handler.mouseenter} on:mouseleave={handler.mouseleave}>
         <img src='/images/easter/peca.png' alt='peca peca'/>
     </div>
 {/if}
