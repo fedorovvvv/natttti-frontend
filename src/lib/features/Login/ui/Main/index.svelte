@@ -71,7 +71,6 @@
 
 	const handler = {
 		submit(e:ComponentEvents<AuthLogin>['submit']) {
-			console.log('test')
 			const {fields} = e.detail
 			controller.login(fields)
 		}
