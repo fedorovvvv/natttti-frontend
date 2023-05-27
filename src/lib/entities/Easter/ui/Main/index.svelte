@@ -39,7 +39,6 @@
 
 	const handler = {
 		devToolsChange(e:CustomEvent<typeof devtools>, change?:boolean) {
-			console.log(e)
 			if ($easterContext) {
 				$easterContext.isDevToolsOpen = e.detail.isOpen
 				$easterContext.isDevToolsChange = change ?? true
