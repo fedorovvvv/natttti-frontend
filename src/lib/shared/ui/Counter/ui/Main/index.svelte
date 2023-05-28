@@ -1,7 +1,7 @@
 <script lang='ts'>
 	import {tweened} from 'svelte/motion'
+	import {expoInOut} from 'svelte/easing'
 	import { fly } from 'svelte/transition';
-	
 	interface $$Props {
 		class?:string
 		value:number
@@ -14,7 +14,8 @@
 	export let theme:$$Props['theme'] = undefined
 
 	const tweenedValue = tweened(0, {
-		duration: 300, 
+		duration: 300,
+		easing: expoInOut
 	})
 
 	$: tweenedValue.set(value)
