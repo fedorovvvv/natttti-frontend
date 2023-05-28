@@ -26,11 +26,11 @@
 	{#key fixedValue}
 		<span
 			in:fly|local={{
-				y: -40,
+				y: 40,
 				duration: 300,
 			}}
 			out:fly|local={{
-				y: 40,
+				y: -40,
 				duration: 300,
 			}}
 			class='Counter__value'
