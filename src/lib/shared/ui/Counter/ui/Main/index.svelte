@@ -63,7 +63,6 @@
 				border-color: var(--blue500)
 		&::before
 			content: attr(data-value)
-			display: block
 			opacity: 0
 			pointer-events: none
 		&::before, &__value
