@@ -4,6 +4,10 @@
 
 # Natttti
 
+
+#### links
++ [⚙️ backend](https://github.com/eveloth/natti-chat-bot)
+
 ### build
 ```
 npm install --frozen-lockfile
