@@ -25,11 +25,11 @@
 	<span class='Counter__pseudo'>{value.toString().replace(/[0-9]/g, '0')}</span>
 	{#key fixedValue}
 		<span
-			in:fly={{
+			in:fly|local={{
 				y: -40,
 				duration: 300,
 			}}
-			out:fly={{
+			out:fly|local={{
 				y: 40,
 				duration: 300,
 			}}
