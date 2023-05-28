@@ -14,14 +14,14 @@
 	export let theme:$$Props['theme'] = undefined
 
 	const tweenedValue = tweened(0, {
-		duration: 300,
+		duration: 300, 
 	})
 
 	$: tweenedValue.set(value)
 	$: fixedValue = $tweenedValue.toFixed(0)
 </script>
 
-<div class={`Counter ${className} ${theme ? `Counter_theme-${theme}` : ''}`}>
+<div class={`Counter ${className} ${theme ? `Counter_theme-${theme}` : ''}`} >
 	<span class='Counter__pseudo'>{value.toString().replace(/[0-9]/g, '0')}</span>
 	{#key fixedValue}
 		<span
@@ -32,6 +32,7 @@
 			out:fly|local={{
 				y: -40,
 				duration: 300,
+				opacity: 1
 			}}
 			class='Counter__value'
 		>
