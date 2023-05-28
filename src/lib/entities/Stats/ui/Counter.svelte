@@ -26,7 +26,7 @@
 
     let duration = 20 * 1000
 
-    let data:Awaited<ApiOkReturn<ReturnType<Loader>>> | undefined = undefined
+    export let data:Awaited<ApiOkReturn<ReturnType<Loader>>> | undefined = undefined
 
     const controller:{
         set: (newData:typeof data) => void

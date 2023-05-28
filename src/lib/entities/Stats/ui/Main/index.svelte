@@ -10,22 +10,25 @@
 	interface $$Props {
 		class?:string
 		data:ApiReturn<IStat[]>
+		syncData?:IStat[]
 	}
 	
 	let className = ''
 	export { className as class }
 	export let data:$$Props['data']
+	export let syncData:$$Props['syncData'] = undefined
 
-	const datasets = (_data:Awaited<typeof data>):ComponentProps<ChartGrid>['data']['datasets'] => {
+	let loaded = false
+
+	const datasets = (_data:Awaited<typeof data>, _syncData:typeof syncData):ComponentProps<ChartGrid>['data']['datasets'] => {
 		if (_data._error) return []
-		const parsedData = _data.map(stat => {
+		const parsedData = [..._data, ...(_syncData || [])].map(stat => {
 			return {
 				x: +dayjs(stat.date).toDate(),
 				messagesCount: stat.messagesCount,
 				newMembersCount: stat.newMembersCount,
 			}
 		}).sort((a, b) => b.x - a.x)
-
 		return [
 			{
 				label: 'Вступило',
@@ -52,25 +55,31 @@
 		]
 	}
 
-	const chartProps:Omit<ComponentProps<ChartGrid>, 'data'> = {
-			register: [TimeScale],
-			options: {
-				scales: {
-					y: {
-						title: {
-							text: 'кол-во',
-							display: true,
-						}
-					},
-					x: {
-						type: 'time',
+	$: chartProps = {
+		register: [TimeScale],
+		options: {
+			animation: {
+				duration: loaded ? 0 : 1000,
+				loop: dayjs().format('HH%mm') === '13%00',
+				onComplete() {
+					loaded = true
+				}
+			},
+			scales: {
+				y: {
+					title: {
+						text: 'кол-во',
+						display: true,
 					}
+				},
+				x: {
+					type: 'time',
 				}
 			}
 		}
+	} satisfies Omit<ComponentProps<ChartGrid>, 'data'>
 	
 </script>
-
 <Box class={`Stats ${className}`}>
 	{#await data}
 		<b class='Stats__loader'>Поиск архивов...</b>
@@ -78,7 +87,7 @@
 		<div class="Stats__scroll">
 			<ChartGrid
 				data={{
-					datasets: datasets(res)
+					datasets: datasets(res, syncData)
 				}}
 				{...chartProps}
 			/>

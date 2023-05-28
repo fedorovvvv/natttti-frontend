@@ -10,13 +10,38 @@
 	import { CONFIG } from "$shared/config";
 	import { Stats, StatsCounter } from "$entities/Stats";
     import {Counter, CounterList} from '$shared/ui/Counter'
-	import { StatsRequests } from "$shared/api/stats.js";
+	import { StatsRequests, type IStat, type StatCurrent } from "$shared/api/stats.js";
     
     export let data
 
+    let currentStats:IStat[] = []
+
+    const currentStatsController = {
+        add(stat:StatCurrent) {
+            const statId = +new Date(stat.date)
+            const currentIndex = currentStats.findIndex(({id}) => id === statId)
+            if (currentIndex !== -1) {
+                currentStats[currentIndex] = {
+                    ...currentStats[currentIndex],
+                    messagesCount: stat.messagesCount,
+                    newMembersCount: stat.newMembersCount
+                }
+            } else {
+                currentStats = [...currentStats, {
+                    ...stat,
+                    id: statId
+                }]
+            }
+        }
+    }
+
     const statsRequests = new StatsRequests()
     const loader = async () => {
-        return await statsRequests.current()
+        const res = await statsRequests.current()
+        if (res._error !== true) {
+            currentStatsController.add(res)
+        }
+        return res
     }
 </script>
 
@@ -36,7 +61,7 @@
             </StatsCounter>
             <small>сегодня</small>
         </div>
-        <Stats data={data.streamed.stats}/>
+        <Stats data={data.streamed.stats} syncData={currentStats}/>
     </SectionContainer>
 </main>
 
