@@ -2,14 +2,19 @@
 import { error } from "@sveltejs/kit";
 import type { LoadEvent } from '@sveltejs/kit'
 import type { HttpMethod } from '@sveltejs/kit/types/private'
+import { CONFIG } from "$shared/config";
 
 
-export const apiPath = 'https://natti-bot.eveloth.ru/api'
-export interface IApiReturn<T = unknown> {
-    error: T | Error,
-    fetchErrorStatus: number,
-    message: string,
-}
+export const apiPath = `${CONFIG.API.URL}/api`
+
+export type ApiReturn<T = unknown, R = object> = Promise<T & {
+    _error?: false
+} | IApiError<R> & {
+    _error: true
+}>
+
+export type ApiOkReturn<T extends ApiReturn> = T extends ApiReturn<infer Ok> ? Promise<Ok & {_error?: false}> : never
+
 
 export const genError = (data:IApiError, title = 'Fetch error') => {
     const _message = data.title || data.title || title
@@ -101,11 +106,7 @@ export class Api<T = unknown, R = object> {
         responseParser = 'json'
     }:{
         responseParser?: 'json' | 'text',
-    } = {}):Promise<T & {
-        _error?: false
-    } | IApiError<R> & {
-        _error: true
-    }> {
+    } = {}):ApiReturn<T, R> {
         try {
 
             const res = await this.#fetch(this.#url, {
