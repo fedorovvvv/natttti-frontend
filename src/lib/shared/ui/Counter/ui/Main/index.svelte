@@ -22,8 +22,7 @@
 	$: fixedValue = $tweenedValue.toFixed(0)
 </script>
 
-<div class={`Counter ${className} ${theme ? `Counter_theme-${theme}` : ''}`} >
-	<span class='Counter__pseudo'>{value.toString().replace(/[0-9]/g, '0')}</span>
+<div class={`Counter ${className} ${theme ? `Counter_theme-${theme}` : ''}`} data-value={value.toString().replace(/[0-9]/g, '0')}>
 	{#key fixedValue}
 		<span
 			in:fly|local={{
@@ -62,14 +61,16 @@
 				border-color: var(--green600)
 			&-blue
 				border-color: var(--blue500)
-		span
+		&::before
+			content: attr(data-value)
+			display: block
+			opacity: 0
+			pointer-events: none
+		&::before, &__value
 			display: block
 			font-size: 24px
 			text-align: center
 			font-weight: 500
-		&__pseudo
-				opacity: 0
-				pointer-events: none
 		&__value
 			position: absolute
 			top: 50%
