@@ -51,9 +51,7 @@
 			border-radius: 10px
 		position: relative
 		text-align: center
-		display: flex
-		align-items: center
-		justify-content: center
+		display: inline-block
 		padding: 5px 10px
 		border: 2px solid var(--gray50)
 		color: var(--gray600)
@@ -69,10 +67,13 @@
 			&-blue
 				border-color: var(--blue500)
 		&__label
+			display: inline-block
 			margin-right: 10px
 			line-height: 24px
 			vertical-align: middle
+			margin-right: -0.02em
 		&__value
+			display: inline-block
 			vertical-align: middle
 			position: relative
 			&::before
