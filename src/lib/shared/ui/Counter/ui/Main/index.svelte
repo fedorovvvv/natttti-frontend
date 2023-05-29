@@ -6,12 +6,14 @@
 		class?:string
 		value:number
 		theme?:'green' | 'blue'
+		label?:string
 	}
 	
 	let className = ''
 	export { className as class }
 	export let value:$$Props['value'] = 0
 	export let theme:$$Props['theme'] = undefined
+	export let label:$$Props['label'] = undefined
 
 	const tweenedValue = tweened(0, {
 		duration: 300,
@@ -22,23 +24,29 @@
 	$: fixedValue = $tweenedValue.toFixed(0)
 </script>
 
-<div class={`Counter ${className} ${theme ? `Counter_theme-${theme}` : ''}`} data-value={value.toString().replace(/[0-9]/g, '0')}>
-	{#key fixedValue}
-		<span
-			in:fly|local={{
-				y: 40,
-				duration: 300,
-			}}
-			out:fly|local={{
-				y: -40,
-				duration: 300,
-				opacity: 1
-			}}
-			class='Counter__value'
-		>
-			{fixedValue}
+<div class={`Counter ${className} ${theme ? `Counter_theme-${theme}` : ''}`}>
+	{#if label}
+		<span class="Counter__label">
+			{label}
 		</span>
-	{/key}
+	{/if}
+	<div class="Counter__value" data-value={value.toString().replace(/[0-9]/g, '0')}>
+		{#key fixedValue}
+			<span
+				in:fly|local={{
+					y: 40,
+					duration: 300,
+				}}
+				out:fly|local={{
+					y: -40,
+					duration: 300,
+					opacity: 1
+				}}
+			>
+				{fixedValue}
+			</span>
+		{/key}
+	</div>
 </div>
 
 <style lang='sass'>
@@ -61,18 +69,24 @@
 				border-color: var(--green600)
 			&-blue
 				border-color: var(--blue500)
-		&::before
-			content: attr(data-value)
-			opacity: 0
-			pointer-events: none
-		&::before, &__value
+		&__label
 			display: block
+			margin-right: 10px
 			font-size: 24px
-			text-align: center
-			font-weight: 500
 		&__value
-			position: absolute
-			top: 50%
-			left: 50%
-			transform: translate(-50%, -50%)
+			position: relative
+			&::before
+				content: attr(data-value)
+				opacity: 0
+				pointer-events: none
+			&::before, span
+				display: block
+				font-size: 24px
+				text-align: center
+				font-weight: 500
+			span
+				position: absolute
+				top: 50%
+				left: 50%
+				transform: translate(-50%, -50%)
 </style>

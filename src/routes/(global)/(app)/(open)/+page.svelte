@@ -55,8 +55,8 @@
         <div class="page__counter-wrapper">
             <StatsCounter {loader} let:data>
                 <CounterList>
-                    <Counter theme='green' value={data?.messagesCount || 0}/>
-                    <Counter theme='blue' value={data?.newMembersCount || 0}/>
+                    <Counter theme='green' label='✉️' value={data?.messagesCount || 0}/>
+                    <Counter theme='blue' label='🐣' value={data?.newMembersCount || 0}/>
                 </CounterList>
             </StatsCounter>
             <small>сегодня</small>
