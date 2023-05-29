@@ -26,9 +26,7 @@
 
 <div class={`Counter ${className} ${theme ? `Counter_theme-${theme}` : ''}`}>
 	{#if label}
-		<span class="Counter__label">
-			{label}
-		</span>
+		<span class="Counter__label">{label}</span>
 	{/if}
 	<div class="Counter__value" data-value={value.toString().replace(/[0-9]/g, '0')}>
 		{#key fixedValue}
@@ -54,9 +52,6 @@
 		@at-root :global &
 			border-radius: 10px
 		position: relative
-		display: flex
-		align-items: center
-		justify-content: center
 		text-align: center
 		padding: 5px 10px
 		border: 2px solid var(--gray50)
@@ -64,17 +59,21 @@
 		transition: .3s ease-in-out
 		transition-property: color, border, background
 		overflow: hidden
+		vertical-align: middle
 		&_theme
 			&-green
 				border-color: var(--green600)
 			&-blue
 				border-color: var(--blue500)
 		&__label
-			display: block
+			display: inline-block
 			margin-right: 10px
 			font-size: 24px
+			line-height: 24px
 		&__value
+			display: inline-block
 			position: relative
+			line-height: 24px
 			&::before
 				content: attr(data-value)
 				opacity: 0
