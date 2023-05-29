@@ -1,16 +1,18 @@
 <script lang='ts'>
     interface $$Props {
         class?:string
+        tag?:string
     }
     
     let className = ''
     export { className as class }
+    export let tag:$$Props['tag'] = 'div'
     
 </script>
 
-<div class={`Container ${className}`}>
+<svelte:element this={tag} class={`Container ${className}`}>
     <slot/>
-</div>
+</svelte:element>
 
 <style lang='sass'>
     .Container

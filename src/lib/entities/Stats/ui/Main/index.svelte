@@ -20,7 +20,12 @@
 
 	let loaded = false
 
-	const datasets = (_data:Awaited<typeof data>, _syncData:typeof syncData):ComponentProps<ChartGrid>['data']['datasets'] => {
+
+	const getCharts = (_data:Awaited<typeof data>, _syncData:typeof syncData):{
+		id:string
+		title:string
+		datasets:ComponentProps<ChartGrid>['data']['datasets']
+	}[] => {
 		if (_data._error) return []
 		const parsedData = [..._data, ...(_syncData || [])].map(stat => {
 			return {
@@ -31,26 +36,38 @@
 		}).sort((a, b) => b.x - a.x)
 		return [
 			{
-				label: 'Вступило',
-				data: parsedData.map(s => {
-					return {
-						x: s.x,
-						y: s.newMembersCount
+				id: 'messages',
+				title: '✉️ Сообщения',
+				datasets: [
+					{
+						label: 'Написано',
+						data: parsedData.map(s => {
+							return {
+								x: s.x,
+								y: s.messagesCount
+							}
+						}),
+						backgroundColor: 'green',
+						borderColor: 'green',
 					}
-				}),
-				backgroundColor: 'blue',
-				borderColor: 'blue',
+				]
 			},
 			{
-				label: 'Сообщений',
-				data: parsedData.map(s => {
-					return {
-						x: s.x,
-						y: s.messagesCount
+				id: 'members',
+				title: '🐣 Новые члены профсоюза',
+				datasets: [
+					{
+						label: 'Вступило',
+						data: parsedData.map(s => {
+							return {
+								x: s.x,
+								y: s.newMembersCount
+							}
+						}),
+						backgroundColor: 'blue',
+						borderColor: 'blue',
 					}
-				}),
-				backgroundColor: 'green',
-				borderColor: 'green',
+				]
 			},
 		]
 	}
@@ -66,12 +83,6 @@
 				}
 			},
 			scales: {
-				y: {
-					title: {
-						text: 'кол-во',
-						display: true,
-					}
-				},
 				x: {
 					type: 'time',
 				}
@@ -80,41 +91,60 @@
 	} satisfies Omit<ComponentProps<ChartGrid>, 'data'>
 	
 </script>
-<Box class={`Stats ${className}`}>
+<div class={`Stats ${className}`}>
 	{#await data}
 		<b class='Stats__loader'>Поиск архивов...</b>
-	{:then res} 
-		<div class="Stats__scroll">
-			<ChartGrid
-				data={{
-					datasets: datasets(res, syncData)
-				}}
-				{...chartProps}
-			/>
+	{:then res}
+		<div class="Stats__chart-list">
+			{#each getCharts(res, syncData) as {id, title, datasets} (id)}
+				<Box class='Stats__chart-box'>
+					<h3 class='Stats__chart-title'>{title}</h3>
+					<div class="Stats__chart-scroll-wrapper">
+						<div class="Stats__chart-scroll">
+							<ChartGrid
+								data={{
+									datasets
+								}}
+								{...chartProps}
+								class='Stats__chart'
+							/>
+						</div>
+					</div>
+				</Box>
+			{/each}
 		</div>
 	{/await}
-</Box>
+</div>
 
 <style lang='sass'>
 	.Stats
 		$root: &
-		@at-root :global &
-			overflow: auto
-			height: 500px
-			display: flex
-			position: relative
-		&__scroll
-			min-width: 700px
-			width: 100%
-			height: 100%
+		&__chart
+			@at-root :global &
+				height: 250px
+			&-title
+				text-align: center
+				margin-bottom: 20px
+			&-box
+				@at-root :global &
+					&:not(:last-child)
+						margin-bottom: 20px
+			&-list
+				// display: grid
+				// grid-template-columns: repeat(auto-fit, minmax(400px, 1fr))
+				// gap: 20px
+			&-scroll
+				min-width: 700px
+				width: 100%
+				height: 100%
+				&-wrapper
+					overflow: auto
 		&__loader
-			position: absolute
 			display: block
 			font-size: 50px
 			color: var(--gray50)
-			top: 50%
-			left: 50%
-			width: 100%
 			text-align: center
-			transform: translate(-50%, -50%)
+			margin-top: 40px
+			@media (max-width: $sm)
+				font-size: 30px
 </style>

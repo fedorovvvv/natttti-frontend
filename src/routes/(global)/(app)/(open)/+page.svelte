@@ -50,7 +50,7 @@
 </svelte:head>
 
 <main class='page'>
-    <SectionContainer>
+    <SectionContainer tag='section'>
         <h2>Учёт профсоюза</h2>
         <div class="page__counter-wrapper">
             <StatsCounter {loader} let:data>
