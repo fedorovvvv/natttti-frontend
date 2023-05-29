@@ -46,7 +46,7 @@
 </script>
 
 <svelte:head>
-    <title>{CONFIG.APP.NAME}</title>
+    <title>{CONFIG.APP.NAME} | {currentStats[currentStats.length - 1]?.messagesCount || ''}</title>
 </svelte:head>
 
 <main class='page'>

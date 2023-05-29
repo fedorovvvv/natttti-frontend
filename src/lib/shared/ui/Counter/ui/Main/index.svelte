@@ -72,6 +72,7 @@
 			line-height: 24px
 			vertical-align: middle
 			margin-right: -0.02em
+			margin-top: -0.03em
 		&__value
 			display: inline-block
 			vertical-align: middle
