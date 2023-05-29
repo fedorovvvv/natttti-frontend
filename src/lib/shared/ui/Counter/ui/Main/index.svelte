@@ -40,9 +40,7 @@
 					duration: 300,
 					opacity: 1
 				}}
-			>
-				{fixedValue}
-			</span>
+			>{fixedValue}</span>
 		{/key}
 	</div>
 </div>
@@ -53,12 +51,17 @@
 			border-radius: 10px
 		position: relative
 		text-align: center
+		display: flex
+		align-items: center
+		justify-content: center
 		padding: 5px 10px
 		border: 2px solid var(--gray50)
 		color: var(--gray600)
 		transition: .3s ease-in-out
 		transition-property: color, border, background
 		overflow: hidden
+		font-size: 24px
+		line-height: 100%
 		vertical-align: middle
 		&_theme
 			&-green
@@ -66,21 +69,18 @@
 			&-blue
 				border-color: var(--blue500)
 		&__label
-			display: inline-block
 			margin-right: 10px
-			font-size: 24px
 			line-height: 24px
+			vertical-align: middle
 		&__value
-			display: inline-block
+			vertical-align: middle
 			position: relative
-			line-height: 24px
 			&::before
 				content: attr(data-value)
 				opacity: 0
 				pointer-events: none
 			&::before, span
 				display: block
-				font-size: 24px
 				text-align: center
 				font-weight: 500
 			span
