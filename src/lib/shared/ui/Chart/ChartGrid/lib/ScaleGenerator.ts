@@ -53,6 +53,7 @@ export class ScaleGenerator {
         this.options.ticks = {
             color: '#9397A9',
             padding: 0,
+            // eslint-disable-next-line no-extra-boolean-cast
             ...(!!this.options.time ? timeOptions : {}),
             ...options
         }

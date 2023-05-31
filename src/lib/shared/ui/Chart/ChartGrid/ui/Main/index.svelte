@@ -100,23 +100,30 @@
 						tickLength: 12
 					})
 					.time()
-					.ticks()
+					.ticks({
+						// callback(value, index) {
+						// 	console.log({value})
+						// 	return `test<br/>`
+						// },
+					})
 					.title()
 					.toOptions(),
 			//@ts-ignore
 			xMonths: (options?.scales.x.type === 'time' ? new ScaleGenerator({type: 'time'})
 					.grid({
-						tickLength: 2
+						tickLength: 2,
+						drawOnChartArea: false,
 					})
 					.time()
 					.ticks({
 						align: 'start',
 						callback(value, index) {
-							if (new Date(+value).getDate() === 1 || index === 0) {
-								return dayjs(+value).format('MMM YYYY')
+							const offset = dayjs(value).utcOffset()
+							if (new Date(+value - offset).getDate() === 1 || index === 0) {
+								return dayjs(+value - offset).format('MMM YYYY')
 							}
-							return
-						}
+							return new Date(+value).getDate()
+						},
 					})
 					.title()
 					.toOptions() : undefined)

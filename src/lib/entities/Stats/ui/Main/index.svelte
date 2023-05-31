@@ -24,6 +24,7 @@
 	const getCharts = (_data:Awaited<typeof data>, _syncData:typeof syncData):{
 		id:string
 		title:string
+		avg:number
 		datasets:ComponentProps<ChartGrid>['data']['datasets']
 	}[] => {
 		if (_data._error) return []
@@ -38,6 +39,7 @@
 			{
 				id: 'messages',
 				title: '✉️ Сообщения',
+				avg: +(parsedData.reduce((val, cur) => val + cur.messagesCount, 0) / parsedData.length).toFixed(0),
 				datasets: [
 					{
 						label: 'Написано',
@@ -55,6 +57,7 @@
 			{
 				id: 'members',
 				title: '🐣 Новые члены профсоюза',
+				avg: +(parsedData.reduce((val, cur) => val + cur.newMembersCount, 0) / parsedData.length).toFixed(0),
 				datasets: [
 					{
 						label: 'Вступило',
@@ -96,9 +99,9 @@
 		<b class='Stats__loader'>Поиск архивов...</b>
 	{:then res}
 		<div class="Stats__chart-list">
-			{#each getCharts(res, syncData) as {id, title, datasets} (id)}
+			{#each getCharts(res, syncData) as {id, title, datasets, avg} (id)}
 				<Box class='Stats__chart-box'>
-					<h3 class='Stats__chart-title'>{title}</h3>
+					<h3 class='Stats__chart-title'>{title} <small>среднее: <b>{avg}</b></small></h3>
 					<div class="Stats__chart-scroll-wrapper">
 						<div class="Stats__chart-scroll">
 							<ChartGrid
@@ -125,6 +128,10 @@
 			&-title
 				text-align: center
 				margin-bottom: 20px
+				small
+					display: block
+					font-size: 12px
+					color: var(--gray400)
 			&-box
 				@at-root :global &
 					&:not(:last-child)
