@@ -1,6 +1,4 @@
 <script lang='ts'>
-	import {tweened} from 'svelte/motion'
-	import {expoInOut} from 'svelte/easing'
 	import { fly } from 'svelte/transition';
 	interface $$Props {
 		class?:string
@@ -14,14 +12,6 @@
 	export let value:$$Props['value'] = 0
 	export let theme:$$Props['theme'] = undefined
 	export let label:$$Props['label'] = undefined
-
-	const tweenedValue = tweened(0, {
-		duration: 300,
-		easing: expoInOut
-	})
-
-	$: tweenedValue.set(value)
-	$: fixedValue = $tweenedValue.toFixed(0)
 </script>
 
 <div class={`Counter ${className} ${theme ? `Counter_theme-${theme}` : ''}`}>
@@ -29,18 +19,19 @@
 		<span class="Counter__label">{label}</span>
 	{/if}
 	<div class="Counter__value" data-value={value.toString().replace(/[0-9]/g, '0')}>
-		{#key fixedValue}
+		{#key value}
 			<span
 				in:fly|local={{
 					y: 40,
-					duration: 300,
+					duration: 500,
+					opacity: 1
 				}}
 				out:fly|local={{
 					y: -40,
-					duration: 300,
+					duration: 500,
 					opacity: 1
 				}}
-			>{fixedValue}</span>
+			>{value}</span>
 		{/key}
 	</div>
 </div>
