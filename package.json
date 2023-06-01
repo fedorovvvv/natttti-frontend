@@ -47,6 +47,7 @@
 	"type": "module",
 	"dependencies": {
 		"@material/shape": "^14.0.0",
+		"@octokit/types": "^9.2.3",
 		"@types/lodash": "^4.14.194",
 		"autoprefixer": "^10.4.14",
 		"chart.js": "^4.3.0",
@@ -57,6 +58,7 @@
 		"devtools-detect": "^4.0.1",
 		"js-cookie": "^3.0.5",
 		"lodash": "^4.17.21",
+		"octokit": "^2.0.19",
 		"sass": "^1.62.1",
 		"svelte-chartjs": "^3.1.2",
 		"svelte-material-ui": "^7.0.0-beta.8",

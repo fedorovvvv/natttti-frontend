@@ -108,13 +108,11 @@ export class Api<T = unknown, R = object> {
         responseParser?: 'json' | 'text',
     } = {}):ApiReturn<T, R> {
         try {
-
             const res = await this.#fetch(this.#url, {
                 method: this.method,
                 headers: this.#headers,
                 ...(this.#getBody())
             })
-            
 
             if (!res.ok) {
                 throw await res.json()
@@ -125,7 +123,6 @@ export class Api<T = unknown, R = object> {
             return await json
         } catch (error) {
             const _error = error as IApiError<R>
-
             // captureException(_error)
             console.error(`Api fetch <${this.#url}> Error: <${JSON.stringify(_error)}>. JSON: ${JSON.stringify(_error)}`)
 

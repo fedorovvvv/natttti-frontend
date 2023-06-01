@@ -3,6 +3,7 @@
 	import type { ApiReturn } from "$shared/lib/Api";
 	import { Box } from "$shared/ui/Box";
 	import { ChartGrid } from "$shared/ui/Chart/ChartGrid";
+	import { LoadText } from "$shared/ui/Load";
 	import { TimeScale } from "chart.js";
 	import dayjs from "dayjs";
 	import type { ComponentProps } from "svelte";
@@ -35,11 +36,12 @@
 				newMembersCount: stat.newMembersCount,
 			}
 		}).sort((a, b) => b.x - a.x)
+
 		return [
 			{
 				id: 'messages',
 				title: '✉️ Сообщения',
-				avg: +(parsedData.reduce((val, cur) => val + cur.messagesCount, 0) / parsedData.length).toFixed(0),
+				avg: +(parsedData.reduce((val, cur) => val + cur.messagesCount, 0) / parsedData.length).toFixed(0) || 0,
 				datasets: [
 					{
 						label: 'Написано',
@@ -57,7 +59,7 @@
 			{
 				id: 'members',
 				title: '🐣 Новые члены профсоюза',
-				avg: +(parsedData.reduce((val, cur) => val + cur.newMembersCount, 0) / parsedData.length).toFixed(0),
+				avg: +(parsedData.reduce((val, cur) => val + cur.newMembersCount, 0) / parsedData.length).toFixed(0) || 0,
 				datasets: [
 					{
 						label: 'Вступило',
@@ -74,6 +76,12 @@
 			},
 		]
 	}
+
+	let awaitedData: Awaited<typeof data> | undefined
+
+	data.then(res => {
+		awaitedData = res
+	})
 
 	$: chartProps = {
 		register: [TimeScale],
@@ -95,14 +103,12 @@
 	
 </script>
 <div class={`Stats ${className}`}>
-	{#await data}
-		<b class='Stats__loader'>Поиск архивов...</b>
-	{:then res}
-		<div class="Stats__chart-list">
-			{#each getCharts(res, syncData) as {id, title, datasets, avg} (id)}
-				<Box class='Stats__chart-box'>
-					<h3 class='Stats__chart-title'>{title} <small>среднее: <b>{avg}</b></small></h3>
-					<div class="Stats__chart-scroll-wrapper">
+	<div class="Stats__chart-list">
+		{#each getCharts(awaitedData || [], syncData) as {id, title, datasets, avg} (id)}
+			<Box class='Stats__chart-box'>
+				<h3 class='Stats__chart-title'>{title} <small>среднее: <b>{avg}</b></small></h3>
+				<div class="Stats__chart-container">
+					{#if awaitedData}
 						<div class="Stats__chart-scroll">
 							<ChartGrid
 								data={{
@@ -112,22 +118,23 @@
 								class='Stats__chart'
 							/>
 						</div>
-					</div>
-				</Box>
-			{/each}
-		</div>
-	{/await}
+					{:else}
+						<LoadText class='Stats__loader'>Поиск архивов...</LoadText>
+					{/if}
+				</div>
+			</Box>
+		{/each}
+	</div>
 </div>
 
 <style lang='sass'>
 	.Stats
 		$root: &
 		&__chart
-			@at-root :global &
-				height: 250px
 			&-title
 				text-align: center
 				margin-bottom: 20px
+				flex: none
 				small
 					display: block
 					font-size: 12px
@@ -140,18 +147,18 @@
 				// display: grid
 				// grid-template-columns: repeat(auto-fit, minmax(400px, 1fr))
 				// gap: 20px
+			&-container
+				height: 230px
+				overflow: auto
+				display: flex
+				align-items: center
+				justify-content: center
 			&-scroll
 				min-width: 700px
 				width: 100%
 				height: 100%
-				&-wrapper
-					overflow: auto
 		&__loader
-			display: block
-			font-size: 50px
-			color: var(--gray50)
-			text-align: center
-			margin-top: 40px
-			@media (max-width: $sm)
-				font-size: 30px
+			@at-root :global &
+				display: block
+				text-align: center
 </style>
