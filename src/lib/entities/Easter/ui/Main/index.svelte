@@ -12,6 +12,9 @@
 	
 	let className = ''
 	export { className as class }
+
+	let mounted = false
+
 	const easterContext = new EasterContext().set(writable({
 		date: new Date(),
 		isDevToolsOpen: false,
@@ -47,6 +50,7 @@
 	}
 	
 	onMount(() => {
+		mounted = true
 		controller.startTimeInterval()
 		if (browser) {
 			handler.devToolsChange(new CustomEvent('devtoolschange', {
@@ -66,6 +70,6 @@
 	})
 	
 </script>
-{#if !$easterContext?.isDevToolsChange}
+{#if !$easterContext?.isDevToolsChange && mounted}
 	<slot/>
 {/if}
