@@ -6,7 +6,7 @@
 	import { LoadText } from "$shared/ui/Load";
 	import { TimeScale } from "chart.js";
 	import dayjs from "dayjs";
-	import type { ComponentProps } from "svelte";
+	import { onMount, type ComponentProps } from "svelte";
 
 	interface $$Props {
 		class?:string
@@ -79,8 +79,10 @@
 
 	let awaitedData: Awaited<typeof data> | undefined
 
-	data.then(res => {
-		awaitedData = res
+	onMount(() => {
+		data.then(res => {
+			awaitedData = res
+		})
 	})
 
 	$: chartProps = {

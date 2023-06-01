@@ -11,7 +11,6 @@
 	import { Stats, StatsCounter } from "$entities/Stats";
     import {Counter, CounterList} from '$shared/ui/Counter'
 	import { StatsRequests, type IStat, type StatCurrent } from "$shared/api/stats.js";
-	import { GitRequests } from "$shared/api/Git/index.js";
 	import { Contributors } from "$widgets/Contributors";
     
     export let data

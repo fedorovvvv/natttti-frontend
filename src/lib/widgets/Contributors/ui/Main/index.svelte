@@ -14,19 +14,22 @@
 
 	const gitRequests = new GitRequests()
 
+	let awaitedData:Awaited<ReturnType<typeof gitRequests['getContributors']>> | undefined = undefined
+
 	onMount(() => {
 		mounted = true
+		gitRequests.getContributors().then(res => {
+			awaitedData = res
+		})
 	})
 </script>
 
 <div class={`Contributors ${className}`}>
 	<h2>💅 Рабочая сила</h2>
 	{#if mounted}
-		{#await gitRequests.getContributors()}
-			<LoadText class='Contributors__loader'>Поиск в архивах...</LoadText>
-		{:then res}
+		{#if awaitedData}
 			<ul class='Contributors__list'>
-				{#each res as user (user.id)}
+				{#each awaitedData as user (user.id)}
 					<li class='Contributors__item'>
 						<a href={user.html_url} target="_blank" rel='noreferrer'>
 							<img src={user.avatar_url} alt={user.name}/>
@@ -34,7 +37,9 @@
 					</li>
 				{/each}
 			</ul>
-		{/await}
+		{:else}
+			<LoadText class='Contributors__loader'>Поиск в архивах...</LoadText>
+		{/if}
 	{/if}
 </div>
 
