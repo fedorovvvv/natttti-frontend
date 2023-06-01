@@ -152,7 +152,6 @@
 				overflow: auto
 				display: flex
 				align-items: center
-				justify-content: center
 			&-scroll
 				min-width: 700px
 				width: 100%
@@ -161,4 +160,6 @@
 			@at-root :global &
 				display: block
 				text-align: center
+				margin-left: auto
+				margin-right: auto
 </style>
