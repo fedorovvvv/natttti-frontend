@@ -54,7 +54,7 @@
 		&__list
 			display: grid
 			grid-template-columns: repeat(auto-fit, var(--size))
-			max-width: 800px
+			justify-content: center
 			margin: 40px auto 0
 			gap: 20px
 		&__item
