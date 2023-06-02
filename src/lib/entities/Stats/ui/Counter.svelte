@@ -67,10 +67,6 @@
     
 </script>
 
-<svelte:element this={tag} class={`StatsCounterList ${className}`}>
+<svelte:element this={tag} class={`StatsCounter ${className}`}>
     <slot {data} {count}/>
 </svelte:element>
-
-<!-- <style lang='sass'>
-    .StatsCounterList
-</style> -->
