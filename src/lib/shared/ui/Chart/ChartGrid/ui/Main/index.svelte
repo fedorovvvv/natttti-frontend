@@ -114,15 +114,12 @@
 						tickLength: 2,
 						drawOnChartArea: false,
 					})
-					.time()
+					.time({unit: 'month'})
 					.ticks({
-						align: 'start',
-						callback(value, index) {
+						align: 'center',
+						callback(value) {
 							const offset = dayjs(value).utcOffset()
-							if (new Date(+value - offset).getDate() === 1 || index === 0) {
-								return dayjs(+value - offset).format('MMM YYYY')
-							}
-							return new Date(+value).getDate()
+							return dayjs(+value - offset).format('MMM YYYY')
 						},
 					})
 					.title()
