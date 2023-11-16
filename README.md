@@ -7,6 +7,7 @@
 
 #### links
 + [⚙️ backend](https://github.com/eveloth/natti-chat-bot)
++ [☕️ pocketbase backend](https://github.com/fedorovvvv/natttti-pocketbase-backend)
 
 ### build🧱
 ```
