@@ -1,6 +1,5 @@
 <script lang='ts'>
 	import { page } from "$app/stores";
-	import { session } from "$shared/stores/session";
 
     interface $$Props {
         class?:string
@@ -9,13 +8,13 @@
     let className = ''
     export { className as class }
     $: items = [
-        ...($session.accessToken ? [
-            {
-                id: 'tokens',
-                href: '/tokens',
-                text: 'Токены',
-            }
-        ] : [])
+        // ...($session.accessToken ? [
+        //     {
+        //         id: 'tokens',
+        //         href: '/tokens',
+        //         text: 'Токены',
+        //     }
+        // ] : [])
     ]
 </script>
 

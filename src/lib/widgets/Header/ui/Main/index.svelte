@@ -1,7 +1,8 @@
 <script lang='ts'>
+	import { userStore } from '$appLayer/stores/user';
 	import { Logo } from '$entities/Logo';
+	import { pb } from '$shared/api/pocketbase';
 	import { Auth } from '$shared/lib/Auth';
-	import { session } from '$shared/stores/session';
 	import { HeaderMenu } from '$widgets/Header';
 	import Button from '@smui/button'
 	interface $$Props {
@@ -13,7 +14,7 @@
 
 	const handler = {
 		logoutClick() {
-			Auth.logout()
+			pb.authStore.clear()
 		}
 	}
 	
@@ -25,12 +26,12 @@
 		<HeaderMenu/>
 	</div>
 	<div class="Header__buttons">
-		{#if $session.accessToken}
+		{#if $userStore.isLoggedIn}
 			<Button variant='unelevated' on:click={handler.logoutClick}>
 				Выход
 			</Button>
 		{:else}
-			<Button href='/account/login' variant='unelevated'>
+			<Button href='/users/login' variant='unelevated'>
 				Вход
 			</Button>
 		{/if}

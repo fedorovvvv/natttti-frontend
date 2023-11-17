@@ -10,7 +10,6 @@
 	import Button from "@smui/button/src/Button.svelte";
 	import { TokenHelper } from "$shared/lib/TokenHelper";
 	import { TokenRequests } from "$shared/api/token";
-	import { session } from "$shared/stores/session";
 	import { createEventDispatcher } from "svelte";
 
 	interface $$Props {
@@ -44,7 +43,7 @@
 		
 	$: fields.set({...data})
 
-	$: tokenRequests = new TokenRequests($session.accessToken)
+	$: tokenRequests = new TokenRequests()
 
 	const controller = {
 		editToggle(newState = !$state.edit) {

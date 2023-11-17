@@ -1,12 +1,19 @@
 <script lang='ts'>
-	import { session } from "$shared/stores/session";
 	import type { LayoutData } from "./$types";
 	import { EasterEggs } from "$features/EasterEggs";
+	import { QueryClient, QueryClientProvider } from "@tanstack/svelte-query";
+	import { userStore } from "$appLayer/stores/user";
 
     export let data:LayoutData
 
-    session.set(data.session)
+	$: console.log(data)
+	$: userStore.set(data.user)
+
+	const queryClient = new QueryClient()
+	$: console.log($userStore)
 </script>
 
 <EasterEggs/>
-<slot/>
+<QueryClientProvider client={queryClient}>
+	<slot/>
+</QueryClientProvider>
