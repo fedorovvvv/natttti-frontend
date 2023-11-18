@@ -10,3 +10,10 @@ export const createAuthSchema = () => {
         passwordConfirm: password.oneOf([ref('password')], 'Пароли не совпадают'),
     })
 }
+
+export const createAuthPasswordSchema = () => {
+    return object({
+        identity: string().default('').required(),
+        password: string().default('').required()
+    })
+}

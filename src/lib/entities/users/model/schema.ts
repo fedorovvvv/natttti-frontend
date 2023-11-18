@@ -1,5 +1,5 @@
 import { object, string } from "yup"
-import { createAuthBaseSchema } from "./auth/authBaseSchema"
+import { createAuthSchema } from "$entities/auth"
 
 export const createUserBaseSchema = () => {
     return object({
@@ -13,5 +13,5 @@ export const createUserBaseSchema = () => {
 }
 
 export const createUserSchema = () => {
-    return createUserBaseSchema().concat(createAuthBaseSchema())
+    return createUserBaseSchema().concat(createAuthSchema())
 }
