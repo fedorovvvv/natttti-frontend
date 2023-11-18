@@ -4,14 +4,14 @@ import type{ IUser } from './../types/index'
 
 export const createUserStore = () => {
     const {set, update, subscribe} = writable<{
-        current?:IUser
+        current?:IUser | null
         isLoggedIn: boolean
     }>({
         current:undefined,
         isLoggedIn: false
     })
 
-    const setUser = (user?:IUser) => {
+    const setUser = (user?:IUser | null) => {
         update(data => {
             data.isLoggedIn = !!user
             data.current = user

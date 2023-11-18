@@ -44,7 +44,7 @@
     <Form on:submit={handler.submit}>
         <FormCol>
             <FormRow>
-                <Textfield invalid={!valid} bind:value={$fields.accessToken} name='token' label="Код говори"/>
+                <Textfield invalid={!valid} bind:value={$fields.accessToken} input$name='token' label="Код говори"/>
             </FormRow>
         </FormCol>
         <svelte:fragment slot='button'>

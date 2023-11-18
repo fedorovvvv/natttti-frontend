@@ -23,11 +23,9 @@
     <title>{CONFIG.APP.NAME} | Токены</title>
 </svelte:head>
 
-<main class={`tokens-page ${className}`}>
-    <SectionContainer>
-        <Tokens bind:items={$allTokens}/>
-    </SectionContainer>
-</main>
+<SectionContainer>
+    <Tokens bind:items={$allTokens}/>
+</SectionContainer>
 
 <style lang='sass'>
     .tokens-page

@@ -8,7 +8,7 @@ declare global {
 		// interface Error {}
 		interface Locals {
 			pb:PocketBase
-			user?:AuthModel
+			user?:IUser | null
 			accessToken?:string
 		}
 		// interface PageData {}

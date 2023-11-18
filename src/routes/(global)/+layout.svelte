@@ -5,12 +5,12 @@
 	import { userStore } from "$appLayer/stores/user";
 
     export let data:LayoutData
-
-	$: console.log(data)
 	$: userStore.set(data.user)
 
 	const queryClient = new QueryClient()
-	$: console.log($userStore)
+	$: console.log({
+		$userStore
+	})
 </script>
 
 <EasterEggs/>

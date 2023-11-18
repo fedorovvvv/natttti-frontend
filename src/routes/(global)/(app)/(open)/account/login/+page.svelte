@@ -26,13 +26,11 @@
     <title>{CONFIG.APP.NAME} | Вход</title>
 </svelte:head>
 
-<main class={`account-login-page ${className}`}>
-    <SectionContainer class='account-login-page__container'>
-        <h2>{valid ? '🙌🏻' : '🖕🏻'} Входи</h2>
-        <p>Очередь не задерживаем.</p>
-        <Login on:ok={handler.ok} bind:valid/>
-    </SectionContainer>
-</main>
+<SectionContainer class='account-login-page__container'>
+    <h2>{valid ? '🙌🏻' : '🖕🏻'} Входи</h2>
+    <p>Очередь не задерживаем.</p>
+    <Login on:ok={handler.ok} bind:valid/>
+</SectionContainer>
 
 <style lang='sass'>
     .account-login-page
