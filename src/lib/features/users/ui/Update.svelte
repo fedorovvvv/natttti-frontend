@@ -1,16 +1,16 @@
 <script lang='ts'>
-	import { applyAction, deserialize } from "$app/forms";
+	import { userStore } from "$appLayer/stores/user";
+	import { createUserSchema } from "$entities/users/model/schema";
 	import { validateSchema } from "$shared/lib/validation";
 	import { Box } from "$shared/ui/Box";
 	import { Form, FormCol, FormRow } from "$shared/ui/Form";
 	import Button from "@smui/button";
+    import type { ComponentEvents } from "svelte";
 	import Textfield from "@smui/textfield";
-	import type { ComponentEvents } from "svelte";
-	import { derived, writable } from "svelte/store";
 	import type { ActionResult } from "@sveltejs/kit";
-	import Link from "$shared/ui/Link/Link.svelte";
-	import { createUserCreateSchema } from "$entities/users";
-	import { UsersOAuth2GitHub, UsersOAuth2List } from "$features/users/OAuth2";
+	import { derived, writable } from "svelte/store";
+	import { applyAction, deserialize, enhance } from "$app/forms";
+	import { usersLogoutEnhance, type UserRecord } from "$entities/users";
 
     interface $$Props {
         class?:string
@@ -18,13 +18,13 @@
     
     let className = ''
     export { className as class }
+
+    const updateResult = writable<ActionResult<UserRecord> | undefined>(undefined)
     const isErrorVisible = writable(false)
-    const registrationResult = writable<ActionResult | undefined>(undefined)
-
-    const userSchema = createUserCreateSchema()
-
-    const fields = writable(userSchema.getDefault())
-
+    const userSchema = createUserSchema()
+    
+    const fields = writable(userStore.clone())
+    
     const userSchemaResult = derived([fields, isErrorVisible], ([$fields, $isErrorVisible]) => {
         const res = validateSchema(userSchema, $fields)
         if (!$isErrorVisible) {
@@ -47,18 +47,21 @@
                 body: new FormData(form),
             })
 
-            const result = deserialize(await response.text())
-            registrationResult.set(result)
+            const result = deserialize<UserRecord, undefined>(await response.text())
+
+            updateResult.set(result)
+
+            if (result.type === 'success') {
+                userStore.set(result.data)
+            }
             await applyAction(result)
         }
     }
-    
+
 </script>
-<Box class={`UsersAuthRegistration ${className}`}>
-    <Form method='POST' action='/users/signup' on:submit={handler.submit}>
-        <UsersOAuth2List slot='header'>
-            <UsersOAuth2GitHub/>
-        </UsersOAuth2List>
+
+<Box class={`UsersUpdate ${className}`}>
+    <Form method='POST' action={`/users/update/${$userStore.current?.id}`} on:submit={handler.submit}>
         <FormCol>
             <FormRow>
                 <Textfield invalid={!!$userSchemaResult.errors.username} bind:value={$fields.username} required input$name='username' variant='outlined' type='text' label="Username"/>
@@ -68,21 +71,29 @@
                 <Textfield invalid={!!$userSchemaResult.errors.lastName} bind:value={$fields.lastName} required input$name='lastName' variant='outlined' type='text' label="Фамилия"/>
             </FormRow>
             <FormRow>
-                <Textfield invalid={!!$userSchemaResult.errors.password} bind:value={$fields.password} required input$name='password' variant='outlined' type='password' label="Пароль"/>
+                <Textfield invalid={!!$userSchemaResult.errors.email} bind:value={$fields.email} disabled input$name='email' variant='outlined' type='email' label="Email"/>
             </FormRow>
             <FormRow>
-                <Textfield invalid={!!$userSchemaResult.errors.passwordConfirm} bind:value={$fields.passwordConfirm} required input$name='passwordConfirm' variant='outlined' type='password' label="Пароль точно такой?"/>
+                <Textfield invalid={!!$userSchemaResult.errors.gitHubUrl} bind:value={$fields.gitHubUrl} input$name='gitHubUrl' variant='outlined' type='url' label="GitHub link"/>
             </FormRow>
         </FormCol>
         <svelte:fragment slot='button'>
-            <Button variant='unelevated' disabled={$userSchemaResult.isError}>
-                {#if $registrationResult?.type === 'failure'}
+            <Button variant='unelevated'>
+                {#if $updateResult?.type === 'failure'}
                     Упс, чет не то
                 {:else}
-                    Записаться
+                    Обновить
                 {/if}
             </Button>
+            <form method='POST' use:enhance={usersLogoutEnhance} action="/users/logout">
+                <Button variant='outlined'>
+                    Выйти
+                </Button>
+            </form>
         </svelte:fragment>
-        <Link href="/users/login" slot='links'>Вход</Link>
     </Form>
 </Box>
+
+<style lang='sass'>
+    .UsersUpdate
+</style>

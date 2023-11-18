@@ -1,8 +1,6 @@
 <script lang='ts'>
-	import { AuthLogin } from "$entities/Auth";
 	import { AuthRequests } from "$shared/api/auth";
 	import { Auth } from "$shared/lib/Auth";
-	import { CookiesHelper } from "$shared/lib/CookiesHelper";
 	import { createEventDispatcher, type ComponentEvents } from "svelte";
 	import { writable } from "svelte/store";
 
@@ -78,4 +76,4 @@
 	
 </script>
 
-<AuthLogin disabled={$state.fetching} {valid} class={`Login ${className}`} on:submit={handler.submit}/>
+<!-- <AuthLogin disabled={$state.fetching} {valid} class={`Login ${className}`} on:submit={handler.submit}/> -->

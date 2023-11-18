@@ -1,14 +1,13 @@
 import { fail, redirect } from '@sveltejs/kit'
 import type { ClientResponseError } from 'pocketbase'
+import type { InferType } from 'yup'
+import type { createAuthPasswordSchema } from '$entities/auth'
 import { getUsersCollection } from '$entities/users/api/collection'
 import type { Actions } from './$types'
 
 export const actions: Actions = {
-    password: async ({ locals, request, cookies }) => {
-        const data = Object.fromEntries(await request.formData()) as {
-            identity: string
-            password: string
-        }
+    password: async ({ locals, request }) => {
+        const data = Object.fromEntries(await request.formData()) as InferType<ReturnType<typeof createAuthPasswordSchema>>
         try {
             await getUsersCollection(locals.pb)
                 .authWithPassword(data.identity, data.password)
@@ -25,9 +24,9 @@ export const actions: Actions = {
 
         const redirectURL = `${url.origin}/users/oauth`
         const authProvider = authMethods.authProviders.find(({name}) => name === 'github')
-        
+
         if (!authProvider) {
-            throw redirect(303, '/users/reg') 
+            throw redirect(303, '/users/signup') 
         }
         const authProviderRedirect = `${authProvider.authUrl}${redirectURL}`
 

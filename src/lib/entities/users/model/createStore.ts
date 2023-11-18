@@ -1,17 +1,18 @@
-import type { BaseAuthStore } from 'pocketbase'
-import { writable } from "svelte/store"
-import type{ IUser } from './../types/index'
+import { cloneDeep } from "lodash"
+import { get, writable } from "svelte/store"
+import type{ UserRecord } from '../types'
+import { createUserSchema } from "./schema"
 
 export const createUserStore = () => {
     const {set, update, subscribe} = writable<{
-        current?:IUser | null
+        current?:UserRecord | null
         isLoggedIn: boolean
     }>({
         current:undefined,
         isLoggedIn: false
     })
 
-    const setUser = (user?:IUser | null) => {
+    const setUser = (user?:UserRecord | null) => {
         update(data => {
             data.isLoggedIn = !!user
             data.current = user
@@ -19,8 +20,14 @@ export const createUserStore = () => {
         })
     }
 
+    const clone = () => {
+        const current = get({subscribe}).current
+        return current ? cloneDeep(current) : createUserSchema().getDefault()
+    }
+
     return {
         set: setUser,
-        subscribe
+        subscribe,
+        clone
     }
 }

@@ -61,7 +61,7 @@
                 transition: .1s ease-in-out
                 transition-property: width, height
             &:not(:last-child)
-                margin-right: 10px
+                margin-right: 20px
             &_active
                 &::after
                     width: calc(100% + 6px)

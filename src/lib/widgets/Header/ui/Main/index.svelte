@@ -21,7 +21,7 @@
 	</div>
 	<div class="Header__buttons">
 		{#if $userStore.isLoggedIn}
-			<Button variant='outlined' href='/users/me'>
+			<Button variant='outlined' href='/account'>
 				{$userStore.current?.username}
 			</Button>
 		{:else}

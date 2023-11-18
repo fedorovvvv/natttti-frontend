@@ -11,15 +11,10 @@
 </script>
 
 <main class={`account-layout ${className}`}>
-    <SectionContainer>
-        <h1>🐥Стланица усталела 🐥</h1>
-    </SectionContainer>
+    <slot/>
 </main>
 
 <style lang='sass'>
     .account-layout
         padding-top: 100px
-        h1
-            text-align: center
-            margin: auto
 </style>
