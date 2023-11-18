@@ -1,6 +1,6 @@
 {
 	"name": "natti-site",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"private": true,
 	"author": "Nikita Fedorov <nikitafedorov7@yandex.ru>",
 	"scripts": {
