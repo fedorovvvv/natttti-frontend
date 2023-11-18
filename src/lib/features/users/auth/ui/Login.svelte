@@ -57,10 +57,10 @@
     
 </script>
 <Box class={`UsersAuthLogin ${className}`}>
+    <UsersOAuth2List>
+        <UsersOAuth2GitHub/>
+    </UsersOAuth2List>
     <Form method='POST' action='/users/login?/password' on:submit={handler.submit}>
-        <UsersOAuth2List slot='header'>
-            <UsersOAuth2GitHub/>
-        </UsersOAuth2List>
         <FormCol>
             <FormRow>
                 <Textfield invalid={!!$passwordAuthSchemaResult?.errors.identity} bind:value={$fields.identity} input$name='identity' type='text' label="Username or Email"/>
