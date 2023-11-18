@@ -33,7 +33,7 @@ export const GET = async ({locals, url, cookies  }) => {
     try {
         await usersCollection
             .authWithOAuth2Code(provider.name, code, expectedVerifier, redirectURL, {
-                firstName: 'Фродо',
+                firstName: 'Бильбо',
                 lastName: 'Бэггинс'
             });
     } catch (err) {
