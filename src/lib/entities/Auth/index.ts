@@ -1,3 +1,1 @@
-export {
-	Login as AuthLogin,
-} from './ui'
+export * from './model'

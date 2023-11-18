@@ -1,12 +1,4 @@
-import type { AdminModel, RecordModel } from "pocketbase"
+import type { InferType } from "yup";
+import type { createUserSchema } from "../model/schema";
 
-export interface IUser extends AdminModel, RecordModel {
-    username:string
-    verified: false
-    emailVisibility: true
-    firstName: string
-    lastName: string
-    gitHubUrl?: string
-    gitLabUrl?: string
-    telegramUrl?: string
-}
+export type User = InferType<ReturnType<typeof createUserSchema>>
