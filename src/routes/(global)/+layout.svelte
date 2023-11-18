@@ -9,9 +9,6 @@
 	$: userStore.set(data.user)
 
 	const queryClient = new QueryClient()
-	$: console.log({
-		$userStore
-	})
 </script>
 
 <EasterEggs/>
