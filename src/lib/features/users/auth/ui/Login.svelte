@@ -63,10 +63,10 @@
     <Form method='POST' action='/users/login?/password' on:submit={handler.submit}>
         <FormCol>
             <FormRow>
-                <Textfield invalid={!!$passwordAuthSchemaResult?.errors.identity} bind:value={$fields.identity} input$name='identity' type='text' label="Username or Email"/>
+                <Textfield invalid={!!$passwordAuthSchemaResult?.errors.identity} bind:value={$fields.identity} input$name='identity' type='text' label="Логин"/>
             </FormRow>
             <FormRow>
-                <Textfield invalid={!!$passwordAuthSchemaResult?.errors.password} bind:value={$fields.password} input$name='password' type='password' label="Password"/>
+                <Textfield invalid={!!$passwordAuthSchemaResult?.errors.password} bind:value={$fields.password} input$name='password' type='password' label="Пароль"/>
             </FormRow>
         </FormCol>
         <svelte:fragment slot='button'>

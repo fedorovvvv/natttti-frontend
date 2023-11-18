@@ -10,7 +10,6 @@
 	import type { ActionResult } from "@sveltejs/kit";
 	import Link from "$shared/ui/Link/Link.svelte";
 	import { createUserSchema } from "$entities/users/model/schema";
-	import { entries, filter, includes } from "lodash";
 	import { UsersOAuth2GitHub, UsersOAuth2List } from "$features/users/OAuth2";
 
     interface $$Props {
