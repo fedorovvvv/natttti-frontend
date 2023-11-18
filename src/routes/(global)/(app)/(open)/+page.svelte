@@ -1,11 +1,5 @@
 <script lang='ts'>
-	import { ChartHelper } from "$shared/lib/Chart/ChartHelper";
     import _ from 'lodash'
-	import dayjs from "dayjs";
-	import type { ComponentProps } from "svelte";
-	import { TimeScale } from "chart.js";
-	import { ChartGrid } from "$shared/ui/Chart/ChartGrid";
-	import { Box } from "$shared/ui/Box";
 	import { SectionContainer } from "$shared/ui/Section";
 	import { CONFIG } from "$shared/config";
 	import { Stats, StatsCounter } from "$entities/Stats";

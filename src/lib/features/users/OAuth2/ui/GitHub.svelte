@@ -1,9 +1,4 @@
 <script lang='ts'>
-	import { applyAction, enhance } from "$app/forms";
-	import { goto } from "$app/navigation";
-	import { getUsersCollection } from "$entities/users/api/collection";
-	import { pb } from "$shared/api/pocketbase";
-
     interface $$Props {
         class?:string
     }
