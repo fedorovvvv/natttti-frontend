@@ -25,7 +25,7 @@ export const GET = async ({locals,  url, cookies, request  }) => {
     //as a side effect this will generate a new code verifier, hence why we need to pass the verifier back in through the cookie
     const authMethods = await usersCollection.listAuthMethods();
     
-    if (!code) {
+    if (!code || !expectedVerifier) {
         console.log('No Auth Data');
         throw redirect(303, '/users/reg');
     }
