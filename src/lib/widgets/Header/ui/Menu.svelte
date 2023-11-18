@@ -1,6 +1,6 @@
 <script lang='ts'>
 	import { page } from "$app/stores";
-	import { session } from "$shared/stores/session";
+	import { userStore } from "$appLayer/stores/user";
 
     interface $$Props {
         class?:string
@@ -8,8 +8,14 @@
     
     let className = ''
     export { className as class }
+
     $: items = [
-        ...($session.accessToken ? [
+        {
+            id: 'santa',
+            href: '/events/gift',
+            text: 'Тайный санта🎅'
+        },
+        ...($userStore.isLoggedIn ? [
             {
                 id: 'tokens',
                 href: '/tokens',
@@ -26,7 +32,9 @@
                 href={item.href}
                 class='HeaderMenu__item'
                 class:HeaderMenu__item_active={$page.url.pathname.startsWith(item.href)}
-            >{item.text}</a>
+            >
+                {item.text}
+            </a>
         {/each}
     </nav>    
 {/if}
@@ -52,6 +60,8 @@
                 background: var(--green500)
                 transition: .1s ease-in-out
                 transition-property: width, height
+            &:not(:last-child)
+                margin-right: 10px
             &_active
                 &::after
                     width: calc(100% + 6px)

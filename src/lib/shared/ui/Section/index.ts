@@ -1,4 +1,5 @@
 export {
 	Main as Section,
-	Container as SectionContainer
+	Container as SectionContainer,
+	Title as SectionTitle,
 } from './ui'

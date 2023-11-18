@@ -10,16 +10,19 @@
     
 </script>
 
-<svelte:element this={tag} class={`Container ${className}`}>
+<svelte:element this={tag} class={`SectionContainer ${className}`}>
     <slot/>
 </svelte:element>
 
 <style lang='sass'>
-    .Container
+    .SectionContainer
         width: 100%
         max-width: 1200px
         margin-left: auto
         margin-right: auto
         padding-left: var(--containerPadding)
         padding-right: var(--containerPadding)
+        .SectionTitle
+            @at-root :global &
+                margin-bottom: 20px
 </style>

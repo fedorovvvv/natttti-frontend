@@ -1,7 +1,9 @@
 <script lang='ts'>
+	import { applyAction, enhance } from '$app/forms';
+	import { userStore } from '$appLayer/stores/user';
 	import { Logo } from '$entities/Logo';
+	import { pb } from '$shared/api/pocketbase';
 	import { Auth } from '$shared/lib/Auth';
-	import { session } from '$shared/stores/session';
 	import { HeaderMenu } from '$widgets/Header';
 	import Button from '@smui/button'
 	interface $$Props {
@@ -10,12 +12,6 @@
 	
 	let className = ''
 	export { className as class }
-
-	const handler = {
-		logoutClick() {
-			Auth.logout()
-		}
-	}
 	
 </script>
 
@@ -24,13 +20,27 @@
 	<div class="Header__container">
 		<HeaderMenu/>
 	</div>
+	{#if $userStore.current?.username}
+		<code class='Header__user'><small>[{$userStore.current?.username}]</small></code>
+	{/if}
 	<div class="Header__buttons">
-		{#if $session.accessToken}
-			<Button variant='unelevated' on:click={handler.logoutClick}>
-				Выход
-			</Button>
+		{#if $userStore.isLoggedIn}
+			<form
+				method="POST"
+				action="/users/logout"
+				use:enhance={() => {
+					return async ({ result }) => {
+						pb.authStore.clear()
+						await applyAction(result)
+					}
+				}}
+			>
+				<Button variant='unelevated'>
+					Выход
+				</Button>
+			</form>
 		{:else}
-			<Button href='/account/login' variant='unelevated'>
+			<Button href='/users/login' variant='unelevated'>
 				Вход
 			</Button>
 		{/if}
@@ -47,13 +57,15 @@
 		&__container
 			flex: 1
 			display: flex
-			justify-content: center
 		&__logo
 			@at-root :global &
 				flex: none
 				display: block
+				margin-right: 20px
 				font-size: 24px
 				font-weight: 700
 		&__buttons
 			flex: none
+		&__user
+			margin-right: 20px
 </style>

@@ -1,7 +1,6 @@
 <script lang='ts'>
 	import { TokenFields } from "$entities/Token";
 	import { TokenRequests } from "$shared/api/token";
-	import { session } from "$shared/stores/session";
 	import { ETokenAccessTypes, type IToken } from "$shared/types/token";
 	import { Box } from "$shared/ui/Box";
 	import Button, {Group} from "@smui/button";
@@ -38,7 +37,7 @@
 
     const fields = writable<typeof defaultFields>(defaultFields)
 
-    $: tokenRequests = new TokenRequests($session.accessToken)
+    $: tokenRequests = new TokenRequests()
 
     const controller = {
         clean() {
