@@ -4,12 +4,17 @@ import { getUsersCollection } from '$entities/users/api/collection'
 import type { Actions } from './$types'
 
 export const actions: Actions = {
-    password: async ({ locals, request }) => {
+    password: async ({ locals, request, cookies }) => {
         const data = Object.fromEntries(await request.formData()) as {
             identity: string
             password: string
         }
-
+        cookies.set('test', '123123123123', {
+            httpOnly: true,
+            secure: true,
+            path: '/',
+            sameSite: 'lax'
+        })
         try {
             await getUsersCollection(locals.pb)
                 .authWithPassword(data.identity, data.password)
@@ -47,18 +52,21 @@ export const actions: Actions = {
         })
 
         cookies.set('state',state, {
-            httpOnly: false,
-            secure: false,
+            httpOnly: true,
+            secure: true,
+            path: '/',
             sameSite: 'lax'
         });
+        cookies.set('test', '123123123123')
         cookies.set('verifier',verifier, {
-            httpOnly: false,
-            secure: false,
+            httpOnly: true,
+            secure: true,
+            path: '/',
             sameSite: 'lax'
         });
 
         console.log(cookies.getAll())
 
-        throw redirect(303, authProviderRedirect)
+        throw redirect(302, '/')
     }
 }

@@ -27,7 +27,7 @@ export const validateSchema = <T extends Schema>(schema:Schema, data:InferType<T
         resultData = result
     } catch (_error) {
         const {inner} = _error as ValidationError
-        inner.forEach(err => {
+        inner?.forEach(err => {
             errors[err.path as keyof typeof errors] = {...err}
         })
     }

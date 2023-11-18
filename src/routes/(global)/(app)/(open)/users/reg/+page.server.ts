@@ -10,8 +10,8 @@ export const actions: Actions = {
         const data = Object.fromEntries(await request.formData()) as unknown as InferType<ReturnType<typeof createUserSchema>>
         const userCollection = getUsersCollection(locals.pb)
         try {
-            await userCollection.create(data)
-            await userCollection.authWithPassword(data.username, data.password)
+            const res = await userCollection.create(data)
+            await userCollection.authWithPassword(res.username, data.password)
         } catch (_error) {
             const error = _error as ClientResponseError
             return fail(error.status, error.data)
