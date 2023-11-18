@@ -52,10 +52,14 @@
 			border-bottom: 1px solid var(--gray100)
 		&__button
 			width: 100%
+			display: flex
+			align-items: center
+			gap: 10px
+			flex-wrap: wrap
 			& > *, .mdc-button
 				@at-root :global &
 					width: 100%
-					flex: 1
+					flex: 1 0 200px
 		&__links
 			border-top: 1px solid var(--gray100)
 			padding-top: 20px

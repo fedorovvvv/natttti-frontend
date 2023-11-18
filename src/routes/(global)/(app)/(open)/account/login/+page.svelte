@@ -3,7 +3,6 @@
 	import { Login } from "$features/Login";
 	import { CONFIG } from "$shared/config";
     import { SectionContainer } from "$shared/ui/Section";
-	import { tick } from "svelte";
 
     interface $$Props {
         class?:string

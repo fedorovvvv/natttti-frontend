@@ -5,6 +5,7 @@
 	import { userStore } from "$appLayer/stores/user";
 
     export let data:LayoutData
+
 	$: userStore.set(data.user)
 
 	const queryClient = new QueryClient()

@@ -1,6 +1,6 @@
 import { BaseAuthStore, PocketBase, type AuthModel } from 'pocketbase'
 import type Client from "pocketbase"
-import type { IUser } from '$entities/users/types'
+import type { UserRecord } from '$entities/users'
 
 // for information about these interfaces
 declare global {
@@ -8,7 +8,7 @@ declare global {
 		// interface Error {}
 		interface Locals {
 			pb:PocketBase
-			user?:IUser | null
+			user?:UserRecord | null
 			accessToken?:string
 		}
 		// interface PageData {}

@@ -9,7 +9,7 @@
 	import { derived, writable } from "svelte/store";
 	import type { ActionResult } from "@sveltejs/kit";
 	import Link from "$shared/ui/Link/Link.svelte";
-	import { createUserSchema } from "$entities/users/model/schema";
+	import { createUserCreateSchema } from "$entities/users";
 	import { UsersOAuth2GitHub, UsersOAuth2List } from "$features/users/OAuth2";
 
     interface $$Props {
@@ -18,10 +18,10 @@
     
     let className = ''
     export { className as class }
-    let isErrorVisible = writable(false)
-    let loginResult = writable<ActionResult | undefined>(undefined)
+    const isErrorVisible = writable(false)
+    const registrationResult = writable<ActionResult | undefined>(undefined)
 
-    const userSchema = createUserSchema()
+    const userSchema = createUserCreateSchema()
 
     const fields = writable(userSchema.getDefault())
 
@@ -48,14 +48,14 @@
             })
 
             const result = deserialize(await response.text())
-            loginResult.set(result)
+            registrationResult.set(result)
             await applyAction(result)
         }
     }
     
 </script>
 <Box class={`UsersAuthRegistration ${className}`}>
-    <Form method='POST' action='/users/reg' on:submit={handler.submit}>
+    <Form method='POST' action='/users/signup' on:submit={handler.submit}>
         <UsersOAuth2List slot='header'>
             <UsersOAuth2GitHub/>
         </UsersOAuth2List>
@@ -76,7 +76,7 @@
         </FormCol>
         <svelte:fragment slot='button'>
             <Button variant='unelevated' disabled={$userSchemaResult.isError}>
-                {#if $loginResult?.type === 'failure'}
+                {#if $registrationResult?.type === 'failure'}
                     Упс, чет не то
                 {:else}
                     Записаться

@@ -1,6 +1,5 @@
 <script lang='ts'>
 	import { applyAction, deserialize } from "$app/forms";
-	import { createUserAuthPasswordSchema } from "$entities/users/model";
 	import { validateSchema } from "$shared/lib/validation";
 	import { Box } from "$shared/ui/Box";
 	import { Form, FormCol, FormRow } from "$shared/ui/Form";
@@ -11,6 +10,7 @@
 	import type { ActionResult } from "@sveltejs/kit";
 	import Link from "$shared/ui/Link/Link.svelte";
 	import { UsersOAuth2GitHub, UsersOAuth2List } from "$features/users/OAuth2";
+	import { createAuthPasswordSchema } from "$entities/auth/model/schema";
 
     interface $$Props {
         class?:string
@@ -18,15 +18,12 @@
     
     let className = ''
     export { className as class }
-    let isErrorVisible = writable(false)
-    let loginResult = writable<ActionResult | undefined>(undefined)
+    const isErrorVisible = writable(false)
+    const loginResult = writable<ActionResult | undefined>(undefined)
 
-    const passwordAuthSchema = createUserAuthPasswordSchema()
+    const passwordAuthSchema = createAuthPasswordSchema()
 
-    const fields = writable({
-        identity: '',
-        password: ''
-    })
+    const fields = writable(passwordAuthSchema.getDefault())
 
     const passwordAuthSchemaResult = derived([fields, isErrorVisible], ([$fields, $isErrorVisible]) => {
         const res = validateSchema(passwordAuthSchema, $fields)
@@ -78,6 +75,6 @@
                 {/if}
             </Button>
         </svelte:fragment>
-        <Link href="/users/reg" slot='links'>Регистрация</Link>
+        <Link href="/users/signup" slot='links'>Регистрация</Link>
     </Form>
 </Box>

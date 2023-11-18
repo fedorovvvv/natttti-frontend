@@ -1,6 +1,6 @@
 import type { Handle } from '@sveltejs/kit';
+import type { UserRecord } from '$entities/users';
 import { getUsersCollection } from '$entities/users/api/collection';
-import type { IUser } from '$entities/users/types';
 import { createPocketBaseInstance } from '$shared/api/pocketbase';
 
 export const handle: Handle = async ({ event, resolve }) => {
@@ -21,7 +21,7 @@ export const handle: Handle = async ({ event, resolve }) => {
     }
     
   
-    event.locals.user = pb.authStore?.model as IUser
+    event.locals.user = pb.authStore?.model as UserRecord
   
     const response = await resolve(event)
   
