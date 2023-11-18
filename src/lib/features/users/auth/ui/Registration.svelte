@@ -62,6 +62,9 @@
         </UsersOAuth2List>
         <FormCol>
             <FormRow>
+                <Textfield invalid={!!$userSchemaResult.errors.username} bind:value={$fields.username} required input$name='username' type='text' label="Username"/>
+            </FormRow>
+            <FormRow>
                 <Textfield invalid={!!$userSchemaResult.errors.firstName} bind:value={$fields.firstName} required input$name='firstName' type='text' label="Имя"/>
             </FormRow>
             <FormRow>
