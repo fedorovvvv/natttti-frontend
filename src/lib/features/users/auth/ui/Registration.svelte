@@ -61,19 +61,17 @@
         </UsersOAuth2List>
         <FormCol>
             <FormRow>
-                <Textfield invalid={!!$userSchemaResult.errors.username} bind:value={$fields.username} required input$name='username' type='text' label="Username"/>
+                <Textfield invalid={!!$userSchemaResult.errors.username} bind:value={$fields.username} required input$name='username' variant='outlined' type='text' label="Username"/>
             </FormRow>
             <FormRow>
-                <Textfield invalid={!!$userSchemaResult.errors.firstName} bind:value={$fields.firstName} required input$name='firstName' type='text' label="Имя"/>
+                <Textfield invalid={!!$userSchemaResult.errors.firstName} bind:value={$fields.firstName} required input$name='firstName' variant='outlined' type='text' label="Имя"/>
+                <Textfield invalid={!!$userSchemaResult.errors.lastName} bind:value={$fields.lastName} required input$name='lastName' variant='outlined' type='text' label="Фамилия"/>
             </FormRow>
             <FormRow>
-                <Textfield invalid={!!$userSchemaResult.errors.lastName} bind:value={$fields.lastName} required input$name='lastName' type='text' label="Фамилия"/>
+                <Textfield invalid={!!$userSchemaResult.errors.password} bind:value={$fields.password} required input$name='password' variant='outlined' type='password' label="Пароль"/>
             </FormRow>
             <FormRow>
-                <Textfield invalid={!!$userSchemaResult.errors.password} bind:value={$fields.password} required input$name='password' type='password' label="Пароль"/>
-            </FormRow>
-            <FormRow>
-                <Textfield invalid={!!$userSchemaResult.errors.passwordConfirm} bind:value={$fields.passwordConfirm} required input$name='passwordConfirm' type='password' label="Пароль точно такой?"/>
+                <Textfield invalid={!!$userSchemaResult.errors.passwordConfirm} bind:value={$fields.passwordConfirm} required input$name='passwordConfirm' variant='outlined' type='password' label="Пароль точно такой?"/>
             </FormRow>
         </FormCol>
         <svelte:fragment slot='button'>
