@@ -1,8 +1,8 @@
 import { fail, redirect } from '@sveltejs/kit'
 import type { ClientResponseError } from 'pocketbase'
 import type { InferType } from 'yup'
+import type { createUserCreateSchema } from '$entities/users'
 import { getUsersCollection } from '$entities/users/api/collection'
-import type { createUserCreateSchema } from '$entities/users/model/schema'
 import type { Actions } from './$types'
 
 export const actions: Actions = {
