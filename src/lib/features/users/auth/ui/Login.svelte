@@ -10,6 +10,7 @@
 	import { derived, writable } from "svelte/store";
 	import type { ActionResult } from "@sveltejs/kit";
 	import Link from "$shared/ui/Link/Link.svelte";
+	import { UsersOAuth2GitHub, UsersOAuth2List } from "$features/users/OAuth2";
 
     interface $$Props {
         class?:string
