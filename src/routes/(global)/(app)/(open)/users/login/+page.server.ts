@@ -4,7 +4,7 @@ import { getUsersCollection } from '$entities/users/api/collection'
 import type { Actions } from './$types'
 
 export const actions: Actions = {
-    default: async ({ locals, request }) => {
+    password: async ({ locals, request }) => {
         const data = Object.fromEntries(await request.formData()) as {
             identity: string
             password: string
@@ -20,4 +20,20 @@ export const actions: Actions = {
 
         throw redirect(303, '/')
     },
+    github: async ({ locals }) => {
+        try {
+            await getUsersCollection(locals.pb)
+                .authWithOAuth2({
+                    provider: 'github',
+                    createData: {
+                        firstName: 'Фродо',
+                        lastName: 'Бэггинс',
+                    }
+                })
+        } catch (_error) {
+            const error = _error as ClientResponseError
+            return fail(400, error.data)
+        }
+        throw redirect(303, '/')
+    }
 }

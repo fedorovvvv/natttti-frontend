@@ -11,6 +11,7 @@
 	import Link from "$shared/ui/Link/Link.svelte";
 	import { createUserSchema } from "$entities/users/model/schema";
 	import { entries, filter, includes } from "lodash";
+	import { UsersOAuth2GitHub, UsersOAuth2List } from "$features/users/OAuth2";
 
     interface $$Props {
         class?:string
@@ -54,8 +55,11 @@
     }
     
 </script>
-<Box class={`UserLogin ${className}`}>
+<Box class={`UsersAuthRegistration ${className}`}>
     <Form method='POST' action='/users/reg' on:submit={handler.submit}>
+        <UsersOAuth2List slot='header'>
+            <UsersOAuth2GitHub/>
+        </UsersOAuth2List>
         <FormCol>
             <FormRow>
                 <Textfield invalid={!!$userSchemaResult.errors.username} bind:value={$fields.username} input$name='username' type='text' label="Username"/>
