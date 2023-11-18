@@ -20,6 +20,11 @@
 	on:submit
 	{...$$restProps}
 >
+	{#if $$slots.header}
+		<div class="Form__header">
+			<slot name='header'/>
+		</div>
+	{/if}
 	<div class="Form__main">
 		<slot/>
 	</div>
@@ -41,6 +46,10 @@
 		display: grid
 		grid-template-columns: 1fr
 		gap: 20px
+		&__header
+			width: 100%
+			padding-bottom: 20px
+			border-bottom: 1px solid var(--gray100)
 		&__button
 			width: 100%
 			& > *, .mdc-button

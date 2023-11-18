@@ -1,4 +1,2 @@
-export {
-	Login as UsersAuthLogin,
-	Registration as UsersAuthRegistration,
-} from './auth/ui'
+export * from './auth'
+export * from './OAuth2'
