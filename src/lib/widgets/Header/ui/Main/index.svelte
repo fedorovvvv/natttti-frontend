@@ -19,25 +19,11 @@
 	<div class="Header__container">
 		<HeaderMenu/>
 	</div>
-	{#if $userStore.current?.username}
-		<code class='Header__user'><small>[{$userStore.current?.username}]</small></code>
-	{/if}
 	<div class="Header__buttons">
 		{#if $userStore.isLoggedIn}
-			<form
-				method="POST"
-				action="/users/logout"
-				use:enhance={() => {
-					return async ({ result }) => {
-						pb.authStore.clear()
-						await applyAction(result)
-					}
-				}}
-			>
-				<Button variant='unelevated'>
-					Выход
-				</Button>
-			</form>
+			<Button variant='outlined' href='/users/me'>
+				{$userStore.current?.username}
+			</Button>
 		{:else}
 			<Button href='/users/login' variant='unelevated'>
 				Вход
