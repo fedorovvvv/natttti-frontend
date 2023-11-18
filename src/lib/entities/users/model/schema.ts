@@ -3,8 +3,8 @@ import { createAuthBaseSchema } from "./auth/authBaseSchema"
 
 export const createUserBaseSchema = () => {
     return object({
-        firstName: string().default('').required(),
-        lastName: string().default('').required(),
+        firstName: string().default(''),
+        lastName: string().default(''),
         avatar: string().default(''),
         gitHubUrl: string().default('').url(),
         gitLabUrl: string().default('').url(),

@@ -10,7 +10,6 @@
 	import type { ActionResult } from "@sveltejs/kit";
 	import Link from "$shared/ui/Link/Link.svelte";
 	import { createUserSchema } from "$entities/users/model/schema";
-	import { entries, filter, includes } from "lodash";
 	import { UsersOAuth2GitHub, UsersOAuth2List } from "$features/users/OAuth2";
 
     interface $$Props {
@@ -65,10 +64,10 @@
                 <Textfield invalid={!!$userSchemaResult.errors.username} bind:value={$fields.username} required input$name='username' type='text' label="Username"/>
             </FormRow>
             <FormRow>
-                <Textfield invalid={!!$userSchemaResult.errors.firstName} bind:value={$fields.firstName} required input$name='firstName' type='text' label="Имя"/>
+                <Textfield invalid={!!$userSchemaResult.errors.firstName} bind:value={$fields.firstName} input$name='firstName' type='text' label="Имя"/>
             </FormRow>
             <FormRow>
-                <Textfield invalid={!!$userSchemaResult.errors.lastName} bind:value={$fields.lastName} required input$name='lastName' type='text' label="Фамилия"/>
+                <Textfield invalid={!!$userSchemaResult.errors.lastName} bind:value={$fields.lastName} input$name='lastName' type='text' label="Фамилия"/>
             </FormRow>
             <FormRow>
                 <Textfield invalid={!!$userSchemaResult.errors.password} bind:value={$fields.password} required input$name='password' type='password' label="Пароль"/>

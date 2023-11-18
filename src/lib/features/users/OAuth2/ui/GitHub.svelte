@@ -14,7 +14,7 @@
 <form
     use:enhance={() => {
         return async ({ result }) => {
-            // pb.authStore.clear()
+            pb.authStore.clear()
             await applyAction(result)
         }
     }}
