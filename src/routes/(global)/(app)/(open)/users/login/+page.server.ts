@@ -26,11 +26,6 @@ export const actions: Actions = {
         const redirectURL = `${url.origin}/users/oauth`
         const authProvider = authMethods.authProviders.find(({name}) => name === 'github')
         
-        console.log({
-            redirectURL,
-            authProvider
-        })
-
         if (!authProvider) {
             throw redirect(303, '/users/reg') 
         }
@@ -38,12 +33,6 @@ export const actions: Actions = {
 
         const state = authProvider.state;
         const verifier = authProvider.codeVerifier
-
-        console.log({
-            authProviderRedirect,
-            state,
-            verifier
-        })
 
         cookies.set('state',state, {
             httpOnly: true,
@@ -56,6 +45,6 @@ export const actions: Actions = {
             sameSite: 'lax'
         });
 
-        throw redirect(302, '/')
+        throw redirect(302, authProviderRedirect)
     }
 }
