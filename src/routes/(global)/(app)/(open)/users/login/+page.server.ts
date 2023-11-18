@@ -20,19 +20,49 @@ export const actions: Actions = {
 
         throw redirect(303, '/')
     },
-    github: async ({ locals }) => {
+    github: async ({ cookies, url, locals}) => {
         try {
-            await getUsersCollection(locals.pb)
-                .authWithOAuth2({
-                    provider: 'github',
-                    createData: {
-                        firstName: 'Фродо',
-                        lastName: 'Бэггинс',
-                    }
-                })
+            const usersCollection = getUsersCollection(locals.pb)
+            const authMethods = await usersCollection.listAuthMethods();
+
+            if (!authMethods) {
+                return {
+                    authProviderRedirect: '',
+                    authProviderState: ''
+                };
+            }
+
+            const redirectURL = `${url.origin}/users/ouath`
+            const authProvider = authMethods.authProviders.find(({name}) => name === 'github')
+            if (!authProvider) {
+                throw redirect(303, '/users/reg') 
+            }
+            const authProviderRedirect = `${authProvider?.authUrl}${redirectURL}`
+
+            const state = authProvider.state;
+            const verifier = authProvider.codeVerifier
+
+            cookies.set('state',state);
+            cookies.set('verifier',verifier);
+
+            throw redirect(302, authProviderRedirect)
+            
+            // await getUsersCollection(locals.pb)
+            //     .authWithOAuth2({
+            //         provider: 'github',
+            //         createData: {
+            //             firstName: 'Фродо',
+            //             lastName: 'Бэггинс',
+            //         },
+            //         urlCallback(providerUrl) {
+            //             console.log(providerUrl)
+            //             // open the url in the browser
+            //          }
+            //     })
         } catch (_error) {
-            const error = _error as ClientResponseError
-            return fail(400, error.data)
+            throw redirect(303, '/users/reg') 
+            // const error = _error as ClientResponseError
+            // return fail(400, error.data)
         }
         throw redirect(303, '/')
     }
