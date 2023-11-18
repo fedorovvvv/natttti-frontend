@@ -3,20 +3,20 @@ import { getUsersCollection } from '$entities/users/api/collection.js';
 
 
 export const GET = async ({locals,  url, cookies, request  }) => {
-    //console.log(url.searchParams);
+    console.log(url.searchParams);
     const redirectURL = `${url.origin}/oauth`;
     const expectedState = cookies.get('state');
     const expectedVerifier = cookies.get('verifier');
 
-    //console.log('expected',expectedState)
+    console.log('expected',expectedState)
 
     const state = await url.searchParams.get('state');
     const code = await url.searchParams.get('code');
 
     const usersCollection = getUsersCollection(locals.pb)
 
-    //console.log('returned state',state)
-    //console.log('returned code',code)
+    console.log('returned state',state)
+    console.log('returned code',code)
 
     //as a side effect this will generate a new code verifier, hence why we need to pass the verifier back in through the cookie
     const authMethods = await usersCollection.listAuthMethods();

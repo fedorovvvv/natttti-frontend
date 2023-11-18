@@ -34,6 +34,12 @@ export const actions: Actions = {
 
             const redirectURL = `${url.origin}/users/ouath`
             const authProvider = authMethods.authProviders.find(({name}) => name === 'github')
+            
+            console.log({
+                redirectURL,
+                authProvider
+            })
+
             if (!authProvider) {
                 throw redirect(303, '/users/reg') 
             }
@@ -41,6 +47,12 @@ export const actions: Actions = {
 
             const state = authProvider.state;
             const verifier = authProvider.codeVerifier
+
+            console.log({
+                authProviderRedirect,
+                state,
+                verifier
+            })
 
             cookies.set('state',state);
             cookies.set('verifier',verifier);
@@ -64,6 +76,5 @@ export const actions: Actions = {
             // const error = _error as ClientResponseError
             // return fail(400, error.data)
         }
-        throw redirect(303, '/')
     }
 }

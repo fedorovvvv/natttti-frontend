@@ -3,7 +3,6 @@
 	import { userStore } from '$appLayer/stores/user';
 	import { Logo } from '$entities/Logo';
 	import { pb } from '$shared/api/pocketbase';
-	import { Auth } from '$shared/lib/Auth';
 	import { HeaderMenu } from '$widgets/Header';
 	import Button from '@smui/button'
 	interface $$Props {
