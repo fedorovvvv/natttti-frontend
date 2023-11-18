@@ -1,4 +1,7 @@
 <script lang='ts'>
+	import { applyAction, enhance } from "$app/forms";
+	import { pb } from "$shared/api/pocketbase";
+
     interface $$Props {
         class?:string
     }
@@ -9,6 +12,12 @@
 </script>
 
 <form
+    use:enhance={() => {
+        return async ({ result }) => {
+            pb.authStore.clear()
+            await applyAction(result)
+        }
+    }}
     method="POST"
     action='/users/login?/github'
     class={`UsersOAuth2GitHub ${className}`}

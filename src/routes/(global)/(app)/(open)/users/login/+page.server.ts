@@ -21,60 +21,44 @@ export const actions: Actions = {
         throw redirect(303, '/')
     },
     github: async ({ cookies, url, locals}) => {
-        try {
-            const usersCollection = getUsersCollection(locals.pb)
-            const authMethods = await usersCollection.listAuthMethods();
+        const usersCollection = getUsersCollection(locals.pb)
+        const authMethods = await usersCollection.listAuthMethods();
 
-            if (!authMethods) {
-                return {
-                    authProviderRedirect: '',
-                    authProviderState: ''
-                };
-            }
+        const redirectURL = `${url.origin}/users/oauth`
+        const authProvider = authMethods.authProviders.find(({name}) => name === 'github')
+        
+        console.log({
+            redirectURL,
+            authProvider
+        })
 
-            const redirectURL = `${url.origin}/users/ouath`
-            const authProvider = authMethods.authProviders.find(({name}) => name === 'github')
-            
-            console.log({
-                redirectURL,
-                authProvider
-            })
-
-            if (!authProvider) {
-                throw redirect(303, '/users/reg') 
-            }
-            const authProviderRedirect = `${authProvider?.authUrl}${redirectURL}`
-
-            const state = authProvider.state;
-            const verifier = authProvider.codeVerifier
-
-            console.log({
-                authProviderRedirect,
-                state,
-                verifier
-            })
-
-            cookies.set('state',state);
-            cookies.set('verifier',verifier);
-
-            throw redirect(302, authProviderRedirect)
-            
-            // await getUsersCollection(locals.pb)
-            //     .authWithOAuth2({
-            //         provider: 'github',
-            //         createData: {
-            //             firstName: 'Фродо',
-            //             lastName: 'Бэггинс',
-            //         },
-            //         urlCallback(providerUrl) {
-            //             console.log(providerUrl)
-            //             // open the url in the browser
-            //          }
-            //     })
-        } catch (_error) {
+        if (!authProvider) {
             throw redirect(303, '/users/reg') 
-            // const error = _error as ClientResponseError
-            // return fail(400, error.data)
         }
+        const authProviderRedirect = `${authProvider.authUrl}${redirectURL}`
+
+        const state = authProvider.state;
+        const verifier = authProvider.codeVerifier
+
+        console.log({
+            authProviderRedirect,
+            state,
+            verifier
+        })
+
+        cookies.set('state',state, {
+            httpOnly: false,
+            secure: false,
+            sameSite: 'lax'
+        });
+        cookies.set('verifier',verifier, {
+            httpOnly: false,
+            secure: false,
+            sameSite: 'lax'
+        });
+
+        console.log(cookies.getAll())
+
+        throw redirect(303, authProviderRedirect)
     }
 }
