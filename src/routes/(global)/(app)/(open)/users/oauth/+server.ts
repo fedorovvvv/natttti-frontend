@@ -2,25 +2,15 @@ import { redirect } from '@sveltejs/kit';
 import { getUsersCollection } from '$entities/users/api/collection.js';
 
 
-export const GET = async ({locals,  url, cookies, request  }) => {
-    console.log(url.searchParams);
-    console.log(cookies.getAll())
+export const GET = async ({locals, url, cookies  }) => {
     const redirectURL = `${url.origin}/users/oauth`;
     const expectedState = cookies.get('state');
     const expectedVerifier = cookies.get('verifier');
-
-    console.log({
-        expectedState,
-        expectedVerifier
-    })
 
     const state = url.searchParams.get('state');
     const code = url.searchParams.get('code');
 
     const usersCollection = getUsersCollection(locals.pb)
-
-    console.log('returned state',state)
-    console.log('returned code',code)
 
     //as a side effect this will generate a new code verifier, hence why we need to pass the verifier back in through the cookie
     const authMethods = await usersCollection.listAuthMethods();
@@ -41,9 +31,11 @@ export const GET = async ({locals,  url, cookies, request  }) => {
     }
 
     try {
-        console.log(provider)
         await usersCollection
-            .authWithOAuth2Code(provider.name, code, expectedVerifier, redirectURL,{username:'',name:'My Awesome User'});
+            .authWithOAuth2Code(provider.name, code, expectedVerifier, redirectURL, {
+                firstName: 'Фродо',
+                lastName: 'Бэггинс'
+            });
     } catch (err) {
         console.log('Error logging in with OAuth2 user', err);
     }
