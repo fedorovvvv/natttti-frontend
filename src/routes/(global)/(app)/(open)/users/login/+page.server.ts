@@ -9,12 +9,6 @@ export const actions: Actions = {
             identity: string
             password: string
         }
-        cookies.set('test', '123123123123', {
-            httpOnly: true,
-            secure: true,
-            path: '/',
-            sameSite: 'lax'
-        })
         try {
             await getUsersCollection(locals.pb)
                 .authWithPassword(data.identity, data.password)
@@ -54,18 +48,13 @@ export const actions: Actions = {
         cookies.set('state',state, {
             httpOnly: true,
             secure: true,
-            path: '/',
             sameSite: 'lax'
         });
-        cookies.set('test', '123123123123')
         cookies.set('verifier',verifier, {
             httpOnly: true,
             secure: true,
-            path: '/',
             sameSite: 'lax'
         });
-
-        console.log(cookies.getAll())
 
         throw redirect(302, '/')
     }
