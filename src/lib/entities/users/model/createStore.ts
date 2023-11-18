@@ -1,4 +1,4 @@
-import { cloneDeep } from "lodash"
+import _ from "lodash"
 import { get, writable } from "svelte/store"
 import type{ UserRecord } from '../types'
 import { createUserSchema } from "./schema"
@@ -22,7 +22,7 @@ export const createUserStore = () => {
 
     const clone = () => {
         const current = get({subscribe}).current
-        return current ? cloneDeep(current) : createUserSchema().getDefault()
+        return current ? _.cloneDeep(current) : createUserSchema().getDefault()
     }
 
     return {
