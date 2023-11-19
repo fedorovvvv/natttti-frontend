@@ -23,6 +23,9 @@
         </div>
     {/if}
     <ul class="GiftEventsCard__info">
+        <li>
+            <b>Участников:</b> {data.members.length}
+        </li>
         {#if data.startAt}
             <li>
                 <b>Начало:</b> {dayjs(data.startAt).format('DD MMMM YYYY')}

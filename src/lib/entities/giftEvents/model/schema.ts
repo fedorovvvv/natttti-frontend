@@ -1,5 +1,6 @@
 /* eslint-disable boundaries/element-types */
-import { date, object, string } from "yup"
+import { array, date, object, string } from "yup"
+import { GiftEventMembersSchema } from "$entities/giftEventMembers"
 import { PocketBaseSchema } from "$shared/model"
 
 export class GiftEventsSchema {
@@ -8,6 +9,7 @@ export class GiftEventsSchema {
         description: string().default(''),
         startAt: date().required(),
         endAt: date().required(),
+        members: array(GiftEventMembersSchema.record).default([]).required()
     })
 
     static create = this.fields
