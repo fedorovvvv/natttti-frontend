@@ -19,7 +19,7 @@ export class ScaleGenerator {
     }
 
     grid({tickLength = 20, ...options}:Partial<ScaleOptions['grid']> = {}) {
-        const color = '#EDEDF2'
+        const color = 'rgba(226,226,226,0.31)'
         const tickBorderDashOffset = tickLength * 2
         this.options.grid = {
             drawTicks: true,
