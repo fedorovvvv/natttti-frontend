@@ -57,7 +57,7 @@
                 height: 2px
                 bottom: 0px
                 left: -3px
-                background: var(--green500)
+                background: var(--clue-color-primary-400)
                 transition: .1s ease-in-out
                 transition-property: width, height
             &:not(:last-child)

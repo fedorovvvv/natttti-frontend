@@ -44,8 +44,8 @@
 		text-align: center
 		display: inline-block
 		padding: 5px 10px
-		border: 2px solid var(--gray50)
-		color: var(--gray600)
+		border: 2px solid var(--clue-color-gray-10)
+		color: var(--clue-color-gray-500)
 		transition: .3s ease-in-out
 		transition-property: color, border, background
 		overflow: hidden
@@ -54,9 +54,9 @@
 		vertical-align: middle
 		&_theme
 			&-green
-				border-color: var(--green600)
+				border-color: var(--clue-color-primary-600)
 			&-blue
-				border-color: var(--blue500)
+				border-color: var(--clue-color-active-500)
 		&__label
 			display: inline-block
 			margin-right: 10px

@@ -78,7 +78,7 @@
                 justify-content: center
                 margin-bottom: 30px
                 small
-                    color: var(--gray500)
+                    color: var(--clue-color-gray-500)
                     text-align: center
                     font-size: 16px
                     font-weight: 500

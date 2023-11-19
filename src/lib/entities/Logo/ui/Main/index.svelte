@@ -9,16 +9,16 @@
 	const repeat = {
 		t: [
 			{
-				color: 'var(--green500)'
+				color: 'var(--color-nattti-1)'
 			},
 			{
-				color: 'var(--green800)'
+				color: 'var(--color-nattti-4)'
 			},
 			{
-				color: 'var(--green600)'
+				color: 'var(--color-nattti-2)'
 			},
 			{
-				color: 'var(--green700)'
+				color: 'var(--color-nattti-3)'
 			},
 		]
 	}
@@ -45,7 +45,7 @@
 		&__dot
 			font-style: normal
 			position: relative
-			color: var(--blue400)
+			color: var(--clue-color-active-400)
 			transition: .3s ease-in-out
 			transition-property: color
 			&::before, &::after
@@ -57,9 +57,9 @@
 				transition: .3s ease-in-out
 				transition-property: transform, color
 			&::before
-				color: var(--green500)
+				color: var(--clue-color-primary-400)
 			&::after
-				color: var(--blue600)
+				color: var(--clue-color-active-600)
 			@at-root #{$root}:hover &
 				&::before
 					transform: translateX(30%)

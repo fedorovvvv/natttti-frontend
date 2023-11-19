@@ -19,7 +19,7 @@
     .LoadText
         font-size: 50px
         font-weight: 700
-        color: var(--gray50)
+        color: var(--clue-color-gray-10)
         @media (max-width: $sm)
             font-size: 30px
 </style>

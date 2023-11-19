@@ -147,5 +147,4 @@
 
 </script>
 
-<Line bind:chart data={assignedData} options={assignedOptions} width='100%' height='100%' class={`ChartGrid ${className}`}>
-</Line>
+<Line bind:chart data={assignedData} options={assignedOptions} width='100%' height='100%' class={`ChartGrid ${className}`}/>

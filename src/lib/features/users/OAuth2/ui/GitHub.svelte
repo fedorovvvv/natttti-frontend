@@ -33,10 +33,10 @@
             width: 40px
             height: 40px
             border-radius: 6px
-            border: 1px solid var(--gray100)
+            border: 1px solid var(--clue-color-gray-100)
             padding: 5px
             transition: .3s ease-in-out
             transition-property: border-color
             &:hover
-                border-color: var(--gray200)
+                border-color: var(--clue-color-gray-700)
 </style>

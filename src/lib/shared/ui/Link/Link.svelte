@@ -19,7 +19,9 @@
     .Link
         font-size: 14px
         font-weight: 500
-        color: var(--blue300)
-        &::hover
-            color: var(--blue400)
+        color: var(--clue-color-active-500)
+        transition: .3s ease-in-out
+        transition-property: color
+        &:hover
+            color: var(--clue-color-active-600)
 </style>

@@ -49,7 +49,7 @@
 		&__header
 			width: 100%
 			padding-bottom: 20px
-			border-bottom: 1px solid var(--gray100)
+			border-bottom: 1px solid var(--clue-color-gray-100)
 		&__button
 			width: 100%
 			display: flex
@@ -61,7 +61,7 @@
 					width: 100%
 					flex: 1 0 200px
 		&__links
-			border-top: 1px solid var(--gray100)
+			border-top: 1px solid var(--clue-color-gray-100)
 			padding-top: 20px
 			width: 100%
 			text-align: center

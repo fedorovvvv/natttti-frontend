@@ -46,6 +46,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@cluue/styles": "^1.0.12",
 		"@material/shape": "^14.0.0",
 		"@octokit/types": "^9.2.3",
 		"@tanstack/svelte-query": "^5.8.4",
