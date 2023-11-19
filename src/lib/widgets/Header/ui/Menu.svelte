@@ -12,8 +12,8 @@
     $: items = [
         {
             id: 'santa',
-            href: '/events/gift',
-            text: 'Тайный санта🎅'
+            href: '/events/gift/9p3s1pk3mx88swv',
+            text: 'Тайный Cанта🎅'
         },
         ...($userStore.isLoggedIn ? [
             {

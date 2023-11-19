@@ -6,6 +6,7 @@
     import {Counter, CounterList} from '$shared/ui/Counter'
 	import { StatsRequests, type IStat, type StatCurrent } from "$shared/api/stats.js";
 	import { Contributors } from "$widgets/Contributors";
+	import { dev } from '$app/environment';
     
     export let data
 
@@ -58,9 +59,11 @@
         </div>
         <Stats data={data.streamed.stats} syncData={currentStats}/>
     </SectionContainer>
-    <SectionContainer tag='section' class='page__contributors'>
-        <Contributors/>
-    </SectionContainer>
+    {#if !dev}
+        <SectionContainer tag='section' class='page__contributors'>
+            <Contributors/>
+        </SectionContainer>
+    {/if}
 </main>
 
 <style lang='sass'>
