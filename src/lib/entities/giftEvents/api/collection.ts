@@ -1,4 +1,4 @@
 import { pb } from "$shared/api/pocketbase";
-import type { GiftEventRecord } from "../types";
+import type { GiftEvent } from "../types";
 
-export const getGiftEventsCollection = (pbInstance = pb) => pbInstance.collection<GiftEventRecord>('giftEvents')
+export const getGiftEventsCollection = (pbInstance = pb) => pbInstance.collection<GiftEvent>('giftEvents')
