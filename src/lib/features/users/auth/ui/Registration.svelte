@@ -9,7 +9,7 @@
 	import { derived, writable } from "svelte/store";
 	import type { ActionResult } from "@sveltejs/kit";
 	import Link from "$shared/ui/Link/Link.svelte";
-	import { createUserCreateSchema } from "$entities/users";
+	import { UsersSchema } from "$entities/users";
 	import { UsersOAuth2GitHub, UsersOAuth2List } from "$features/users/OAuth2";
 
     interface $$Props {
@@ -21,7 +21,7 @@
     const isErrorVisible = writable(false)
     const registrationResult = writable<ActionResult | undefined>(undefined)
 
-    const userSchema = createUserCreateSchema()
+    const userSchema = UsersSchema.create
 
     const fields = writable(userSchema.getDefault())
 

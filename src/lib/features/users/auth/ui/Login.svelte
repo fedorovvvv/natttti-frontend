@@ -10,7 +10,7 @@
 	import type { ActionResult } from "@sveltejs/kit";
 	import Link from "$shared/ui/Link/Link.svelte";
 	import { UsersOAuth2GitHub, UsersOAuth2List } from "$features/users/OAuth2";
-	import { createAuthPasswordSchema } from "$entities/auth/model/schema";
+	import { PocketBaseAuthSchema } from "$shared/model";
 
     interface $$Props {
         class?:string
@@ -21,7 +21,7 @@
     const isErrorVisible = writable(false)
     const loginResult = writable<ActionResult | undefined>(undefined)
 
-    const passwordAuthSchema = createAuthPasswordSchema()
+    const passwordAuthSchema = PocketBaseAuthSchema.withPassword
 
     const fields = writable(passwordAuthSchema.getDefault())
 
