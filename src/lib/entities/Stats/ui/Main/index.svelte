@@ -140,7 +140,7 @@
 				small
 					display: block
 					font-size: 12px
-					color: var(--gray400)
+					color: var(--clue-color-gray-400)
 			&-box
 				@at-root :global &
 					&:not(:last-child)

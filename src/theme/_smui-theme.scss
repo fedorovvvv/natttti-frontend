@@ -1,30 +1,12 @@
 @use 'sass:color';
 
-$green800: #377D73;
-$green700: #52B29F;
-$green600: #60D089;
-$green500: #5ae99f;
-
-$blue800: #102D4C;
-$blue600: #194194;
-
-$gray: #242424;
-$grayDark: #666F77;
-$gray800: #1B1C22;
-$gray700: #32343F;
-$gray500: #5F6377;
-$gray400: #777B92;
-$gray100: #CCCED6;
-$gray60: #9E9E9E;
-$gray50: #E8E9ED;
-
 @use '@material/theme/color-palette';
 
 // Svelte Colors!
 @use '@material/theme/index' as theme with (
-  $primary: $green500,
-  $on-primary: $gray700,
-  $secondary: $gray100,
+  $primary: hsl(168deg, 64%, 56%),
+  $on-primary: hsl(145deg, 11%, 12%),
+  $secondary: hsl(145deg, 11%, 82%),
   $surface: #fff,
   $background: #f4f4f4,
   

@@ -20,7 +20,7 @@
 <style lang='sass'>
 	.Box
 		border-radius: 12px
-		border: 1px solid var(--gray50)
+		border: 1px solid var(--clue-color-gray-10)
 		padding: 20px
 		&[data-size='m']
 			padding: 10px var(--containerPadding)

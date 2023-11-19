@@ -39,8 +39,8 @@ export class ChartColors {
     static getGradientColor(color:Colors) {
         switch (color) {
             // case 'yellow': return '255, 247, 204'
-            case 'green': return '110, 237, 171'
-            case 'blue': return '83, 123, 202'
+            case 'green': return '113, 224, 202'
+            case 'blue': return '60, 107, 200'
             // case 'red': return '214, 115, 103'
             // case 'aubergine': return '233, 228, 255'
         }
@@ -49,8 +49,8 @@ export class ChartColors {
     static getColor(color:Colors) {
         switch (color) {
             // case 'red': return '203, 79, 64'
-            case 'green': return '96, 208, 137'
-            case 'blue': return '36, 79, 164'
+            case 'green': return '42, 192, 162'
+            case 'blue': return '46, 85, 163'
             // case 'aubergine': return '91, 76, 159'
             // case 'yellow': return '255, 209, 48'
         }

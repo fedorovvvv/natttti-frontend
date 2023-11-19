@@ -71,11 +71,11 @@
 	.DatePicker
         display: block
         position: relative
-        --date-picker-foreground: var(--gray800)
+        --date-picker-foreground: var(--clue-color-gray-800)
         --date-picker-background: #fff
-        --date-picker-highlight-border: var(--green500)
+        --date-picker-highlight-border: var(--clue-color-primary-400)
         --date-picker-highlight-shadow: green
-        --date-picker-selected-color: var(--green800)
+        --date-picker-selected-color: var(--clue-color-primary-800)
         --date-picker-selected-background: transparent
         .date-time-field
             @at-root :global &

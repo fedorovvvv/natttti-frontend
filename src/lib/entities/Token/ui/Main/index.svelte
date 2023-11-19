@@ -165,9 +165,9 @@
 			small
 				display: block
 				font-size: 12px
-				color: var(--gray400)
+				color: var(--clue-color-gray-400)
 		&__token
-			color: var(--gray400)
+			color: var(--clue-color-gray-400)
 			display: flex
 			flex-direction: column
 			align-items: flex-start
@@ -189,8 +189,8 @@
 					&:not(:last-child)
 						margin-right: 10px
 					.material-icons
-						color: var(--gray500)
+						color: var(--clue-color-gray-500)
 		&__footer
-			border-top: 1px solid var(--gray50)
+			border-top: 1px solid var(--clue-color-gray-10)
 			padding: 20px 10px
 </style>

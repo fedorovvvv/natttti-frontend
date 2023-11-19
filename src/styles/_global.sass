@@ -1,37 +1,19 @@
+@import "./vars/color.sass"
+
 :root
-    --green800: #377D73
-    --green700: #52B29F
-    --green600: #60D089
-    --green500: #6eedab
-
-    --blue800: #102D4C
-    --blue600: #194194
-    --blue500: #244fa4
-    --blue400: #3d6bc8
-    --blue300: #537bca
-
-    --gray: #242424
-    --grayDark: #666F77
-    --gray800: #1B1C22
-    --gray700: #32343F
-    --gray500: #5F6377
-    --gray400: #777B92
-    --gray100: #CCCED6
-    --gray60: #9E9E9E
-    --gray50: #E8E9ED
-
-    --red500: #f24646
+    +styles-vars-color()
 
     --containerPadding: 20px
 
     //theme
     --mdc-typography-font-family: 'Montserrat', sans-serif
-    --mdc-theme-error: var(--red500)
+    --mdc-theme-error: var(--clue-color-negative)
     --mdc-ripple-press-opacity: .1
-    --mdc-theme-on-surface: var(--gray700)
+    --mdc-theme-on-surface: var(--clue-color-gray-500)
     //button
     --mdc-typography-button-font-weight: 600
     --mdc-typography-button-text-transform: normal
+
 #app
     min-height: 100vh
     display: flex
@@ -66,7 +48,7 @@ body
     width: 100%
     font-size: 16px
     background: #fff
-    color: var(--gray800)
+    color: var(--clue-color-gray-800)
     font-family: 'Montserrat', sans-serif
     position: relative
     will-change: scroll-position

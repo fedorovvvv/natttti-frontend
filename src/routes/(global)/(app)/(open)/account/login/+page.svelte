@@ -35,7 +35,7 @@
     .account-login-page
         padding-top: 100px
         p
-            color: var(--gray400)
+            color: var(--clue-color-gray-400)
             margin-top: 5px
         &__container
             @at-root :global &

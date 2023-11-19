@@ -19,6 +19,6 @@
         margin-right: auto
         p
             @at-root :global &
-                color: var(--gray400)
+                color: var(--clue-color-gray-400)
                 margin-top: 5px
 </style>
