@@ -10,11 +10,9 @@ export class GiftEventsSchema {
         endAt: date().required(),
     })
 
-    static base = this.fields.concat(PocketBaseSchema.base)
-
     static create = this.fields
 
     static update = this.fields
 
-    static record = this.base.concat(PocketBaseSchema.base)
+    static record = this.fields.concat(PocketBaseSchema.base)
 }
