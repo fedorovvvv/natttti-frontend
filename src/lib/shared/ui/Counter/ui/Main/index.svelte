@@ -45,7 +45,7 @@
 		display: inline-block
 		padding: 5px 10px
 		border: 2px solid var(--clue-color-gray-10)
-		color: var(--clue-color-gray-500)
+		color: var(--clue-color-gray-700)
 		transition: .3s ease-in-out
 		transition-property: color, border, background
 		overflow: hidden
