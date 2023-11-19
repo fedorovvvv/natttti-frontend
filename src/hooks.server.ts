@@ -1,6 +1,6 @@
 import type { Handle } from '@sveltejs/kit';
 import type { UserRecord } from '$entities/users';
-import { getUsersCollection } from '$entities/users/api/collection';
+import { getUsersCollection } from '$entities/users';
 import { createPocketBaseInstance } from '$shared/api/pocketbase';
 
 export const handle: Handle = async ({ event, resolve }) => {

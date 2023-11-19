@@ -1,5 +1,5 @@
 import { redirect } from '@sveltejs/kit';
-import { getUsersCollection } from '$entities/users/api/collection.js';
+import { getUsersCollection } from '$entities/users';
 
 
 export const GET = async ({locals, url, cookies  }) => {

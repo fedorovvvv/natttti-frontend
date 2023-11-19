@@ -2,7 +2,7 @@ import { fail, redirect } from '@sveltejs/kit'
 import type { ClientResponseError } from 'pocketbase'
 import type { InferType } from 'yup'
 import type { createAuthPasswordSchema } from '$entities/auth'
-import { getUsersCollection } from '$entities/users/api/collection'
+import { getUsersCollection } from '$entities/users'
 import type { Actions } from './$types'
 
 export const actions: Actions = {
