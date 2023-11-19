@@ -1,6 +1,6 @@
 <script lang='ts'>
 	import { userStore } from "$appLayer/stores/user";
-	import { createUserSchema } from "$entities/users/model/schema";
+	import {  UsersSchema } from "$entities/users/model/schema";
 	import { validateSchema } from "$shared/lib/validation";
 	import { Box } from "$shared/ui/Box";
 	import { Form, FormCol, FormRow } from "$shared/ui/Form";
@@ -21,7 +21,7 @@
 
     const updateResult = writable<ActionResult<UserRecord> | undefined>(undefined)
     const isErrorVisible = writable(false)
-    const userSchema = createUserSchema()
+    const userSchema = UsersSchema.base
     
     const fields = writable(userStore.clone())
     

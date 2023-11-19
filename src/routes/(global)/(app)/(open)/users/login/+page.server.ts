@@ -1,13 +1,13 @@
 import { fail, redirect } from '@sveltejs/kit'
 import type { ClientResponseError } from 'pocketbase'
 import type { InferType } from 'yup'
-import type { createAuthPasswordSchema } from '$entities/auth'
 import { getUsersCollection } from '$entities/users'
+import type { PocketBaseAuthSchema } from '$shared/model'
 import type { Actions } from './$types'
 
 export const actions: Actions = {
     password: async ({ locals, request }) => {
-        const data = Object.fromEntries(await request.formData()) as InferType<ReturnType<typeof createAuthPasswordSchema>>
+        const data = Object.fromEntries(await request.formData()) as InferType<typeof PocketBaseAuthSchema.withPassword>
         try {
             await getUsersCollection(locals.pb)
                 .authWithPassword(data.identity, data.password)

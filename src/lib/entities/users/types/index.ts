@@ -1,5 +1,5 @@
 import type { InferType } from "yup";
-import type { createUserRecordSchema, createUserSchema } from "../model/schema";
+import type { UsersSchema } from "../model/schema";
 
-export type User = InferType<ReturnType<typeof createUserSchema>>
-export type UserRecord = InferType<ReturnType<typeof createUserRecordSchema>>
+export type User = InferType<typeof UsersSchema.base>
+export type UserRecord = InferType<typeof UsersSchema.record>

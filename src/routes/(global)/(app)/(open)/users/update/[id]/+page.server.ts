@@ -1,7 +1,7 @@
-import { fail, redirect } from '@sveltejs/kit'
+import { fail } from '@sveltejs/kit'
 import type { ClientResponseError } from 'pocketbase'
 import type { InferType } from 'yup'
-import type { createUserUpdateSchema } from '$entities/users'
+import type { UsersSchema } from '$entities/users'
 import { getUsersCollection } from '$entities/users'
 import type { Actions } from '../$types'
 
@@ -11,7 +11,7 @@ export const actions: Actions = {
             return fail(500)
         }
 
-        const data = Object.fromEntries(await request.formData()) as unknown as InferType<ReturnType<typeof createUserUpdateSchema>>
+        const data = Object.fromEntries(await request.formData()) as unknown as InferType<typeof UsersSchema.update>
 
         try {
             const res = await getUsersCollection(locals.pb)
