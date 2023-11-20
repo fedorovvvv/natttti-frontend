@@ -33,6 +33,9 @@
 	};
 </script>
 
+<!-- @component
+This is a singleton component to manage toasts - should be placed somewhere in the root layout
+ -->
 <div use:portal class="portal">
 	{#each $toasts as { id, data } (id)}
 		{@const toastColor = `var(--clue-color-${typeToColor[data.type] ?? 'invalid'})`}
