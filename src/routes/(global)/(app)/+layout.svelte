@@ -1,6 +1,10 @@
 <script lang='ts'>
+	import { userStore } from "$appLayer/stores/user.js";
 	import { Header } from "$widgets/Header";
 
+    export let data
+
+	$: userStore.set(data.user)
 
 </script>
 
