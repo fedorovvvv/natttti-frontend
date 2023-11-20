@@ -1,14 +1,16 @@
 export enum ETokenAccessTypes {
-    User = 1,
-    Admin = 2,
-    Full = 3
+	User = 1,
+	Admin = 2,
+	Full = 3
 }
 
 export interface IToken {
-    id: number
-    issuedAt: string
-    expiresAt: string | Date
-    grantedTo: string
-    accessToken: string
-    accessType: ETokenAccessTypes
+	id: number;
+	issuedAt: string;
+	expiresAt: string | Date;
+	grantedTo: string;
+	accessToken: string;
+	accessType: ETokenAccessTypes;
 }
+
+export type StrictOmit<TObject, TKey extends keyof TObject> = Omit<TObject, TKey>;
