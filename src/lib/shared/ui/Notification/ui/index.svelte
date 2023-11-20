@@ -2,15 +2,6 @@
 	import { toasterStore } from '$shared/ui/Notification/lib';
 	import type { ToastType } from '$shared/ui/Notification/types';
 
-	// todo toast types
-	// Уведомление
-	// Ошибка
-	// Ворнинг
-	// Success
-	// Прогресс с возможностью отмены
-
-	// todo - color scheme colors
-
 	const typeToColor: Record<ToastType, string | null> = {
 		default: null,
 		error: 'negative',
