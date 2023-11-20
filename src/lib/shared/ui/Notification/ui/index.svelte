@@ -16,7 +16,7 @@
 		error: 'negative',
 		progress: 'active',
 		success: 'positive',
-		warning: 'warning'
+		warning: 'warning-600'
 	};
 
 	const {
@@ -30,23 +30,20 @@
 	import { melt } from '@melt-ui/svelte';
 	import { flip } from 'svelte/animate';
 	import { fly } from 'svelte/transition';
+	import MaybeStoreValue from '$shared/lib/Store/MaybeStoreValue.svelte';
 </script>
 
 <div use:portal class="portal">
 	{#each $toasts as { id, data } (id)}
-		{@const toastColor = `var(--clue-color-${typeToColor[data.type]}-500, black)`}
+		{@const toastColor = `var(--clue-color-${typeToColor[data.type]})`}
 		<!-- using a single transition directive breaks transitions on the topmost toast, dunno why -->
 		<div
 			use:melt={$content(id)}
-			in:fly={{ x: 50, delay: 150 }}
-			out:fly={{ x: 50, delay: 150 }}
+			in:fly={{ x: '100%' }}
+			out:fly={{ x: '100%' }}
 			animate:flip={{ duration: 500 }}
 		>
-			<button
-				use:melt={$close(id)}
-				class="content"
-				style="color: {toastColor}; outline: 2px solid {toastColor}"
-			>
+			<button use:melt={$close(id)} class="content" style="--color: {toastColor};">
 				<button use:melt={$close(id)} aria-label="close notification">X</button>
 				<div>
 					<button
@@ -54,12 +51,17 @@
 							console.log('you clicked me!');
 						}}
 					>
-						text me
+						press me
 					</button>
 					<div use:melt={$description(id)}>
 						{data.description}
 					</div>
 				</div>
+				{#if data.type === 'progress'}
+					<div>
+						<MaybeStoreValue value={data.progress} />
+					</div>
+				{/if}
 			</button>
 		</div>
 	{/each}
@@ -88,5 +90,7 @@
 		border-radius: 0.75rem
 		filter: drop-shadow(0 0 10px #0003)
 		min-width: 16rem
+		color: var(--color, black)
+		outline: 2px solid var(--color, black)
 
 </style>

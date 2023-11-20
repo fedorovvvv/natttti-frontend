@@ -12,5 +12,3 @@ export interface IToken {
 	accessToken: string;
 	accessType: ETokenAccessTypes;
 }
-
-export type StrictOmit<TObject, TKey extends keyof TObject> = Omit<TObject, TKey>;
