@@ -35,7 +35,7 @@
 
 <div use:portal class="portal">
 	{#each $toasts as { id, data } (id)}
-		{@const toastColor = `var(--clue-color-${typeToColor[data.type]})`}
+		{@const toastColor = `var(--clue-color-${typeToColor[data.type] ?? 'invalid'})`}
 		<!-- using a single transition directive breaks transitions on the topmost toast, dunno why -->
 		<div
 			use:melt={$content(id)}
