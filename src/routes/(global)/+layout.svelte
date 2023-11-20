@@ -1,15 +1,18 @@
-<script lang='ts'>
-	import { EasterEggs } from "$features/EasterEggs";
-	import { QueryClientProvider } from "@tanstack/svelte-query";
-	import dayjs from "dayjs";
-	import ru from "dayjs/locale/ru";
+<script lang="ts">
+	import { QueryClientProvider } from '@tanstack/svelte-query';
+	import dayjs from 'dayjs';
+	import ru from 'dayjs/locale/ru';
+	import { EasterEggs } from '$features/EasterEggs';
+	import { Toaster } from '$shared/ui/Toaster';
 
-	export let data
+	export let data;
 
-	dayjs.locale('ru', ru)
+	dayjs.locale('ru', ru);
+
 </script>
 
-<EasterEggs/>
+<Toaster />
+<EasterEggs />
 <QueryClientProvider client={data.queryClient}>
-	<slot/>
+	<slot />
 </QueryClientProvider>
