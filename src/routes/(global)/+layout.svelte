@@ -3,11 +3,12 @@
 	import dayjs from 'dayjs';
 	import ru from 'dayjs/locale/ru';
 	import { EasterEggs } from '$features/EasterEggs';
-	import { Toaster } from '$shared/ui/Notification';
+	import { Toaster } from '$shared/ui/Toaster';
 
 	export let data;
 
 	dayjs.locale('ru', ru);
+
 </script>
 
 <Toaster />

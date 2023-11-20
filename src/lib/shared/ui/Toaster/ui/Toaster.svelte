@@ -1,6 +1,6 @@
 <script lang="ts" context="module">
-	import { toasterStore } from '$shared/ui/Notification/lib';
-	import type { ToastType } from '$shared/ui/Notification/types';
+	import { toasterStore } from '../lib'
+	import type { ToastType } from '../types';
 
 	const typeToColor: Record<ToastType, string | null> = {
 		default: null,
@@ -15,6 +15,7 @@
 		states: { toasts },
 		actions: { portal }
 	} = toasterStore;
+
 </script>
 
 <script lang="ts">
@@ -30,13 +31,14 @@
 				onDestroy?.();
 			}
 		};
-	};
+	}
+
 </script>
 
 <!-- @component
 This is a singleton component to manage toasts - should be placed somewhere in the root layout
  -->
-<div use:portal class="portal">
+<div use:portal class="ToasterContainer">
 	{#each $toasts as { id, data } (id)}
 		{@const toastColor = `var(--clue-color-${typeToColor[data.type] ?? 'invalid'})`}
 		<!-- using a single transition directive breaks transitions on the topmost toast, dunno why -->
@@ -46,20 +48,21 @@ This is a singleton component to manage toasts - should be placed somewhere in t
 			in:fly={{ x: '100%' }}
 			out:fly={{ x: '100%' }}
 			animate:flip={{ duration: 500 }}
+			class='ToasterToast'
 		>
-			<button use:melt={$close(id)} class="outer-container" style="--color: {toastColor};">
-				<div class="container">
-					<div class="content">
-						<div class="icon">!</div>
-						<div use:melt={$description(id)} class="description">
+			<button use:melt={$close(id)} class="ToasterToast__wrapper" style="--color: {toastColor};">
+				<div class="ToasterToast__container">
+					<div class="ToasterToast__content">
+						<div class="ToasterToast__icon">!</div>
+						<div use:melt={$description(id)} class="ToasterToast__description">
 							{data.description}
 						</div>
-						<button use:melt={$close(id)} aria-label="close notification">✖</button>
+						<button use:melt={$close(id)} aria-label="close Toaster">✖</button>
 					</div>
 					{#if data.action}
 						{@const { label, onClick, closeOnClick } = data.action}
 						<button
-							class="action"
+							class="ToasterToast__action"
 							on:click={(e) => {
 								if (!closeOnClick) e.stopPropagation();
 								onClick();
@@ -70,7 +73,7 @@ This is a singleton component to manage toasts - should be placed somewhere in t
 					{/if}
 				</div>
 				{#if data.type === 'progress' && data.progress !== undefined}
-					<div class="progress">
+					<div class="ToasterToast__progress-container">
 						<Progressbar value={data.progress} />
 					</div>
 				{/if}
@@ -84,7 +87,7 @@ This is a singleton component to manage toasts - should be placed somewhere in t
 	button
 		color: inherit
 
-	.portal 
+	.ToasterContainer
 		position: fixed
 		bottom: 0
 		right: 0
@@ -94,54 +97,49 @@ This is a singleton component to manage toasts - should be placed somewhere in t
 		align-items: end
 		gap: 1rem
 		padding: 1rem
-	
-	.outer-container
-		cursor: default
-		background-color: white 
-		color: var(--color, black) 
-		outline: 2px solid var(--color, black)
-		overflow: hidden
-		position: relative
-		border-radius: 0.75rem
-		filter: drop-shadow(0 0 10px #0003)
-		min-width: 16rem
-		max-width: 24rem
 
-	.container 
-		display: flex
-		flex-direction: column
-		padding: 1rem
-		gap: 0.5rem
-
-	.content
-		display: flex
-		align-items: start
-		gap: 0.5rem
-
-	.icon
-		display: flex
-		align-items: center
-		justify-content: center
-		border-radius: 100%
-		background-color: var(--color, black)
-		color: white
-		height: 1.5rem
-		width: 1.5rem
-
-	.description
-		flex: 1 0 0
-		align-self: center
-
-	.action
-		align-self: end
-		padding: 0.5rem
-		border-radius: 0.5rem
-		background-color: var(--color, black)
-		color: white
-
-	.progress
-		position: absolute
-		height: 0.35rem
-		bottom: 0
-		width: 100%
+	.ToasterToast
+		&__wrapper
+			cursor: default
+			background-color: white 
+			color: var(--color, black) 
+			outline: 2px solid var(--color, black)
+			overflow: hidden
+			position: relative
+			border-radius: 0.75rem
+			filter: drop-shadow(0 0 10px #0003)
+			min-width: 16rem
+			max-width: 24rem
+		&__container 
+			display: flex
+			flex-direction: column
+			padding: 1rem
+			gap: 0.5rem
+		&__content
+			display: flex
+			align-items: start
+			gap: 0.5rem
+		&__icon
+			display: flex
+			align-items: center
+			justify-content: center
+			border-radius: 100%
+			background-color: var(--color, black)
+			color: white
+			height: 1.5rem
+			width: 1.5rem
+		&__description
+			flex: 1 0 0
+			align-self: center
+		&__action
+			align-self: end
+			padding: 0.5rem
+			border-radius: 0.5rem
+			background-color: var(--color, black)
+			color: white
+		&__progress-container
+			position: absolute
+			height: 0.35rem
+			bottom: 0
+			width: 100%
 </style>

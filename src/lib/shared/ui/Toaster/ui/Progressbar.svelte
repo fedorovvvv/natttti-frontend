@@ -3,14 +3,15 @@
 	import { isSvelteStore } from '$shared/lib/Store';
 	import type { MaybeStore } from '$shared/types/Store';
 
-	export let value: MaybeStore<number>;
+	export let value: MaybeStore<number>
+
 	$: progress = isSvelteStore(value) ? value : readable(value);
 </script>
 
-<div class="progress" style="--progress: {$progress}%" />
+<div class="ToasterProgressbar" style="--progress: {$progress}%" />
 
 <style lang="sass">
-   .progress
+   .ToasterProgressbar
         background-color: var(--color, black)
         height: 100%
         width: 100%

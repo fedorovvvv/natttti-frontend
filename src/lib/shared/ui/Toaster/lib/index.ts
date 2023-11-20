@@ -1,11 +1,11 @@
 import { createToaster } from '@melt-ui/svelte';
 import type { ToastData } from '../types';
 
-export const toasterStore = createToaster<ToastData>();
+const toasterStore = createToaster<ToastData>();
 const { addToast, removeToast, updateToast } = toasterStore.helpers;
 
 // todo - HMR breaks toast triggers, full page reload fixes it
-export const createToast = (...args: Parameters<typeof addToast>) => {
+const createToast = (...args: Parameters<typeof addToast>) => {
 	const toastData = addToast(...args);
 	return {
 		data: toastData,
@@ -13,5 +13,11 @@ export const createToast = (...args: Parameters<typeof addToast>) => {
 		update: (data: ToastData) => updateToast(toastData.id, data)
 	};
 };
-export const closeToast = removeToast;
-export { updateToast };
+const closeToast = removeToast;
+
+export {
+	closeToast,
+	createToast,
+	toasterStore,
+	updateToast
+};
