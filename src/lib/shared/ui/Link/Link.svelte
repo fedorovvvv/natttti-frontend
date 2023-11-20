@@ -1,7 +1,7 @@
 <script lang='ts'>
-	import type { HTMLLinkAttributes } from "svelte/elements";
+	import type { HTMLAnchorAttributes } from "svelte/elements";
 
-    interface $$Props extends HTMLLinkAttributes {
+    interface $$Props extends HTMLAnchorAttributes {
         class?:string
     }
     

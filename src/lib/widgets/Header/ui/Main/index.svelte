@@ -1,11 +1,8 @@
 <script lang="ts">
-	import { applyAction, enhance } from '$app/forms';
 	import { userStore } from '$appLayer/stores/user';
 	import { Logo } from '$entities/Logo';
-	import { pb } from '$shared/api/pocketbase';
-	import { HeaderMenu } from '$widgets/Header';
+	import { HeaderLink, HeaderLinkList, HeaderMenu } from '$widgets/Header';
 	import Button from '@smui/button';
-	import GithubLink from '../GithubLink.svelte';
 	interface $$Props {
 		class?: string;
 	}
@@ -19,15 +16,26 @@
 	<div class="Header__container">
 		<HeaderMenu />
 	</div>
-	<div class="Header__buttons">
-		{#if $userStore.isLoggedIn}
-			<Button variant="outlined" href="/account">
-				{$userStore.current?.username}
-			</Button>
-		{:else}
-			<Button href="/users/login" variant="unelevated">Вход</Button>
-		{/if}
-		<GithubLink />
+	<div class="Header__tail">
+		<div class="Header__buttons">
+			{#if $userStore.isLoggedIn}
+				<Button variant="outlined" href="/account">
+					{$userStore.current?.username}
+				</Button>
+			{:else}
+				<Button href="/users/login" variant="unelevated">Вход</Button>
+			{/if}
+		</div>
+		<hr>
+		<HeaderLinkList>
+			<HeaderLink
+				href="https://github.com/fedorovvvv/natttti-frontend"
+				target="_blank"
+				rel="noreferrer"
+			>
+				<img src="https://raw.githubusercontent.com/rdimascio/icons/master/icons/github.svg" alt='github'/>
+			</HeaderLink>
+		</HeaderLinkList>
 	</div>
 </header>
 
@@ -48,6 +56,17 @@
 				margin-right: 20px
 				font-size: 24px
 				font-weight: 700
+		&__tail
+			margin-left: auto
+			display: flex
+			align-items: center
+			hr
+				display: block
+				border: none
+				height: 20px
+				width: 1px
+				background: var(--clue-color-gray-100)
+				margin: auto 12px
 		&__buttons
 			display: flex
 			align-items: center
