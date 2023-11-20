@@ -1,38 +1,37 @@
-<script lang='ts'>
+<script lang="ts">
 	import { applyAction, enhance } from '$app/forms';
 	import { userStore } from '$appLayer/stores/user';
 	import { Logo } from '$entities/Logo';
 	import { pb } from '$shared/api/pocketbase';
 	import { HeaderMenu } from '$widgets/Header';
-	import Button from '@smui/button'
+	import Button from '@smui/button';
+	import GithubLink from '../GithubLink.svelte';
 	interface $$Props {
-		class?:string
+		class?: string;
 	}
-	
-	let className = ''
-	export { className as class }
-	
+
+	let className = '';
+	export { className as class };
 </script>
 
 <header class={`Header ${className}`}>
-	<Logo class='Header__logo'/>
+	<Logo class="Header__logo" />
 	<div class="Header__container">
-		<HeaderMenu/>
+		<HeaderMenu />
 	</div>
 	<div class="Header__buttons">
 		{#if $userStore.isLoggedIn}
-			<Button variant='outlined' href='/account'>
+			<Button variant="outlined" href="/account">
 				{$userStore.current?.username}
 			</Button>
 		{:else}
-			<Button href='/users/login' variant='unelevated'>
-				Вход
-			</Button>
+			<Button href="/users/login" variant="unelevated">Вход</Button>
 		{/if}
+		<GithubLink />
 	</div>
 </header>
 
-<style lang='sass'>
+<style lang="sass">
 	.Header
 		width: 100%
 		padding: 16px var(--containerPadding)
@@ -50,7 +49,9 @@
 				font-size: 24px
 				font-weight: 700
 		&__buttons
-			flex: none
+			display: flex
+			align-items: center
+			gap: 20px
 		&__user
 			margin-right: 20px
 </style>
