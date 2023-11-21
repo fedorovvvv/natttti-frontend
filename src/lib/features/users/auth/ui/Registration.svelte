@@ -11,6 +11,7 @@
 	import Link from "$shared/ui/Link/Link.svelte";
 	import { UsersSchema } from "$entities/users";
 	import { UsersOAuth2GitHub, UsersOAuth2List } from "$features/users/OAuth2";
+	import { createMutation } from "@tanstack/svelte-query";
 
     interface $$Props {
         class?:string
@@ -34,22 +35,32 @@
         return res
     })
 
-    const handler = {
-        async submit(event:ComponentEvents<Form>['submit']) {
-            event.preventDefault()
+    const registrationMutation = createMutation({
+        async mutationFn(form:HTMLFormElement) {
             isErrorVisible.set(true)
-            if ($userSchemaResult.isError) return
+            if ($userSchemaResult.isError) throw new Error('error')
 
-            const form = event.currentTarget as HTMLFormElement
-            
             const response = await fetch(form.action, {
                 method: 'POST',
                 body: new FormData(form),
             })
 
             const result = deserialize(await response.text())
+
             registrationResult.set(result)
+
             await applyAction(result)
+
+            if (result.type !== 'success') {
+                throw new Error('Registration error')
+            }
+        }
+    })
+
+    const handler = {
+        async submit(event:ComponentEvents<Form>['submit']) {
+            event.preventDefault()
+            $registrationMutation.mutate(event.currentTarget as HTMLFormElement)
         }
     }
     
@@ -75,8 +86,10 @@
             </FormRow>
         </FormCol>
         <svelte:fragment slot='button'>
-            <Button variant='unelevated' disabled={$userSchemaResult.isError}>
-                {#if $registrationResult?.type === 'failure'}
+            <Button variant='unelevated' disabled={$registrationMutation.isPending || $userSchemaResult.isError}>
+                {#if $registrationMutation.isPending}
+                    Записываем...
+                {:else if $registrationResult?.type === 'failure'}
                     Упс, чет не то
                 {:else}
                     Записаться

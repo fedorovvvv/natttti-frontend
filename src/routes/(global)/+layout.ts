@@ -6,6 +6,7 @@ export const load: Load = async () => {
 	const queryClient = new QueryClient({
 		defaultOptions: {
 			queries: {
+				staleTime: 1000 * 10,//10s stale (cache)
 				enabled: browser
 			}
 		}

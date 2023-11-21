@@ -1,14 +1,14 @@
 import { BaseAuthStore, PocketBase, type AuthModel } from 'pocketbase'
 import type Client from "pocketbase"
-import type { UserRecord } from '$entities/users'
+import type { UsersResponse, createPocketBaseInstance } from '$shared/api/pocketbase'
 
 // for information about these interfaces
 declare global {
 	namespace App {
 		// interface Error {}
 		interface Locals {
-			pb:PocketBase
-			user?:UserRecord | null
+			pb:ReturnType<typeof createPocketBaseInstance>
+			user?:UsersResponse | null
 			accessToken?:string
 		}
 		// interface PageData {}

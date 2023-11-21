@@ -1,7 +1,6 @@
 import type { Handle } from '@sveltejs/kit';
-import type { UserRecord } from '$entities/users';
 import { getUsersCollection } from '$entities/users';
-import { createPocketBaseInstance } from '$shared/api/pocketbase';
+import { createPocketBaseInstance, type UsersResponse } from '$shared/api/pocketbase';
 
 export const handle: Handle = async ({ event, resolve }) => {
     const pb = createPocketBaseInstance()
@@ -21,14 +20,14 @@ export const handle: Handle = async ({ event, resolve }) => {
     }
     
   
-    event.locals.user = pb.authStore?.model as UserRecord
+    event.locals.user = pb.authStore?.model as UsersResponse
   
     const response = await resolve(event)
   
     // send back the default 'pb_auth' cookie to the client with the latest store state
     response.headers.append(
       'set-cookie',
-      pb.authStore.exportToCookie({ httpOnly: true, secure: true, sameSite: 'lax' })
+      pb.authStore.exportToCookie({ httpOnly: false })
     )
   
     return response
