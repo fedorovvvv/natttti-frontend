@@ -13,6 +13,12 @@ export const actions = {
             if (userSocials) {
                 return await socialsCollection.update(userSocials.id, data)
             } else {
+                const socials = await socialsCollection.create(data, {
+                    expand: 'users(socials)'
+                })
+                await locals.pb.collection('users').update(userId, {
+                    socials: socials.id
+                })
                 return await socialsCollection.create(data, {
                     expand: 'users(socials)'
                 })
