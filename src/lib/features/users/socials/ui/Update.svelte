@@ -3,7 +3,7 @@
 	import { userStore } from "$appLayer/stores/user";
 	import { UsersQueries } from "$entities/users";
 	import { SocialsUpdateFields } from "$features/socials/ui";
-	import type { SocialsResponse } from "$shared/api/pocketbase";
+	import type { SocialsRecord, SocialsResponse } from "$shared/api/pocketbase";
 	import { Box } from "$shared/ui/Box";
 	import { Form } from "$shared/ui/Form";
 	import Button from "@smui/button";
@@ -14,7 +14,7 @@
     interface $$Props {
         class?:string
         userId:string
-        initialData:SocialsResponse
+        initialData:SocialsRecord
     }
     
     let className = ''
