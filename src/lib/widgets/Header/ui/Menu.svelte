@@ -15,7 +15,7 @@
             href: '/events/gift/9p3s1pk3mx88swv',
             text: 'Тайный Cанта🎅'
         },
-        ...($userStore.isLoggedIn ? [
+        ...($userStore.current?.isAdmin ? [
             {
                 id: 'tokens',
                 href: '/tokens',
