@@ -19,9 +19,7 @@ export const actions = {
                 await locals.pb.collection('users').update(userId, {
                     socials: socials.id
                 })
-                return await socialsCollection.create(data, {
-                    expand: 'users(socials)'
-                })
+                return socials
             }
         } catch (_error) {
             const error = _error as ClientResponseError
