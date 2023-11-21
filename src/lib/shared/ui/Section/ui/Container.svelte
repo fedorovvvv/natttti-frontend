@@ -24,5 +24,5 @@
         padding-right: var(--containerPadding)
         .SectionTitle
             @at-root :global &
-                margin-bottom: 20px
+                margin-bottom: 60px
 </style>

@@ -5,8 +5,8 @@ import { PocketBaseSchema } from "$shared/model"
 
 export class GiftEventMembersSchema {
     static fields = object({
-        user: UsersSchema.record.required(),
-        targets: array(UsersSchema.record).default([]).required(),
+        user: UsersSchema.response.required(),
+        targets: array(UsersSchema.response).default([]).required(),
         gifts: array().default([]).required(),
     })
 

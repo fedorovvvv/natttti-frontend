@@ -11,6 +11,7 @@
 	import Link from "$shared/ui/Link/Link.svelte";
 	import { UsersOAuth2GitHub, UsersOAuth2List } from "$features/users/OAuth2";
 	import { PocketBaseAuthSchema } from "$shared/model";
+	import { createMutation } from "@tanstack/svelte-query";
 
     interface $$Props {
         class?:string
@@ -33,22 +34,32 @@
         return res
     })
 
-    const handler = {
-        async submit(event:ComponentEvents<Form>['submit']) {
-            event.preventDefault()
+    const loginMutation = createMutation({
+        async mutationFn(form:HTMLFormElement) {
             isErrorVisible.set(true)
-            if ($passwordAuthSchemaResult.isError) return
+            if ($passwordAuthSchemaResult.isError) throw new Error('error')
 
-            const form = event.currentTarget as HTMLFormElement
-            
             const response = await fetch(form.action, {
                 method: 'POST',
                 body: new FormData(form),
             })
 
             const result = deserialize(await response.text())
+
             loginResult.set(result)
+
             await applyAction(result)
+
+            if (result.type !== 'success') {
+                throw new Error('Login error')
+            }
+        }
+    })
+
+    const handler = {
+        async submit(event:ComponentEvents<Form>['submit']) {
+            event.preventDefault()
+            $loginMutation.mutate(event.currentTarget as HTMLFormElement)
         }
     }
     
@@ -67,8 +78,10 @@
             </FormRow>
         </FormCol>
         <svelte:fragment slot='button'>
-            <Button variant='unelevated' disabled={$passwordAuthSchemaResult.isError}>
-                {#if $loginResult?.type === 'failure'}
+            <Button variant='unelevated' disabled={$loginMutation.isPending || $passwordAuthSchemaResult.isError}>
+                {#if $loginMutation.isPending}
+                    Проверяем...
+                {:else if $loginResult?.type === 'failure'}
                     Упс, чет не то
                 {:else}
                     Проверочка

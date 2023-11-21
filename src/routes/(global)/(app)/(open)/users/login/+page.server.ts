@@ -3,9 +3,8 @@ import type { ClientResponseError } from 'pocketbase'
 import type { InferType } from 'yup'
 import { getUsersCollection } from '$entities/users'
 import type { PocketBaseAuthSchema } from '$shared/model'
-import type { Actions } from './$types'
 
-export const actions: Actions = {
+export const actions = {
     password: async ({ locals, request }) => {
         const data = Object.fromEntries(await request.formData()) as InferType<typeof PocketBaseAuthSchema.withPassword>
         try {

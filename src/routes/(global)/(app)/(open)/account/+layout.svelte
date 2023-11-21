@@ -1,5 +1,8 @@
 <script lang='ts'>
-	import { SectionContainer } from "$shared/ui/Section";
+	import { userStore } from "$appLayer/stores/user";
+	import { SectionContainer, SectionTitle } from "$shared/ui/Section";
+	import { AccountNav } from "$widgets/account";
+	import type { ComponentProps } from "svelte";
 
     interface $$Props {
         class?:string
@@ -7,14 +10,47 @@
     
     let className = ''
     export { className as class }
-    
+
+    const navItems:ComponentProps<AccountNav>['items'] = [
+        {
+            id: 'data',
+            name: 'Данные',
+            href: '/account/settings/base'
+        },
+        {
+            id: 'socials',
+            name: 'Соц. сети',
+            href: '/account/settings/socials'
+        }
+    ]
 </script>
 
 <main class={`account-layout ${className}`}>
-    <slot/>
+    <SectionContainer>
+        <SectionTitle>
+            <h1>Hello {$userStore.current?.username}✏️</h1>
+        </SectionTitle>
+        <div class="account-layout__grid">
+            <aside class='account-layout__aside'>
+                <AccountNav items={navItems}/>
+            </aside>
+            <slot/>
+        </div>
+    </SectionContainer>
 </main>
 
 <style lang='sass'>
     .account-layout
         padding-top: 100px
+        &__grid
+            display: grid
+            grid-template-columns: 200px 1fr
+            gap: 20px
+            @media (max-width: 740px)
+                display: block
+        &__aside
+            padding: 10px 0
+            @media (max-width: 740px)
+                padding: 0
+                margin-bottom: 10px
 </style>

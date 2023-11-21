@@ -1,11 +1,18 @@
 import { boolean, date, object, ref, string } from "yup";
+import type { BaseSystemFields } from "$shared/api/pocketbase";
 
 export class PocketBaseSchema {
-    static base = object({
+    static base = object<Pick<BaseSystemFields, 'id' | 'created' | 'updated'>>({
         id: string().default('').required(),
         created: date().required(),
         updated: date().required(),
     })    
+    
+    static response = this.base.concat(object({
+        collectionId: string().required(),
+        collectionName: string().required(),
+        expand: object().optional()
+    }))
 }
 
 export class PocketBaseAuthSchema {
