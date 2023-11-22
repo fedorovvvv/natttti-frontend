@@ -40,7 +40,7 @@
 		return [
 			{
 				id: 'messages',
-				title: '✉️ Сообщения',
+				title: '✉️ Телеграммы',
 				avg: +(parsedData.reduce((val, cur) => val + cur.messagesCount, 0) / parsedData.length).toFixed(0) || 0,
 				datasets: [
 					{
@@ -58,7 +58,7 @@
 			},
 			{
 				id: 'members',
-				title: '🐣 Новые члены профсоюза',
+				title: '🐣 Новые люди профсоюза',
 				avg: +(parsedData.reduce((val, cur) => val + cur.newMembersCount, 0) / parsedData.length).toFixed(0) || 0,
 				datasets: [
 					{
