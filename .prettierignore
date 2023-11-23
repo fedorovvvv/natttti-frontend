@@ -9,6 +9,7 @@ node_modules
 /src/theme
 /static
 /.vscode
+/.vercel
 smui*.css
 
 # Ignore files for PNPM, NPM and YARN
