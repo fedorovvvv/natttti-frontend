@@ -1,11 +1,11 @@
 <script lang="ts">
+	import Select, { Option } from '@smui/select'
+	import Textfield from '@smui/textfield'
+	import { writable } from 'svelte/store'
+	import { TokenHelper } from '$shared/lib/TokenHelper'
+	import { ETokenAccessTypes, type IToken } from '$shared/types/token'
 	import { DatePicker } from '$shared/ui/DatePicker'
 	import { Form, FormCol, FormRow } from '$shared/ui/Form'
-	import Textfield from '@smui/textfield'
-	import Select, { Option } from '@smui/select'
-	import { ETokenAccessTypes, type IToken } from '$shared/types/token'
-	import { TokenHelper } from '$shared/lib/TokenHelper'
-	import { writable } from 'svelte/store'
 
 	interface $$Props extends Pick<IToken, 'grantedTo' | 'accessType' | 'expiresAt'> {
 		class?: string

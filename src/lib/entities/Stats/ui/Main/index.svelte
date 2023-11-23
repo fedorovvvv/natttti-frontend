@@ -1,12 +1,12 @@
 <script lang="ts">
+	import { TimeScale } from 'chart.js'
+	import dayjs from 'dayjs'
+	import { onMount, type ComponentProps } from 'svelte'
 	import type { IStat } from '$shared/api/stats'
 	import type { ApiReturn } from '$shared/lib/Api'
 	import { Box } from '$shared/ui/Box'
 	import { ChartGrid } from '$shared/ui/Chart/ChartGrid'
 	import { LoadText } from '$shared/ui/Load'
-	import { TimeScale } from 'chart.js'
-	import dayjs from 'dayjs'
-	import { onMount, type ComponentProps } from 'svelte'
 
 	interface $$Props {
 		class?: string

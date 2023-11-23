@@ -1,16 +1,16 @@
 <script lang="ts">
+	import Button from '@smui/button/src/Button.svelte'
+	import IconButton, { Icon } from '@smui/icon-button'
+	import { createEventDispatcher } from 'svelte'
+	import { writable } from 'svelte/store'
+	import { slide } from 'svelte/transition'
+	import { TokenFields } from '$entities/Token'
+	import { TokenRequests } from '$shared/api/token'
+	import { CONFIG } from '$shared/config'
+	import { TokenHelper } from '$shared/lib/TokenHelper'
 	import type { IToken } from '$shared/types/token'
 	import { Box } from '$shared/ui/Box'
-	import IconButton, { Icon } from '@smui/icon-button'
 	import { CopyText } from '$shared/ui/CopyText'
-	import { writable } from 'svelte/store'
-	import { TokenFields } from '$entities/Token'
-	import { slide } from 'svelte/transition'
-	import { CONFIG } from '$shared/config'
-	import Button from '@smui/button/src/Button.svelte'
-	import { TokenHelper } from '$shared/lib/TokenHelper'
-	import { TokenRequests } from '$shared/api/token'
-	import { createEventDispatcher } from 'svelte'
 
 	interface $$Props {
 		class?: string

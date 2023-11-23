@@ -3,6 +3,7 @@
 
 	import type { ApiOkReturn, ApiReturn } from '$shared/lib/Api'
 
+	// eslint-disable-next-line no-undef
 	type Loader = $$Generic<() => ApiReturn<unknown>>
 	interface $$Props {
 		class?: string
@@ -23,7 +24,7 @@
 	export let loader: $$Props['loader']
 	export let count = 0
 
-	let duration = 20 * 1000
+	const duration = 20 * 1000
 
 	export let data: Awaited<ApiOkReturn<ReturnType<Loader>>> | undefined = undefined
 

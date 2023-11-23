@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { userStore } from '$appLayer/stores/user.js'
 	import { Header } from '$widgets/Header'
+	import { userStore } from '$entities/users'
 
 	export let data
 

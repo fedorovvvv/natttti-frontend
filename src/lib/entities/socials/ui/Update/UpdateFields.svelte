@@ -1,10 +1,10 @@
 <script lang="ts">
+	import Textfield from '@smui/textfield'
+	import { derived, writable, type Readable, type Writable } from 'svelte/store'
 	import { SocialsSchema } from '$entities/socials'
 	import type { SocialsRecord } from '$shared/api/pocketbase'
 	import { validateSchema } from '$shared/lib/validation'
 	import { FormCol, FormRow } from '$shared/ui/Form'
-	import Textfield from '@smui/textfield'
-	import { derived, writable, type Readable, type Writable } from 'svelte/store'
 
 	interface $$Props {
 		class?: string

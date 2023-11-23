@@ -1,15 +1,15 @@
 <script lang="ts">
-	import { applyAction, deserialize } from '$app/forms'
-	import { userStore } from '$appLayer/stores/user'
-	import { UsersQueries } from '$entities/users'
-	import { SocialsUpdateFields } from '$features/socials/ui'
-	import type { SocialsRecord, SocialsResponse } from '$shared/api/pocketbase'
-	import { Box } from '$shared/ui/Box'
-	import { Form } from '$shared/ui/Form'
 	import Button from '@smui/button'
 	import { createMutation, useQueryClient } from '@tanstack/svelte-query'
 	import type { ComponentEvents, ComponentProps } from 'svelte'
 	import { writable } from 'svelte/store'
+	import { SocialsUpdateFields } from '$entities/socials'
+	import { userStore } from '$entities/users'
+	import { UsersQueries } from '$entities/users'
+	import type { SocialsRecord, SocialsResponse } from '$shared/api/pocketbase'
+	import { Box } from '$shared/ui/Box'
+	import { Form } from '$shared/ui/Form'
+	import { applyAction, deserialize } from '$app/forms'
 
 	interface $$Props {
 		class?: string

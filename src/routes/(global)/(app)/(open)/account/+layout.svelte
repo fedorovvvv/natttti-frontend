@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { userStore } from '$appLayer/stores/user'
-	import { SectionContainer, SectionTitle } from '$shared/ui/Section'
-	import { AccountNav } from '$widgets/account'
 	import type { ComponentProps } from 'svelte'
+	import { AccountNav } from '$widgets/account'
+	import { userStore } from '$entities/users'
+	import { SectionContainer, SectionTitle } from '$shared/ui/Section'
 
 	interface $$Props {
 		class?: string

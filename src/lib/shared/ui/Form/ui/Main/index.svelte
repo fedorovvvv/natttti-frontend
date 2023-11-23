@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { enhance } from '$app/forms'
 	import type { HTMLFormAttributes } from 'svelte/elements'
+	import type { enhance } from '$app/forms'
 
 	type FormParams = HTMLFormAttributes
 

@@ -40,3 +40,5 @@ export const createUserStore = () => {
 		clone
 	}
 }
+
+export const userStore = createUserStore()

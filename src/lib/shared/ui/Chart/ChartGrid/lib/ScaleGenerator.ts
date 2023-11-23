@@ -1,5 +1,5 @@
-import type { DeepPartial } from '$lib/Types/global'
 import type { Scale, ScaleOptionsByType } from 'chart.js'
+import type { DeepPartial } from '$lib/Types/global'
 
 type ScaleOptions = ScaleOptionsByType<'time'>
 

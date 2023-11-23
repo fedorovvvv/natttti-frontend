@@ -1,7 +1,7 @@
 <script lang="ts">
+	import { onMount } from 'svelte'
 	import { GitRequests } from '$shared/api/Git'
 	import { LoadText } from '$shared/ui/Load'
-	import { onMount } from 'svelte'
 
 	interface $$Props {
 		class?: string

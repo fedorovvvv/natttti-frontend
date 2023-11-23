@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { goto } from '$app/navigation'
 	import { Login } from '$features/Login'
 	import { CONFIG } from '$shared/config'
 	import { SectionContainer } from '$shared/ui/Section'
+	import { goto } from '$app/navigation'
 
 	interface $$Props {
 		class?: string

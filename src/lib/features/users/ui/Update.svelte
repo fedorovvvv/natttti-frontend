@@ -1,18 +1,18 @@
 <script lang="ts">
-	import { userStore } from '$appLayer/stores/user'
+	import Button from '@smui/button'
+	import Textfield from '@smui/textfield'
+	import type { ActionResult } from '@sveltejs/kit'
+	import { createMutation } from '@tanstack/svelte-query'
+	import type { ComponentEvents } from 'svelte'
+	import { derived, writable } from 'svelte/store'
+	import { userStore } from '$entities/users'
+	import { usersLogoutEnhance } from '$entities/users'
 	import { UsersSchema } from '$entities/users/model/schema'
+	import type { UsersRecord, UsersResponse } from '$shared/api/pocketbase'
 	import { validateSchema } from '$shared/lib/validation'
 	import { Box } from '$shared/ui/Box'
 	import { Form, FormCol, FormRow } from '$shared/ui/Form'
-	import Button from '@smui/button'
-	import type { ComponentEvents } from 'svelte'
-	import Textfield from '@smui/textfield'
-	import type { ActionResult } from '@sveltejs/kit'
-	import { derived, writable } from 'svelte/store'
 	import { applyAction, deserialize, enhance } from '$app/forms'
-	import { usersLogoutEnhance } from '$entities/users'
-	import type { UsersRecord, UsersResponse } from '$shared/api/pocketbase'
-	import { createMutation } from '@tanstack/svelte-query'
 
 	interface $$Props {
 		class?: string

@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { Token, TokenFields } from '$entities/Token'
-	import { TokensCreate } from '$features/Tokens'
-	import { CONFIG } from '$shared/config'
-	import type { IToken } from '$shared/types/token'
-	import { Box } from '$shared/ui/Box'
 	import Button, { Group } from '@smui/button'
 	import type { ComponentEvents } from 'svelte'
 	import { writable } from 'svelte/store'
 	import { slide } from 'svelte/transition'
+	import { TokensCreate } from '$features/Tokens'
+	import { Token, TokenFields } from '$entities/Token'
+	import { CONFIG } from '$shared/config'
+	import type { IToken } from '$shared/types/token'
+	import { Box } from '$shared/ui/Box'
 
 	interface $$Props {
 		class?: string

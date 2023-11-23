@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { dev } from '$app/environment'
 	import { GiftEventsCard } from '$entities/giftEvents/index.js'
 	import { SectionContainer, SectionTitle } from '$shared/ui/Section'
+	import { dev } from '$app/environment'
 
 	export let data
 </script>

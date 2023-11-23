@@ -1,6 +1,6 @@
 <script lang="ts">
+	import { userStore } from '$entities/users'
 	import { page } from '$app/stores'
-	import { userStore } from '$appLayer/stores/user'
 
 	interface $$Props {
 		class?: string

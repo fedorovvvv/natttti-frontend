@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { getProjectsCollection } from '$entities/projects/api'
 	import Button from '@smui/button'
 	import { createQuery } from '@tanstack/svelte-query'
 	import { derived, writable } from 'svelte/store'
+	import { getProjectsCollection } from '$entities/projects/api'
 
 	const test = writable(0)
 

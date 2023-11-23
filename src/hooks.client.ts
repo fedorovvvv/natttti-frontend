@@ -1,4 +1,4 @@
-import { userStore } from '$appLayer/stores/user'
+import { userStore } from '$entities/users'
 import { pb, type UsersResponse } from '$shared/api/pocketbase'
 import { dev } from '$app/environment'
 

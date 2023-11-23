@@ -1,11 +1,11 @@
 <script lang="ts">
+	import Button, { Group } from '@smui/button'
+	import { createEventDispatcher, type ComponentProps } from 'svelte'
+	import { writable } from 'svelte/store'
 	import { TokenFields } from '$entities/Token'
 	import { TokenRequests } from '$shared/api/token'
 	import { ETokenAccessTypes, type IToken } from '$shared/types/token'
 	import { Box } from '$shared/ui/Box'
-	import Button, { Group } from '@smui/button'
-	import { createEventDispatcher, type ComponentProps } from 'svelte'
-	import { writable } from 'svelte/store'
 
 	interface $$Props {
 		class?: string

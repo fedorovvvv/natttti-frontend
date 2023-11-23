@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { userStore } from '$appLayer/stores/user'
-	import { Logo } from '$entities/Logo'
-	import { HeaderLink, HeaderLinkList, HeaderMenu } from '$widgets/Header'
 	import Button from '@smui/button'
+	import { HeaderLink, HeaderLinkList, HeaderMenu } from '$widgets/Header'
+	import { Logo } from '$entities/Logo'
+	import { userStore } from '$entities/users'
 	interface $$Props {
 		class?: string
 	}

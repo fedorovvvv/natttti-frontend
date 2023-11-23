@@ -42,6 +42,7 @@ module.exports = {
 	rules: {
 		'prefer-const': 2,
 		'no-var': 2,
+		'svelte/no-at-html-tags': 'off',
 		'@typescript-eslint/no-unused-vars': 0,
 		'@typescript-eslint/no-non-null-assertion': 0,
 		'@typescript-eslint/ban-ts-comment': 0,

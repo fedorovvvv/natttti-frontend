@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { Line } from 'svelte-chartjs'
-	import { assignData } from '../../lib/assignData'
 	import {
 		Chart as ChartJS,
 		LineElement,
@@ -10,9 +8,11 @@
 		type ChartOptions,
 		Filler
 	} from 'chart.js'
-	import type { ChartLineInstance, IChartLineData } from '../../types'
 	import _ from 'lodash'
 	import { onMount, tick } from 'svelte'
+	import { Line } from 'svelte-chartjs'
+	import { assignData } from '../../lib/assignData'
+	import type { ChartLineInstance, IChartLineData } from '../../types'
 
 	interface $$Props {
 		data: IChartLineData

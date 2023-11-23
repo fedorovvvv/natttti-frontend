@@ -9,15 +9,15 @@
 		Tooltip,
 		type ChartOptions
 	} from 'chart.js'
-	import { Line } from 'svelte-chartjs'
-	import { assignData } from '../../lib/assignData'
-	import type { ChartGridInstance, IChartGridData } from '../../types'
-	import 'chartjs-adapter-dayjs-4/dist/chartjs-adapter-dayjs-4.esm'
-	import { ScaleGenerator } from '../../lib/ScaleGenerator'
 	import dayjs from 'dayjs'
-	import { verticalLinePointPlugin } from '$shared/lib/Chart/plugins'
 	import _ from 'lodash'
 	import { onMount, tick } from 'svelte'
+	import { Line } from 'svelte-chartjs'
+	import { verticalLinePointPlugin } from '$shared/lib/Chart/plugins'
+	import { assignData } from '../../lib/assignData'
+	import { ScaleGenerator } from '../../lib/ScaleGenerator'
+	import type { ChartGridInstance, IChartGridData } from '../../types'
+	import 'chartjs-adapter-dayjs-4/dist/chartjs-adapter-dayjs-4.esm'
 
 	interface $$Props {
 		class?: string
@@ -119,8 +119,9 @@
 				.toOptions(),
 			//@ts-ignore
 			xMonths:
-				options?.scales.x.type === 'time'
-					? new ScaleGenerator({ type: 'time' })
+				options?.scales?.x?.type === 'time'
+					? //@ts-ignore
+					  new ScaleGenerator({ type: 'time' })
 							.grid({
 								tickLength: 2,
 								drawOnChartArea: false

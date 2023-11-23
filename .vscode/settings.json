@@ -1,3 +1,16 @@
 {
-	"cSpell.words": ["Peca", "pocketbase", "smui"]
+	"cSpell.words": ["Peca", "pocketbase", "smui"],
+	"eslint.probe": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "html",
+        "vue",
+        "markdown",
+        "svelte"
+    ],
+    "eslint.validate": [
+        "svelte"
+    ]
 }

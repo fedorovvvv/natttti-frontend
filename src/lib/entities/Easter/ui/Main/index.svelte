@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { writable } from 'svelte/store'
-	import { browser } from '$app/environment'
-	import { onDestroy, onMount } from 'svelte'
-	import { EasterContext } from '$entities/Easter/model'
 	//@ts-ignore
 	import devtools from 'devtools-detect'
+	import { onDestroy, onMount } from 'svelte'
+	import { writable } from 'svelte/store'
+	import { EasterContext } from '$entities/Easter/model'
+	import { browser } from '$app/environment'
 
 	interface $$Props {
 		class?: string

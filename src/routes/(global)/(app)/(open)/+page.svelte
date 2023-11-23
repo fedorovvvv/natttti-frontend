@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Contributors } from '$widgets/Contributors'
 	import { Stats, StatsCounter } from '$entities/Stats'
-	import { StatsRequests, type IStat, type StatCurrent } from '$shared/api/stats.js'
+	import { StatsRequests, type IStat, type StatCurrent } from '$shared/api/stats'
 	import { CONFIG } from '$shared/config'
 	import { Counter, CounterList } from '$shared/ui/Counter'
 	import { SectionContainer } from '$shared/ui/Section'

@@ -1,8 +1,8 @@
 <script lang="ts">
+	import { writable } from 'svelte/store'
 	import { Tokens } from '$features/Tokens'
 	import { CONFIG } from '$shared/config'
 	import { SectionContainer } from '$shared/ui/Section'
-	import { writable } from 'svelte/store'
 	import type { PageData } from './$types'
 
 	interface $$Props {

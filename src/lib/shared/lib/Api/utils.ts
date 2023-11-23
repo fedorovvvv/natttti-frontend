@@ -1,5 +1,4 @@
-/* eslint-disable no-prototype-builtins */
-/* eslint-disable @typescript-eslint/ban-ts-comment */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const encodeQueryData = (data: Record<string, any>, postfix?: string): string => {
 	const str = []
 	let dataKey

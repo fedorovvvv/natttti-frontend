@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { AuthRequests } from '$shared/api/auth'
-	import { Auth } from '$shared/lib/Auth'
 	import { createEventDispatcher, type ComponentEvents } from 'svelte'
 	import { writable } from 'svelte/store'
+	import { AuthRequests } from '$shared/api/auth'
+	import { Auth } from '$shared/lib/Auth'
 
 	interface $$Props {
 		class?: string
@@ -67,12 +67,12 @@
 		}
 	}
 
-	const handler = {
-		submit(e: ComponentEvents<AuthLogin>['submit']) {
-			const { fields } = e.detail
-			controller.login(fields)
-		}
-	}
+	// const handler = {
+	// 	submit(e: ComponentEvents<AuthLogin>['submit']) {
+	// 		const { fields } = e.detail
+	// 		controller.login(fields)
+	// 	}
+	// }
 </script>
 
 <!-- <AuthLogin disabled={$state.fetching} {valid} class={`Login ${className}`} on:submit={handler.submit}/> -->

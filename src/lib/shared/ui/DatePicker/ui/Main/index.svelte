@@ -1,8 +1,8 @@
 <script lang="ts">
 	import Textfield from '@smui/textfield'
 	import { DateInput } from 'date-picker-svelte'
-	import { createFormat, parse } from 'date-picker-svelte/parse'
 	import { toText } from 'date-picker-svelte/date-utils'
+	import { createFormat, parse } from 'date-picker-svelte/parse'
 	import type { ComponentProps } from 'svelte'
 
 	interface $$Props

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { page } from '$app/stores'
 	import Button from '@smui/button'
+	import { page } from '$app/stores'
 
 	interface $$Props {
 		class?: string

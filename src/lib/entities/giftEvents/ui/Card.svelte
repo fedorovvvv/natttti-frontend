@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { Box } from '$shared/ui/Box'
-	import dayjs from 'dayjs'
-	import type { GiftEvent } from '../types'
 	import Button from '@smui/button/src/Button.svelte'
+	import dayjs from 'dayjs'
+	import { Box } from '$shared/ui/Box'
+	import type { GiftEvent } from '../types'
 
 	interface $$Props {
 		class?: string
