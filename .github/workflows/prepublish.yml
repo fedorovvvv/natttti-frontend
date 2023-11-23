@@ -7,6 +7,7 @@ on:
 
 jobs:
   check:
+    name: Check Lint and Tests
     runs-on: ubuntu-latest
     steps:
     - name: Npm CI
