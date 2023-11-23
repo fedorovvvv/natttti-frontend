@@ -5,7 +5,7 @@
 	"author": "Nikita Fedorov <nikitafedorov7@yandex.ru>",
 	"scripts": {
 		"dev": "vite dev",
-		"build": "npm run lint && vite build",
+		"build": "npm run lint && npm run smui-theme && vite build",
 		"preview": "vite preview",
 		"start": "node index.js",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
