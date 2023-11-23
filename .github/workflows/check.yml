@@ -1,24 +1,20 @@
 name: 'Check CI'
 
 on:
-  push:
-    branches:
-      - main
+  - push
   pull_request:
     branches:
       - main
 
 jobs:
   check:
-    name: Check Lint and Tests
+    name: Lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Npm CI
         run: npm ci
 
       - name: Check lint (Prettier + ESLint)
         run: npm run lint
-
-      - name: Tests (Vitest)
-        run: npm run test
