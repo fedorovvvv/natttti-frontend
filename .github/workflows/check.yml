@@ -1,4 +1,4 @@
-name: 'Pre Publish CI'
+name: 'Check CI'
 
 on:
   pull_request:
