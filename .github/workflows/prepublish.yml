@@ -1,4 +1,4 @@
-name: Pre Publish CI
+name: 'Pre Publish CI'
 
 on:
   pull_request:
@@ -6,13 +6,16 @@ on:
       - main
 
 jobs:
-  checks:
+  check:
     runs-on: ubuntu-latest
     steps:
-    - name: Lint
+    - name: Npm CI
+      uses: actions/checkout@v4
+      run: npm ci
+    - name: Check lint (Prettier + ESLint)
       uses: actions/checkout@v4
       run: npm run lint
 
-    - name: Tests
+    - name: Tests (Vitest)
       uses: actions/checkout@v4
       run: npm run test
