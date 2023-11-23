@@ -13,6 +13,7 @@ jobs:
      - name: Npm CI
        uses: actions/checkout@v4
        run: npm ci
+       
      - name: Check lint (Prettier + ESLint)
        uses: actions/checkout@v4
        run: npm run lint
