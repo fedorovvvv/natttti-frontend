@@ -6,8 +6,9 @@
 
 ### links
 
-- [⚙️ backend](https://github.com/eveloth/natti-chat-bot)
-- [☕️ pocketbase backend](https://github.com/fedorovvvv/natttti-pocketbase-backend)
+- [🗂️ Tasks board](https://github.com/users/fedorovvvv/projects/3/views/1) - тут можно следить за тем, как развивается проект
+- [⚙️ Backend](https://github.com/eveloth/natti-chat-bot)
+- [☕️ PocketBase backend](https://github.com/fedorovvvv/natttti-pocketbase-backend)
 
 ### build🧱
 
