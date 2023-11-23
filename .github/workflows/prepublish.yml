@@ -9,9 +9,10 @@ jobs:
   checks:
     runs-on: ubuntu-latest
     steps:
-      - name: Lint
-        uses: actions/checkout@v4
-        run: npm run lint
-      - name: Tests
-        uses: actions/checkout@v4
-        run: npm run test
+    - name: Lint
+      uses: actions/checkout@v4
+      run: npm run lint
+
+    - name: Tests
+      uses: actions/checkout@v4
+      run: npm run test
