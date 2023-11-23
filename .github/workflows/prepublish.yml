@@ -10,13 +10,13 @@ jobs:
     name: Check Lint and Tests
     runs-on: ubuntu-latest
     steps:
-      - name: Npm CI
-        uses: actions/checkout@v4
-        run: npm ci
-      - name: Check lint (Prettier + ESLint)
-        uses: actions/checkout@v4
-        run: npm run lint
+     - name: Npm CI
+       uses: actions/checkout@v4
+       run: npm ci
+     - name: Check lint (Prettier + ESLint)
+       uses: actions/checkout@v4
+       run: npm run lint
 
-      - name: Tests (Vitest)
-        uses: actions/checkout@v4
-        run: npm run test
+     - name: Tests (Vitest)
+       uses: actions/checkout@v4
+       run: npm run test
