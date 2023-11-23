@@ -1,33 +1,35 @@
-<script lang='ts'>
-	import { applyAction, enhance } from "$app/forms";
-	import { pb } from "$shared/api/pocketbase";
+<script lang="ts">
+	import { applyAction, enhance } from '$app/forms'
+	import { pb } from '$shared/api/pocketbase'
 
-    interface $$Props {
-        class?:string
-    }
-    
-    let className = ''
-    export { className as class }
-    
+	interface $$Props {
+		class?: string
+	}
+
+	let className = ''
+	export { className as class }
 </script>
 
 <form
-    use:enhance={() => {
-        return async ({ result }) => {
-            pb.authStore.clear()
-            await applyAction(result)
-        }
-    }}
-    method="POST"
-    action='/users/login?/github'
-    class={`UsersOAuth2GitHub ${className}`}
+	use:enhance={() => {
+		return async ({ result }) => {
+			pb.authStore.clear()
+			await applyAction(result)
+		}
+	}}
+	method="POST"
+	action="/users/login?/github"
+	class={`UsersOAuth2GitHub ${className}`}
 >
-    <button>
-        <img src="https://raw.githubusercontent.com/rdimascio/icons/master/icons/github.svg" alt='github'/>
-    </button>
+	<button>
+		<img
+			src="https://raw.githubusercontent.com/rdimascio/icons/master/icons/github.svg"
+			alt="github"
+		/>
+	</button>
 </form>
 
-<style lang='sass'>
+<style lang="sass">
     .UsersOAuth2GitHub
         button
             width: 40px

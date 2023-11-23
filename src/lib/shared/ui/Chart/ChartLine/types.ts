@@ -1,4 +1,4 @@
-import type { Chart, ChartData, Point } from "chart.js";
+import type { Chart, ChartData, Point } from 'chart.js'
 
 type Data = (number | Point)[]
 

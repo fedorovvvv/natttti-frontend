@@ -1,86 +1,96 @@
-<script lang='ts'>
-	import type { IStat } from "$shared/api/stats";
-	import type { ApiReturn } from "$shared/lib/Api";
-	import { Box } from "$shared/ui/Box";
-	import { ChartGrid } from "$shared/ui/Chart/ChartGrid";
-	import { LoadText } from "$shared/ui/Load";
-	import { TimeScale } from "chart.js";
-	import dayjs from "dayjs";
-	import { onMount, type ComponentProps } from "svelte";
+<script lang="ts">
+	import type { IStat } from '$shared/api/stats'
+	import type { ApiReturn } from '$shared/lib/Api'
+	import { Box } from '$shared/ui/Box'
+	import { ChartGrid } from '$shared/ui/Chart/ChartGrid'
+	import { LoadText } from '$shared/ui/Load'
+	import { TimeScale } from 'chart.js'
+	import dayjs from 'dayjs'
+	import { onMount, type ComponentProps } from 'svelte'
 
 	interface $$Props {
-		class?:string
-		data:ApiReturn<IStat[]>
-		syncData?:IStat[]
+		class?: string
+		data: ApiReturn<IStat[]>
+		syncData?: IStat[]
 	}
-	
+
 	let className = ''
 	export { className as class }
-	export let data:$$Props['data']
-	export let syncData:$$Props['syncData'] = undefined
+	export let data: $$Props['data']
+	export let syncData: $$Props['syncData'] = undefined
 
 	let loaded = false
 
-
-	const getCharts = (_data:Awaited<typeof data>, _syncData:typeof syncData):{
-		id:string
-		title:string
-		avg:number
-		datasets:ComponentProps<ChartGrid>['data']['datasets']
+	const getCharts = (
+		_data: Awaited<typeof data>,
+		_syncData: typeof syncData
+	): {
+		id: string
+		title: string
+		avg: number
+		datasets: ComponentProps<ChartGrid>['data']['datasets']
 	}[] => {
 		if (_data._error) return []
-		const parsedData = [..._data, ...(_syncData || [])].map(stat => {
-			return {
-				x: +dayjs(stat.date).toDate(),
-				messagesCount: stat.messagesCount,
-				newMembersCount: stat.newMembersCount,
-			}
-		}).sort((a, b) => b.x - a.x)
+		const parsedData = [..._data, ...(_syncData || [])]
+			.map((stat) => {
+				return {
+					x: +dayjs(stat.date).toDate(),
+					messagesCount: stat.messagesCount,
+					newMembersCount: stat.newMembersCount
+				}
+			})
+			.sort((a, b) => b.x - a.x)
 
 		return [
 			{
 				id: 'messages',
 				title: '✉️ Телеграммы',
-				avg: +(parsedData.reduce((val, cur) => val + cur.messagesCount, 0) / parsedData.length).toFixed(0) || 0,
+				avg:
+					+(
+						parsedData.reduce((val, cur) => val + cur.messagesCount, 0) / parsedData.length
+					).toFixed(0) || 0,
 				datasets: [
 					{
 						label: 'Написано',
-						data: parsedData.map(s => {
+						data: parsedData.map((s) => {
 							return {
 								x: s.x,
 								y: s.messagesCount
 							}
 						}),
 						backgroundColor: 'green',
-						borderColor: 'green',
+						borderColor: 'green'
 					}
 				]
 			},
 			{
 				id: 'members',
 				title: '🐣 Новые люди профсоюза',
-				avg: +(parsedData.reduce((val, cur) => val + cur.newMembersCount, 0) / parsedData.length).toFixed(0) || 0,
+				avg:
+					+(
+						parsedData.reduce((val, cur) => val + cur.newMembersCount, 0) / parsedData.length
+					).toFixed(0) || 0,
 				datasets: [
 					{
 						label: 'Вступило',
-						data: parsedData.map(s => {
+						data: parsedData.map((s) => {
 							return {
 								x: s.x,
 								y: s.newMembersCount
 							}
 						}),
 						backgroundColor: 'blue',
-						borderColor: 'blue',
+						borderColor: 'blue'
 					}
 				]
-			},
+			}
 		]
 	}
 
 	let awaitedData: Awaited<typeof data> | undefined
 
 	onMount(() => {
-		data.then(res => {
+		data.then((res) => {
 			awaitedData = res
 		})
 	})
@@ -97,18 +107,18 @@
 			},
 			scales: {
 				x: {
-					type: 'time',
+					type: 'time'
 				}
 			}
 		}
 	} satisfies Omit<ComponentProps<ChartGrid>, 'data'>
-	
 </script>
+
 <div class={`Stats ${className}`}>
 	<div class="Stats__chart-list">
-		{#each getCharts(awaitedData || [], syncData) as {id, title, datasets, avg} (id)}
-			<Box class='Stats__chart-box'>
-				<h3 class='Stats__chart-title'>{title} <small>среднее: <b>{avg}</b></small></h3>
+		{#each getCharts(awaitedData || [], syncData) as { id, title, datasets, avg } (id)}
+			<Box class="Stats__chart-box">
+				<h3 class="Stats__chart-title">{title} <small>среднее: <b>{avg}</b></small></h3>
 				<div class="Stats__chart-container">
 					{#if awaitedData}
 						<div class="Stats__chart-scroll">
@@ -117,11 +127,11 @@
 									datasets
 								}}
 								{...chartProps}
-								class='Stats__chart'
+								class="Stats__chart"
 							/>
 						</div>
 					{:else}
-						<LoadText class='Stats__loader'>Поиск архивов...</LoadText>
+						<LoadText class="Stats__loader">Поиск архивов...</LoadText>
 					{/if}
 				</div>
 			</Box>
@@ -129,7 +139,7 @@
 	</div>
 </div>
 
-<style lang='sass'>
+<style lang="sass">
 	.Stats
 		$root: &
 		&__chart

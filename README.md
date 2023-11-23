@@ -4,23 +4,27 @@
 
 # Natttti ✨
 
-
 #### links
-+ [⚙️ backend](https://github.com/eveloth/natti-chat-bot)
-+ [☕️ pocketbase backend](https://github.com/fedorovvvv/natttti-pocketbase-backend)
+
+- [⚙️ backend](https://github.com/eveloth/natti-chat-bot)
+- [☕️ pocketbase backend](https://github.com/fedorovvvv/natttti-pocketbase-backend)
 
 ### build🧱
+
 ```
 npm install --frozen-lockfile
-```  
+```
+
 ```
 npm run build
 ```
 
 ### dev🧑🏽‍💻
+
 ```
 npm install --frozen-lockfile
-```  
+```
+
 ```
 npm run dev
 ```

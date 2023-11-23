@@ -1,21 +1,20 @@
-<script lang='ts'>
-    interface $$Props {
-        class?:string
-        tag?:string
-    }
-    
-    let className = ''
-    export { className as class }
+<script lang="ts">
+	interface $$Props {
+		class?: string
+		tag?: string
+	}
 
-    export let tag = 'span'
-    
+	let className = ''
+	export { className as class }
+
+	export let tag = 'span'
 </script>
 
 <svelte:element this={tag} class={`LoadText ${className}`}>
-    <slot/>
+	<slot />
 </svelte:element>
 
-<style lang='sass'>
+<style lang="sass">
     .LoadText
         font-size: 50px
         font-weight: 700

@@ -1,4 +1,1 @@
-export {
-	Main as Counter,
-	List as CounterList
-} from './ui'
+export { Main as Counter, List as CounterList } from './ui'

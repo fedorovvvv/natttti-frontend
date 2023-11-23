@@ -1,17 +1,17 @@
-<script lang='ts'>
-	import { fly } from 'svelte/transition';
+<script lang="ts">
+	import { fly } from 'svelte/transition'
 	interface $$Props {
-		class?:string
-		value:number
-		theme?:'green' | 'blue'
-		label?:string
+		class?: string
+		value: number
+		theme?: 'green' | 'blue'
+		label?: string
 	}
-	
+
 	let className = ''
 	export { className as class }
-	export let value:$$Props['value'] = 0
-	export let theme:$$Props['theme'] = undefined
-	export let label:$$Props['label'] = undefined
+	export let value: $$Props['value'] = 0
+	export let theme: $$Props['theme'] = undefined
+	export let label: $$Props['label'] = undefined
 </script>
 
 <div class={`Counter ${className} ${theme ? `Counter_theme-${theme}` : ''}`}>
@@ -30,13 +30,13 @@
 					y: -40,
 					duration: 500,
 					opacity: 1
-				}}
-			>{value}</span>
+				}}>{value}</span
+			>
 		{/key}
 	</div>
 </div>
 
-<style lang='sass'>
+<style lang="sass">
 	.Counter
 		@at-root :global &
 			border-radius: 10px

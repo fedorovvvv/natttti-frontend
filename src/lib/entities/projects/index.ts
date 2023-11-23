@@ -1,3 +1,1 @@
-export {
-	Main as projects,
-} from './ui'
+export { Main as projects } from './ui'

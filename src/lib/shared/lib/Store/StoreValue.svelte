@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { Readable } from 'svelte/store';
-	export let store: Readable<unknown>;
+	import type { Readable } from 'svelte/store'
+	export let store: Readable<unknown>
 </script>
 
 <!--

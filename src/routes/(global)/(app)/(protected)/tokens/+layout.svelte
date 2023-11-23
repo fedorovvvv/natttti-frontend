@@ -1,18 +1,17 @@
-<script lang='ts'>
-    interface $$Props {
-        class?:string
-    }
-    
-    let className = ''
-    export { className as class }
-    
+<script lang="ts">
+	interface $$Props {
+		class?: string
+	}
+
+	let className = ''
+	export { className as class }
 </script>
 
 <main class={`tokens-layout ${className}`}>
-    <slot/>
+	<slot />
 </main>
 
-<style lang='sass'>
+<style lang="sass">
     .tokens-layout
         padding-top: 100px
 </style>

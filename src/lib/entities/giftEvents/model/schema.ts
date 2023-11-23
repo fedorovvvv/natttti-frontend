@@ -1,20 +1,20 @@
 /* eslint-disable boundaries/element-types */
-import { array, date, object, string } from "yup"
-import { GiftEventMembersSchema } from "$entities/giftEventMembers"
-import { PocketBaseSchema } from "$shared/model"
+import { array, date, object, string } from 'yup'
+import { GiftEventMembersSchema } from '$entities/giftEventMembers'
+import { PocketBaseSchema } from '$shared/model'
 
 export class GiftEventsSchema {
-    static fields = object({
-        name: string().default('').required(),
-        description: string().default(''),
-        startAt: date().required(),
-        endAt: date().required(),
-        members: array(GiftEventMembersSchema.record).default([]).required()
-    })
+	static fields = object({
+		name: string().default('').required(),
+		description: string().default(''),
+		startAt: date().required(),
+		endAt: date().required(),
+		members: array(GiftEventMembersSchema.record).default([]).required()
+	})
 
-    static create = this.fields
+	static create = this.fields
 
-    static update = this.fields
+	static update = this.fields
 
-    static record = this.fields.concat(PocketBaseSchema.base)
+	static record = this.fields.concat(PocketBaseSchema.base)
 }

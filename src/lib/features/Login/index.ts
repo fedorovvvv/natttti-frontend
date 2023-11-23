@@ -1,3 +1,1 @@
-export {
-	Main as Login,
-} from './ui'
+export { Main as Login } from './ui'

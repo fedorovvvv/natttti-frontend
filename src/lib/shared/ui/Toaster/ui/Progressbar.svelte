@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { readable } from 'svelte/store';
-	import { isSvelteStore } from '$shared/lib/Store';
-	import type { MaybeStore } from '$shared/types/Store';
+	import { readable } from 'svelte/store'
+	import { isSvelteStore } from '$shared/lib/Store'
+	import type { MaybeStore } from '$shared/types/Store'
 
 	export let value: MaybeStore<number>
 
-	$: progress = isSvelteStore(value) ? value : readable(value);
+	$: progress = isSvelteStore(value) ? value : readable(value)
 </script>
 
 <div class="ToasterProgressbar" style="--progress: {$progress}%" />

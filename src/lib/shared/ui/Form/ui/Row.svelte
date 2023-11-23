@@ -1,18 +1,17 @@
-<script lang='ts'>
-    interface $$Props {
-        class?:string
-    }
-    
-    let className = ''
-    export { className as class }
-    
+<script lang="ts">
+	interface $$Props {
+		class?: string
+	}
+
+	let className = ''
+	export { className as class }
 </script>
 
 <div class={`FormRow ${className}`}>
-    <slot/>
+	<slot />
 </div>
 
-<style lang='sass'>
+<style lang="sass">
     .FormRow
         display: grid
         grid-template-columns: repeat(auto-fit, minmax(100px, 1fr))

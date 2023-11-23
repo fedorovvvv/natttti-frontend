@@ -1,14 +1,14 @@
 <script lang="ts">
-	import { userStore } from '$appLayer/stores/user';
-	import { Logo } from '$entities/Logo';
-	import { HeaderLink, HeaderLinkList, HeaderMenu } from '$widgets/Header';
-	import Button from '@smui/button';
+	import { userStore } from '$appLayer/stores/user'
+	import { Logo } from '$entities/Logo'
+	import { HeaderLink, HeaderLinkList, HeaderMenu } from '$widgets/Header'
+	import Button from '@smui/button'
 	interface $$Props {
-		class?: string;
+		class?: string
 	}
 
-	let className = '';
-	export { className as class };
+	let className = ''
+	export { className as class }
 </script>
 
 <header class={`Header ${className}`}>
@@ -26,14 +26,17 @@
 				<Button href="/users/login" variant="unelevated">Вход</Button>
 			{/if}
 		</div>
-		<hr>
+		<hr />
 		<HeaderLinkList>
 			<HeaderLink
 				href="https://github.com/fedorovvvv/natttti-frontend"
 				target="_blank"
 				rel="noreferrer"
 			>
-				<img src="https://raw.githubusercontent.com/rdimascio/icons/master/icons/github.svg" alt='github'/>
+				<img
+					src="https://raw.githubusercontent.com/rdimascio/icons/master/icons/github.svg"
+					alt="github"
+				/>
 			</HeaderLink>
 		</HeaderLinkList>
 	</div>

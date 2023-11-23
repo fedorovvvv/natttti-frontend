@@ -1,16 +1,14 @@
-<script lang='ts'>
+<script lang="ts">
 	interface $$Props {
-		class?:string
+		class?: string
 	}
-	
+
 	let className = ''
 	export { className as class }
-	
 </script>
 
-<div class={`Load ${className}`}>
-</div>
+<div class={`Load ${className}`} />
 
-<style lang='sass'>
+<style lang="sass">
 	.Load
 </style>

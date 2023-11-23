@@ -1,37 +1,36 @@
-<script lang='ts'>
-	import { goto } from "$app/navigation";
-	import { Login } from "$features/Login";
-	import { CONFIG } from "$shared/config";
-    import { SectionContainer } from "$shared/ui/Section";
+<script lang="ts">
+	import { goto } from '$app/navigation'
+	import { Login } from '$features/Login'
+	import { CONFIG } from '$shared/config'
+	import { SectionContainer } from '$shared/ui/Section'
 
-    interface $$Props {
-        class?:string
-    }
-    
-    let className = ''
-    export { className as class }
+	interface $$Props {
+		class?: string
+	}
 
-    let valid = true
+	let className = ''
+	export { className as class }
 
-    const handler = {
-        ok() {
-            window.location.href = '/tokens'
-        }
-    }
-    
+	let valid = true
+
+	const handler = {
+		ok() {
+			window.location.href = '/tokens'
+		}
+	}
 </script>
 
 <svelte:head>
-    <title>{CONFIG.APP.NAME} | Вход</title>
+	<title>{CONFIG.APP.NAME} | Вход</title>
 </svelte:head>
 
-<SectionContainer class='account-login-page__container'>
-    <h2>{valid ? '🙌🏻' : '🖕🏻'} Входи</h2>
-    <p>Очередь не задерживаем.</p>
-    <Login on:ok={handler.ok} bind:valid/>
+<SectionContainer class="account-login-page__container">
+	<h2>{valid ? '🙌🏻' : '🖕🏻'} Входи</h2>
+	<p>Очередь не задерживаем.</p>
+	<Login on:ok={handler.ok} bind:valid />
 </SectionContainer>
 
-<style lang='sass'>
+<style lang="sass">
     .account-login-page
         padding-top: 100px
         p

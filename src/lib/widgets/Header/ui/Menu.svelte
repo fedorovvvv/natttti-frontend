@@ -1,45 +1,47 @@
-<script lang='ts'>
-	import { page } from "$app/stores";
-	import { userStore } from "$appLayer/stores/user";
+<script lang="ts">
+	import { page } from '$app/stores'
+	import { userStore } from '$appLayer/stores/user'
 
-    interface $$Props {
-        class?:string
-    }
-    
-    let className = ''
-    export { className as class }
+	interface $$Props {
+		class?: string
+	}
 
-    $: items = [
-        {
-            id: 'santa',
-            href: '/events/gift/9p3s1pk3mx88swv',
-            text: 'Тайный Cанта🎅'
-        },
-        ...($userStore.current?.isAdmin ? [
-            {
-                id: 'tokens',
-                href: '/tokens',
-                text: 'Токены',
-            }
-        ] : [])
-    ]
+	let className = ''
+	export { className as class }
+
+	$: items = [
+		{
+			id: 'santa',
+			href: '/events/gift/9p3s1pk3mx88swv',
+			text: 'Тайный Cанта🎅'
+		},
+		...($userStore.current?.isAdmin
+			? [
+					{
+						id: 'tokens',
+						href: '/tokens',
+						text: 'Токены'
+					}
+			  ]
+			: [])
+	]
 </script>
 
 {#if items.length}
-    <nav class={`HeaderMenu ${className}`}>
-        {#each items as item (item.id)}
-            <a  
-                href={item.href}
-                class='HeaderMenu__item'
-                class:HeaderMenu__item_active={$page.url.pathname.startsWith(item.href)}
-            >
-                {item.text}
-            </a>
-        {/each}
-    </nav>    
+	<nav class={`HeaderMenu ${className}`}>
+		{#each items as item (item.id)}
+			<a
+				href={item.href}
+				class="HeaderMenu__item"
+				class:HeaderMenu__item_active={$page.url.pathname.startsWith(item.href)}
+			>
+				{item.text}
+			</a>
+		{/each}
+	</nav>
 {/if}
 
-<style lang='sass'>
+<style lang="sass">
     .HeaderMenu
         &__item
             font-weight: 600
@@ -65,5 +67,5 @@
             &_active
                 &::after
                     width: calc(100% + 6px)
-                    height: 5px            
+                    height: 5px
 </style>

@@ -1,12 +1,11 @@
-<script lang='ts'>
-    
+<script lang="ts">
 </script>
 
-<main class='users-layout'>
-    <slot/>
+<main class="users-layout">
+	<slot />
 </main>
 
-<style lang='sass'>
+<style lang="sass">
     .users-layout
         padding-top: 100px
 </style>

@@ -1,20 +1,19 @@
-<script lang='ts'>
-    interface $$Props {
-        class?:string
-        tag?:string
-    }
-    
-    let className = ''
-    export { className as class }
-    export let tag:$$Props['tag'] = 'div'
-    
+<script lang="ts">
+	interface $$Props {
+		class?: string
+		tag?: string
+	}
+
+	let className = ''
+	export { className as class }
+	export let tag: $$Props['tag'] = 'div'
 </script>
 
 <svelte:element this={tag} class={`SectionContainer ${className}`}>
-    <slot/>
+	<slot />
 </svelte:element>
 
-<style lang='sass'>
+<style lang="sass">
     .SectionContainer
         width: 100%
         max-width: 1200px

@@ -1,8 +1,8 @@
-import { preprocessMeltUI } from '@melt-ui/pp';
-import adapter from '@sveltejs/adapter-auto';
-import autoprefixer from 'autoprefixer';
-import sveltePreprocess from 'svelte-preprocess';
-import sequence from 'svelte-sequential-preprocessor';
+import { preprocessMeltUI } from '@melt-ui/pp'
+import adapter from '@sveltejs/adapter-auto'
+import autoprefixer from 'autoprefixer'
+import sveltePreprocess from 'svelte-preprocess'
+import sequence from 'svelte-sequential-preprocessor'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -35,10 +35,10 @@ const config = {
 		},
 		typescript: {
 			config(config) {
-				config.include.push('../svelte.config.js');
+				config.include.push('../svelte.config.js')
 			}
 		}
 	}
-};
+}
 
-export default config;
+export default config

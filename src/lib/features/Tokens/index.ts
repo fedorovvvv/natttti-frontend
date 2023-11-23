@@ -1,4 +1,1 @@
-export {
-	Main as Tokens,
-	Create as TokensCreate
-} from './ui'
+export { Main as Tokens, Create as TokensCreate } from './ui'

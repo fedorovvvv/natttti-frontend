@@ -1,6 +1,6 @@
 <script lang="ts" context="module">
 	import { toasterStore } from '../lib'
-	import type { ToastType } from '../types';
+	import type { ToastType } from '../types'
 
 	const typeToColor: Record<ToastType, string | null> = {
 		default: null,
@@ -8,31 +8,29 @@
 		progress: 'active',
 		success: 'positive',
 		warning: 'warning-600'
-	};
+	}
 
 	const {
 		elements: { content, description, close },
 		states: { toasts },
 		actions: { portal }
-	} = toasterStore;
-
+	} = toasterStore
 </script>
 
 <script lang="ts">
-	import { melt } from '@melt-ui/svelte';
-	import type { Action } from 'svelte/action';
-	import { flip } from 'svelte/animate';
-	import { fly } from 'svelte/transition';
-	import Progressbar from './Progressbar.svelte';
+	import { melt } from '@melt-ui/svelte'
+	import type { Action } from 'svelte/action'
+	import { flip } from 'svelte/animate'
+	import { fly } from 'svelte/transition'
+	import Progressbar from './Progressbar.svelte'
 
 	const onDestroy: Action<HTMLElement, (() => void) | undefined> = (_, onDestroy) => {
 		return {
 			destroy() {
-				onDestroy?.();
+				onDestroy?.()
 			}
-		};
+		}
 	}
-
 </script>
 
 <!-- @component
@@ -48,7 +46,7 @@ This is a singleton component to manage toasts - should be placed somewhere in t
 			in:fly={{ x: '100%' }}
 			out:fly={{ x: '100%' }}
 			animate:flip={{ duration: 500 }}
-			class='ToasterToast'
+			class="ToasterToast"
 		>
 			<button use:melt={$close(id)} class="ToasterToast__wrapper" style="--color: {toastColor};">
 				<div class="ToasterToast__container">
@@ -64,8 +62,8 @@ This is a singleton component to manage toasts - should be placed somewhere in t
 						<button
 							class="ToasterToast__action"
 							on:click={(e) => {
-								if (!closeOnClick) e.stopPropagation();
-								onClick();
+								if (!closeOnClick) e.stopPropagation()
+								onClick()
 							}}
 						>
 							{label}

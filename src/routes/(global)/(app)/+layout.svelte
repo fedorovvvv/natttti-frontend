@@ -1,17 +1,16 @@
-<script lang='ts'>
-	import { userStore } from "$appLayer/stores/user.js";
-	import { Header } from "$widgets/Header";
+<script lang="ts">
+	import { userStore } from '$appLayer/stores/user.js'
+	import { Header } from '$widgets/Header'
 
-    export let data
+	export let data
 
 	$: userStore.set(data.user)
-
 </script>
 
-<Header/>
-<slot/>
+<Header />
+<slot />
 
-<style lang='sass' global>
+<style lang="sass" global>
     @import '../../../styles/global.sass'
     h1
         font-weight: 700

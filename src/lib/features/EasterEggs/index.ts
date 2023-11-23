@@ -1,3 +1,1 @@
-export {
-	Main as EasterEggs,
-} from './ui'
+export { Main as EasterEggs } from './ui'

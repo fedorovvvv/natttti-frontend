@@ -1,21 +1,20 @@
-<script lang='ts'>
-	import type { HTMLAnchorAttributes } from "svelte/elements";
+<script lang="ts">
+	import type { HTMLAnchorAttributes } from 'svelte/elements'
 
-    interface $$Props extends HTMLAnchorAttributes {
-        class?:string
-    }
-    
-    let className = ''
-    export { className as class }
-    export let href:$$Props['href'] = undefined
-    
+	interface $$Props extends HTMLAnchorAttributes {
+		class?: string
+	}
+
+	let className = ''
+	export { className as class }
+	export let href: $$Props['href'] = undefined
 </script>
 
 <a class={`HeaderLink ${className}`} {href} {...$$restProps}>
-    <slot/>
+	<slot />
 </a>
 
-<style lang='sass'>
+<style lang="sass">
     .HeaderLink
         display: block
         width: 26px

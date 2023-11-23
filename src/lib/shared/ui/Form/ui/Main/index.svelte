@@ -1,46 +1,41 @@
-<script lang='ts'>
-	import type { enhance } from "$app/forms";
-	import type { HTMLFormAttributes } from "svelte/elements";
+<script lang="ts">
+	import type { enhance } from '$app/forms'
+	import type { HTMLFormAttributes } from 'svelte/elements'
 
 	type FormParams = HTMLFormAttributes
-	
+
 	interface $$Props extends FormParams {
-		class?:string
-		enhanceFn?:Parameters<typeof enhance>[1]
+		class?: string
+		enhanceFn?: Parameters<typeof enhance>[1]
 	}
-	
+
 	let className = ''
 	export { className as class }
-	export let enhanceFn:$$Props['enhanceFn'] = undefined
-	
+	export let enhanceFn: $$Props['enhanceFn'] = undefined
 </script>
 
-<form
-	class={`Form ${className}`}
-	on:submit
-	{...$$restProps}
->
+<form class={`Form ${className}`} on:submit {...$$restProps}>
 	{#if $$slots.header}
 		<div class="Form__header">
-			<slot name='header'/>
+			<slot name="header" />
 		</div>
 	{/if}
 	<div class="Form__main">
-		<slot/>
+		<slot />
 	</div>
 	{#if $$slots.button}
 		<div class="Form__button">
-			<slot name='button'/>
+			<slot name="button" />
 		</div>
 	{/if}
 	{#if $$slots.links}
-		<div class='Form__links'>
-			<slot name='links'/>
+		<div class="Form__links">
+			<slot name="links" />
 		</div>
 	{/if}
 </form>
 
-<style lang='sass'>
+<style lang="sass">
 	.Form
 		--gap: 16px
 		display: grid

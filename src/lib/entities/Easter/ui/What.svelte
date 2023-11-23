@@ -1,53 +1,52 @@
-<script lang='ts'>
-	import { browser } from "$app/environment";
-	import { onMount } from "svelte";
+<script lang="ts">
+	import { browser } from '$app/environment'
+	import { onMount } from 'svelte'
 
-    interface $$Props {
-        class?:string
-        image?:{
-            src:string
-        }
-    }
-    
-    let className = ''
-    export { className as class }
-    export let image:$$Props['image'] = undefined
+	interface $$Props {
+		class?: string
+		image?: {
+			src: string
+		}
+	}
 
-    let canvas:HTMLCanvasElement | undefined = undefined
+	let className = ''
+	export { className as class }
+	export let image: $$Props['image'] = undefined
 
-    const controller = {
-        drawImage() {
-            if (canvas && browser && image) {
-                const img = new Image()
-                img.src = image.src
-                img.addEventListener('load', () => {
-                    if (!canvas) return
-                    const ctx = canvas.getContext('2d')
-                    ctx?.drawImage(img, 0, 0, img.naturalWidth / 2, img.naturalHeight / 2)
-                })
-            }
-        }
-    }
+	let canvas: HTMLCanvasElement | undefined = undefined
 
-    const handler = {
-        mousemove(e:MouseEvent) {
-            // console.log(e)
-        }
-    }
+	const controller = {
+		drawImage() {
+			if (canvas && browser && image) {
+				const img = new Image()
+				img.src = image.src
+				img.addEventListener('load', () => {
+					if (!canvas) return
+					const ctx = canvas.getContext('2d')
+					ctx?.drawImage(img, 0, 0, img.naturalWidth / 2, img.naturalHeight / 2)
+				})
+			}
+		}
+	}
 
-    onMount(() => {
-        controller.drawImage()
-    })
-    
+	const handler = {
+		mousemove(e: MouseEvent) {
+			// console.log(e)
+		}
+	}
+
+	onMount(() => {
+		controller.drawImage()
+	})
 </script>
 
-<svelte:window on:mousemove={handler.mousemove}/>
+<svelte:window on:mousemove={handler.mousemove} />
 
 <div class={`EasterWhat ${className}`}>
-    <canvas bind:this={canvas}/>
+	<canvas bind:this={canvas} />
 </div>
 
-<style lang='sass'>
+<style lang="sass">
     .EasterWhat
         display: block
         pointer-events: none

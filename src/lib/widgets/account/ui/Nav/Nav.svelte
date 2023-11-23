@@ -1,30 +1,31 @@
-<script lang='ts'>
-	import type { ComponentProps } from "svelte";
-	import NavItem from "./NavItem.svelte";
+<script lang="ts">
+	import type { ComponentProps } from 'svelte'
+	import NavItem from './NavItem.svelte'
 
-    interface $$Props {
-        class?:string
-        items:Array<{
-            id:string
-        } & ComponentProps<NavItem>>
-    }
-    
-    let className = ''
-    export { className as class }
+	interface $$Props {
+		class?: string
+		items: Array<
+			{
+				id: string
+			} & ComponentProps<NavItem>
+		>
+	}
 
-    export let items:$$Props['items'] = []
-    
+	let className = ''
+	export { className as class }
+
+	export let items: $$Props['items'] = []
 </script>
 
 <ul class={`AccountNav ${className}`}>
-    {#each items as item (item.id)}
-        <li>
-            <NavItem {...item}/>
-        </li>
-    {/each}
+	{#each items as item (item.id)}
+		<li>
+			<NavItem {...item} />
+		</li>
+	{/each}
 </ul>
 
-<style lang='sass'>
+<style lang="sass">
     .AccountNav
         li
             width: 100%

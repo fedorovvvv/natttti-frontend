@@ -1,9 +1,9 @@
 <script lang="ts">
-	import type { MaybeStore } from '$shared/types/Store';
-	import StoreValue from './StoreValue.svelte';
-	import { isSvelteStore } from '.';
+	import type { MaybeStore } from '$shared/types/Store'
+	import StoreValue from './StoreValue.svelte'
+	import { isSvelteStore } from '.'
 
-	export let value: MaybeStore<unknown>;
+	export let value: MaybeStore<unknown>
 </script>
 
 <!--

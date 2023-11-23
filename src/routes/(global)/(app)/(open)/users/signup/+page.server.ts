@@ -5,17 +5,19 @@ import type { UsersSchema } from '$entities/users'
 import { getUsersCollection } from '$entities/users'
 
 export const actions = {
-    default: async ({ locals, request }) => {
-        const data = Object.fromEntries(await request.formData()) as unknown as InferType<typeof UsersSchema.create>
-        const userCollection = getUsersCollection(locals.pb)
-        try {
-            const res = await userCollection.create(data)
-            await userCollection.authWithPassword(res.username, data.password)
-        } catch (_error) {
-            const error = _error as ClientResponseError
-            return fail(error.status, error.data)
-        }
+	default: async ({ locals, request }) => {
+		const data = Object.fromEntries(await request.formData()) as unknown as InferType<
+			typeof UsersSchema.create
+		>
+		const userCollection = getUsersCollection(locals.pb)
+		try {
+			const res = await userCollection.create(data)
+			await userCollection.authWithPassword(res.username, data.password)
+		} catch (_error) {
+			const error = _error as ClientResponseError
+			return fail(error.status, error.data)
+		}
 
-        throw redirect(303, '/')
-    },
+		throw redirect(303, '/')
+	}
 }

@@ -1,22 +1,22 @@
-<script lang='ts'>
-	import { AuthRequests } from "$shared/api/auth";
-	import { Auth } from "$shared/lib/Auth";
-	import { createEventDispatcher, type ComponentEvents } from "svelte";
-	import { writable } from "svelte/store";
+<script lang="ts">
+	import { AuthRequests } from '$shared/api/auth'
+	import { Auth } from '$shared/lib/Auth'
+	import { createEventDispatcher, type ComponentEvents } from 'svelte'
+	import { writable } from 'svelte/store'
 
 	interface $$Props {
-		class?:string
-		valid?:boolean
+		class?: string
+		valid?: boolean
 	}
 
 	interface $$Events {
-		ok:CustomEvent
+		ok: CustomEvent
 	}
-	
+
 	let className = ''
 	export { className as class }
 
-	export let valid:$$Props['valid'] = true
+	export let valid: $$Props['valid'] = true
 
 	const state = writable({
 		fetching: false
@@ -27,12 +27,12 @@
 	const dispatch = createEventDispatcher()
 
 	const speak = {
-		create(text:string) {
+		create(text: string) {
 			const speech = new SpeechSynthesisUtterance(text)
 			speech.pitch = 2
 			speech.lang = 'ru'
 			speech.volume = 1
-			speech.rate = .76
+			speech.rate = 0.76
 			return speech
 		},
 		error() {
@@ -41,13 +41,13 @@
 	}
 
 	const controller = {
-		async login(data:Parameters<AuthRequests['login']>[0]) {
+		async login(data: Parameters<AuthRequests['login']>[0]) {
 			if ($state.fetching) return
 			$state.fetching = true
 
 			try {
 				const res = await authRequests.login(data)
-				
+
 				if (res._error) {
 					throw new Error(res.title)
 				}
@@ -68,12 +68,11 @@
 	}
 
 	const handler = {
-		submit(e:ComponentEvents<AuthLogin>['submit']) {
-			const {fields} = e.detail
+		submit(e: ComponentEvents<AuthLogin>['submit']) {
+			const { fields } = e.detail
 			controller.login(fields)
 		}
 	}
-	
 </script>
 
 <!-- <AuthLogin disabled={$state.fetching} {valid} class={`Login ${className}`} on:submit={handler.submit}/> -->

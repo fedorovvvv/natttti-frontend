@@ -1,22 +1,21 @@
-<script lang='ts'>
-	import { setContext } from "svelte";
+<script lang="ts">
+	import { setContext } from 'svelte'
 
-    interface $$Props {
-        class?:string
-    }
-    
-    let className = ''
-    export { className as class }
+	interface $$Props {
+		class?: string
+	}
 
-    setContext('counterList', {})
-    
+	let className = ''
+	export { className as class }
+
+	setContext('counterList', {})
 </script>
 
 <ul class={`CounterList ${className}`}>
-    <slot/>
+	<slot />
 </ul>
 
-<style lang='sass'>
+<style lang="sass">
     .CounterList
         $root: &
         display: flex

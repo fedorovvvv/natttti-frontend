@@ -1,3 +1,1 @@
-export {
-	Main as ChartGrid,
-} from './ui'
+export { Main as ChartGrid } from './ui'

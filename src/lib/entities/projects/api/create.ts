@@ -11,7 +11,6 @@
 //         type MethodParameters = Method extends ((...args:never[]) => unknown) ? Parameters<Method> : []
 //         type MethodReturn = Method extends ((...args:never[]) => unknown) ? Awaited<ReturnType<Method>> : never
 
-
 //         return new CustomQuery<MethodParameters, ['projects'], MethodReturn>(['projects'], async (data) => {
 //             const [name, ...restOptions] = data.queryKey
 //             //@ts-ignore

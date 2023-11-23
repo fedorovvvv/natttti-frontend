@@ -1,3 +1,1 @@
-export {
-	Main as CopyText,
-} from './ui'
+export { Main as CopyText } from './ui'

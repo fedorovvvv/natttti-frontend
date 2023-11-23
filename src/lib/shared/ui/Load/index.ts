@@ -1,4 +1,1 @@
-export {
-	Main as Load,
-	Text as LoadText
-} from './ui'
+export { Main as Load, Text as LoadText } from './ui'

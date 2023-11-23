@@ -1,3 +1,1 @@
-export {
-	Main as Box,
-} from './ui'
+export { Main as Box } from './ui'

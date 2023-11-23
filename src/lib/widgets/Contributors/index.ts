@@ -1,3 +1,1 @@
-export {
-	Main as Contributors,
-} from './ui'
+export { Main as Contributors } from './ui'

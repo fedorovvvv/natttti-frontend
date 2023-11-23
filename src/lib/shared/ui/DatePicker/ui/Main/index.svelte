@@ -1,73 +1,78 @@
-<script lang='ts'>
-    import Textfield from '@smui/textfield';
-    import { DateInput } from 'date-picker-svelte'
-    import { createFormat, parse } from 'date-picker-svelte/parse'
-    import { toText } from 'date-picker-svelte/date-utils'
-	import type { ComponentProps } from 'svelte';
+<script lang="ts">
+	import Textfield from '@smui/textfield'
+	import { DateInput } from 'date-picker-svelte'
+	import { createFormat, parse } from 'date-picker-svelte/parse'
+	import { toText } from 'date-picker-svelte/date-utils'
+	import type { ComponentProps } from 'svelte'
 
-	interface $$Props extends Omit<ComponentProps<Textfield>, 'value' | 'class' | 'format' | 'visible'> {
-		class?:string
-        value:Date
-        format?:string
-        visible?:boolean
-        valid?:boolean
+	interface $$Props
+		extends Omit<ComponentProps<Textfield>, 'value' | 'class' | 'format' | 'visible'> {
+		class?: string
+		value: Date
+		format?: string
+		visible?: boolean
+		valid?: boolean
 	}
-	
+
 	let className = ''
 	export { className as class }
-    export let value:$$Props['value'] = new Date()
-    export let format:$$Props['format'] = "yyyy-MM-dd HH:mm:ss"
-    export let visible:$$Props['visible'] = false
-    export let valid:$$Props['valid'] = true
+	export let value: $$Props['value'] = new Date()
+	export let format: $$Props['format'] = 'yyyy-MM-dd HH:mm:ss'
+	export let visible: $$Props['visible'] = false
+	export let valid: $$Props['valid'] = true
 
-    let formatToken = createFormat(format || '')
-    $: formatToken = createFormat(format || '')
-    
+	let formatToken = createFormat(format || '')
+	$: formatToken = createFormat(format || '')
 
-    let textFieldValue = toText(value, formatToken)
+	let textFieldValue = toText(value, formatToken)
 
-    const controller = {
-        updateValue() {
-            if (textFieldValue.length) {
-                const parseData = parse(textFieldValue, formatToken, new Date())
-                if (parseData.date !== null) {
-                    valid = true
-                    value = parseData.date
-                } else {
-                    valid = false
-                }
-            } else {
-                valid = false
-            }
-        }
-    }
+	const controller = {
+		updateValue() {
+			if (textFieldValue.length) {
+				const parseData = parse(textFieldValue, formatToken, new Date())
+				if (parseData.date !== null) {
+					valid = true
+					value = parseData.date
+				} else {
+					valid = false
+				}
+			} else {
+				valid = false
+			}
+		}
+	}
 
-
-    const handler = {
-        inputChange() {
-            controller.updateValue()
-        },
-        select() {
-            textFieldValue = toText(value, formatToken)
-        },
-        focus() {
-            visible = true
-        },
-        blur(e:CustomEvent<FocusEvent>) {
-            if (!(e.detail.relatedTarget as HTMLElement)?.closest?.('.picker')) {
-                visible = false
-            }
-        }
-    }
-	
+	const handler = {
+		inputChange() {
+			controller.updateValue()
+		},
+		select() {
+			textFieldValue = toText(value, formatToken)
+		},
+		focus() {
+			visible = true
+		},
+		blur(e: CustomEvent<FocusEvent>) {
+			if (!(e.detail.relatedTarget as HTMLElement)?.closest?.('.picker')) {
+				visible = false
+			}
+		}
+	}
 </script>
 
 <div class={`DatePicker ${className}`}>
-    <DateInput {format} bind:value on:select={handler.select} bind:visible/>
-    <Textfield invalid={!valid} bind:value={textFieldValue} on:change={handler.inputChange} on:focus={handler.focus} on:blur={handler.blur} {...$$restProps}/>
+	<DateInput {format} bind:value on:select={handler.select} bind:visible />
+	<Textfield
+		invalid={!valid}
+		bind:value={textFieldValue}
+		on:change={handler.inputChange}
+		on:focus={handler.focus}
+		on:blur={handler.blur}
+		{...$$restProps}
+	/>
 </div>
 
-<style lang='sass'>
+<style lang="sass">
 	.DatePicker
         display: block
         position: relative

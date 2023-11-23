@@ -1,1 +1,1 @@
-export {default as Update} from './Update.svelte'
+export { default as Update } from './Update.svelte'

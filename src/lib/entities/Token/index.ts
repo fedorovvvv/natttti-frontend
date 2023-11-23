@@ -1,4 +1,1 @@
-export {
-	Main as Token,
-	Fields as TokenFields
-} from './ui'
+export { Main as Token, Fields as TokenFields } from './ui'

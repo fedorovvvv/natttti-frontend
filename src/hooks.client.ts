@@ -4,6 +4,8 @@ import { dev } from '$app/environment'
 
 pb.authStore.loadFromCookie(document.cookie)
 pb.authStore.onChange(() => {
-    userStore.set(pb.authStore.model as UsersResponse)
-    document.cookie = pb.authStore.exportToCookie(dev ? {httpOnly: false} : { httpOnly: true, secure: true, sameSite: 'lax' })
+	userStore.set(pb.authStore.model as UsersResponse)
+	document.cookie = pb.authStore.exportToCookie(
+		dev ? { httpOnly: false } : { httpOnly: true, secure: true, sameSite: 'lax' }
+	)
 }, true)

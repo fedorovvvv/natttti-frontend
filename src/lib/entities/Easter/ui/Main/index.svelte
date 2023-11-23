@@ -1,32 +1,32 @@
-<script lang='ts'>
-	import { writable } from "svelte/store";
-	import { browser } from "$app/environment";
-	import { onDestroy, onMount } from "svelte";
-	import { EasterContext } from "$entities/Easter/model";
+<script lang="ts">
+	import { writable } from 'svelte/store'
+	import { browser } from '$app/environment'
+	import { onDestroy, onMount } from 'svelte'
+	import { EasterContext } from '$entities/Easter/model'
 	//@ts-ignore
 	import devtools from 'devtools-detect'
 
 	interface $$Props {
-		class?:string
+		class?: string
 	}
-	
+
 	let className = ''
 	export { className as class }
 
 	let mounted = false
 
-	const easterContext = new EasterContext().set(writable({
-		date: new Date(),
-		isDevToolsOpen: false,
-		isDevToolsChange: false
-	}))
+	const easterContext = new EasterContext().set(
+		writable({
+			date: new Date(),
+			isDevToolsOpen: false,
+			isDevToolsChange: false
+		})
+	)
 
-
-
-	const controller:{
-		timeInterval?:ReturnType<typeof setInterval>
-		startTimeInterval:VoidFunction
-		stopTimeInterval:VoidFunction
+	const controller: {
+		timeInterval?: ReturnType<typeof setInterval>
+		startTimeInterval: VoidFunction
+		stopTimeInterval: VoidFunction
 	} = {
 		timeInterval: undefined,
 		startTimeInterval() {
@@ -41,21 +41,24 @@
 	}
 
 	const handler = {
-		devToolsChange(e:CustomEvent<typeof devtools>, change?:boolean) {
+		devToolsChange(e: CustomEvent<typeof devtools>, change?: boolean) {
 			if ($easterContext) {
 				$easterContext.isDevToolsOpen = e.detail.isOpen
 				$easterContext.isDevToolsChange = change ?? true
 			}
 		}
 	}
-	
+
 	onMount(() => {
 		mounted = true
 		controller.startTimeInterval()
 		if (browser) {
-			handler.devToolsChange(new CustomEvent('devtoolschange', {
-				detail: devtools
-			}), false)
+			handler.devToolsChange(
+				new CustomEvent('devtoolschange', {
+					detail: devtools
+				}),
+				false
+			)
 			//@ts-ignore
 			window.addEventListener('devtoolschange', handler.devToolsChange)
 		}
@@ -68,8 +71,8 @@
 			window.removeEventListener('devtoolschange', handler.devToolsChange)
 		}
 	})
-	
 </script>
+
 {#if !$easterContext?.isDevToolsChange && mounted}
-	<slot/>
+	<slot />
 {/if}

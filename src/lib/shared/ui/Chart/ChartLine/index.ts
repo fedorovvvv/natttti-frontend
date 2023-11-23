@@ -1,3 +1,1 @@
-export {
-	Main as ChartLine
-} from './ui'
+export { Main as ChartLine } from './ui'

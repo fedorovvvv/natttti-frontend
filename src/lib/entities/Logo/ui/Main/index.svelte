@@ -1,8 +1,8 @@
-<script lang='ts'>
+<script lang="ts">
 	interface $$Props {
-		class?:string
+		class?: string
 	}
-	
+
 	let className = ''
 	export { className as class }
 
@@ -19,17 +19,19 @@
 			},
 			{
 				color: 'var(--color-nattti-3)'
-			},
+			}
 		]
 	}
-	
 </script>
 
-<a href='/' class={`Logo ${className}`}>
-	na{#each repeat.t as {color}, i}<span style:--color={color} style:transition-delay={`${i * 50}ms`}>t</span>{/each}i<i class='Logo__dot'>.</i>
+<a href="/" class={`Logo ${className}`}>
+	na{#each repeat.t as { color }, i}<span
+			style:--color={color}
+			style:transition-delay={`${i * 50}ms`}>t</span
+		>{/each}i<i class="Logo__dot">.</i>
 </a>
 
-<style lang='sass'>
+<style lang="sass">
 	.Logo
 		$root: &
 		&:not(:hover)

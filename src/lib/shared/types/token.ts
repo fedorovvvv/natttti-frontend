@@ -5,10 +5,10 @@ export enum ETokenAccessTypes {
 }
 
 export interface IToken {
-	id: number;
-	issuedAt: string;
-	expiresAt: string | Date;
-	grantedTo: string;
-	accessToken: string;
-	accessType: ETokenAccessTypes;
+	id: number
+	issuedAt: string
+	expiresAt: string | Date
+	grantedTo: string
+	accessToken: string
+	accessType: ETokenAccessTypes
 }

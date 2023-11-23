@@ -1,12 +1,12 @@
-<script lang='ts'>
-	import { GitRequests } from "$shared/api/Git";
-	import { LoadText } from "$shared/ui/Load";
-	import { onMount } from "svelte";
+<script lang="ts">
+	import { GitRequests } from '$shared/api/Git'
+	import { LoadText } from '$shared/ui/Load'
+	import { onMount } from 'svelte'
 
 	interface $$Props {
-		class?:string
+		class?: string
 	}
-	
+
 	let className = ''
 	export { className as class }
 
@@ -14,11 +14,12 @@
 
 	const gitRequests = new GitRequests()
 
-	let awaitedData:Awaited<ReturnType<typeof gitRequests['getContributors']>> | undefined = undefined
+	let awaitedData: Awaited<ReturnType<(typeof gitRequests)['getContributors']>> | undefined =
+		undefined
 
 	onMount(() => {
 		mounted = true
-		gitRequests.getContributors().then(res => {
+		gitRequests.getContributors().then((res) => {
 			awaitedData = res
 		})
 	})
@@ -28,22 +29,22 @@
 	<h2>💅 Рабочая сила</h2>
 	{#if mounted}
 		{#if awaitedData}
-			<ul class='Contributors__list'>
+			<ul class="Contributors__list">
 				{#each awaitedData as user (user.id)}
-					<li class='Contributors__item'>
-						<a href={user.html_url} target="_blank" rel='noreferrer'>
-							<img src={user.avatar_url} alt={user.name}/>
+					<li class="Contributors__item">
+						<a href={user.html_url} target="_blank" rel="noreferrer">
+							<img src={user.avatar_url} alt={user.name} />
 						</a>
 					</li>
 				{/each}
 			</ul>
 		{:else}
-			<LoadText class='Contributors__loader'>Поиск в архивах...</LoadText>
+			<LoadText class="Contributors__loader">Поиск в архивах...</LoadText>
 		{/if}
 	{/if}
 </div>
 
-<style lang='sass'>
+<style lang="sass">
 	.Contributors
 		--size: 60px
 		text-align: center

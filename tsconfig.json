@@ -21,7 +21,7 @@
 			"$entities/*": ["src/lib/entities/*"],
 			"$features/*": ["src/lib/features/*"],
 			"$widgets/*": ["src/lib/widgets/*"],
-			"$appLayer/*": ["src/lib/appLayer/*"],
+			"$appLayer/*": ["src/lib/appLayer/*"]
 		}
 	}
 }

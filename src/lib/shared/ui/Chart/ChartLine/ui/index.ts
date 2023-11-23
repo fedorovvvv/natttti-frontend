@@ -1,4 +1,2 @@
 import Main from './Main/index.svelte'
-export {
-	Main
-}
+export { Main }

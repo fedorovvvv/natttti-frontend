@@ -1,12 +1,11 @@
-<script lang='ts'>
-    
+<script lang="ts">
 </script>
 
-<main class='events-layout'>
-    <slot/>
+<main class="events-layout">
+	<slot />
 </main>
 
-<style lang='sass'>
+<style lang="sass">
     .events-layout
         padding-top: 100px
 </style>

@@ -1,26 +1,26 @@
 <script lang="ts">
-	import { Contributors } from '$widgets/Contributors';
-	import { Stats, StatsCounter } from '$entities/Stats';
-	import { StatsRequests, type IStat, type StatCurrent } from '$shared/api/stats.js';
-	import { CONFIG } from '$shared/config';
-	import { Counter, CounterList } from '$shared/ui/Counter';
-	import { SectionContainer } from '$shared/ui/Section';
-	import { dev } from '$app/environment';
+	import { Contributors } from '$widgets/Contributors'
+	import { Stats, StatsCounter } from '$entities/Stats'
+	import { StatsRequests, type IStat, type StatCurrent } from '$shared/api/stats.js'
+	import { CONFIG } from '$shared/config'
+	import { Counter, CounterList } from '$shared/ui/Counter'
+	import { SectionContainer } from '$shared/ui/Section'
+	import { dev } from '$app/environment'
 
-	export let data;
+	export let data
 
-	let currentStats: IStat[] = [];
+	let currentStats: IStat[] = []
 
 	const currentStatsController = {
 		add(stat: StatCurrent) {
-			const statId = +new Date(stat.date);
-			const currentIndex = currentStats.findIndex(({ id }) => id === statId);
+			const statId = +new Date(stat.date)
+			const currentIndex = currentStats.findIndex(({ id }) => id === statId)
 			if (currentIndex !== -1) {
 				currentStats[currentIndex] = {
 					...currentStats[currentIndex],
 					messagesCount: stat.messagesCount,
 					newMembersCount: stat.newMembersCount
-				};
+				}
 			} else {
 				currentStats = [
 					...currentStats,
@@ -28,19 +28,19 @@
 						...stat,
 						id: statId
 					}
-				];
+				]
 			}
 		}
-	};
+	}
 
-	const statsRequests = new StatsRequests();
+	const statsRequests = new StatsRequests()
 	const loader = async () => {
-		const res = await statsRequests.current();
+		const res = await statsRequests.current()
 		if (res._error !== true) {
-			currentStatsController.add(res);
+			currentStatsController.add(res)
 		}
-		return res;
-	};
+		return res
+	}
 </script>
 
 <svelte:head>

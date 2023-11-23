@@ -1,45 +1,45 @@
-<script lang='ts'>
-	import { userStore } from "$appLayer/stores/user";
-	import { SectionContainer, SectionTitle } from "$shared/ui/Section";
-	import { AccountNav } from "$widgets/account";
-	import type { ComponentProps } from "svelte";
+<script lang="ts">
+	import { userStore } from '$appLayer/stores/user'
+	import { SectionContainer, SectionTitle } from '$shared/ui/Section'
+	import { AccountNav } from '$widgets/account'
+	import type { ComponentProps } from 'svelte'
 
-    interface $$Props {
-        class?:string
-    }
-    
-    let className = ''
-    export { className as class }
+	interface $$Props {
+		class?: string
+	}
 
-    const navItems:ComponentProps<AccountNav>['items'] = [
-        {
-            id: 'data',
-            name: 'Данные',
-            href: '/account/settings/base'
-        },
-        {
-            id: 'socials',
-            name: 'Соц. сети',
-            href: '/account/settings/socials'
-        }
-    ]
+	let className = ''
+	export { className as class }
+
+	const navItems: ComponentProps<AccountNav>['items'] = [
+		{
+			id: 'data',
+			name: 'Данные',
+			href: '/account/settings/base'
+		},
+		{
+			id: 'socials',
+			name: 'Соц. сети',
+			href: '/account/settings/socials'
+		}
+	]
 </script>
 
 <main class={`account-layout ${className}`}>
-    <SectionContainer>
-        <SectionTitle>
-            <h1>Hello {$userStore.current?.username}✏️</h1>
-        </SectionTitle>
-        <div class="account-layout__grid">
-            <aside class='account-layout__aside'>
-                <AccountNav items={navItems}/>
-            </aside>
-            <slot/>
-        </div>
-    </SectionContainer>
+	<SectionContainer>
+		<SectionTitle>
+			<h1>Hello {$userStore.current?.username}✏️</h1>
+		</SectionTitle>
+		<div class="account-layout__grid">
+			<aside class="account-layout__aside">
+				<AccountNav items={navItems} />
+			</aside>
+			<slot />
+		</div>
+	</SectionContainer>
 </main>
 
-<style lang='sass'>
+<style lang="sass">
     .account-layout
         padding-top: 100px
         &__grid

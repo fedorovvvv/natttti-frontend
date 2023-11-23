@@ -4,17 +4,17 @@
 
 // Svelte Colors!
 @use '@material/theme/index' as theme with (
-  $primary: hsl(168deg, 64%, 56%),
-  $on-primary: hsl(145deg, 11%, 12%),
-  $secondary: hsl(145deg, 11%, 82%),
-  $surface: #fff,
-  $background: #f4f4f4,
-  
-  $error: color-palette.$red-900,
+	$primary: hsl(168deg, 64%, 56%),
+	$on-primary: hsl(145deg, 11%, 12%),
+	$secondary: hsl(145deg, 11%, 82%),
+	$surface: #fff,
+	$background: #f4f4f4,
+
+	$error: color-palette.$red-900
 );
 
 @use '@material/shape/index' as shape with (
-  $small-component-radius: 10px,
-  $medium-component-radius: 10px,
-  $large-component-radius: 10px
+	$small-component-radius: 10px,
+	$medium-component-radius: 10px,
+	$large-component-radius: 10px
 );
