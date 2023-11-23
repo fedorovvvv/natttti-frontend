@@ -1,4 +1,5 @@
 import { API } from './api'
+
 export const CONFIG = {
 	APP: {
 		NAME: 'Natttti'

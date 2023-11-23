@@ -47,6 +47,7 @@ module.exports = {
 		'@typescript-eslint/no-non-null-assertion': 0,
 		'@typescript-eslint/ban-ts-comment': 0,
 		'import/no-internal-modules': 0,
+		'svelte/unused-export-let': 'off',
 		'svelte/valid-compile': [
 			0,
 			{

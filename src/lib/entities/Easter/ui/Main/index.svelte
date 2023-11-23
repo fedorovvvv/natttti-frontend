@@ -1,17 +1,9 @@
 <script lang="ts">
-	//@ts-ignore
 	import devtools from 'devtools-detect'
 	import { onDestroy, onMount } from 'svelte'
 	import { writable } from 'svelte/store'
 	import { EasterContext } from '$entities/Easter/model'
 	import { browser } from '$app/environment'
-
-	interface $$Props {
-		class?: string
-	}
-
-	let className = ''
-	export { className as class }
 
 	let mounted = false
 
