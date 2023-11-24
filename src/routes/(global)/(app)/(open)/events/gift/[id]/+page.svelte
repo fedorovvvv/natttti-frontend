@@ -9,7 +9,7 @@
 <SectionContainer>
 	<SectionTitle>
 		{#if dev}
-			<GiftEventsFeature.Card data={data.giftEvent}/>
+			<GiftEventsFeature.Card data={data.giftEvent} />
 		{:else}
 			<h1>Скоро будет🎅🏻</h1>
 		{/if}

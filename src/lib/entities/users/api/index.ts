@@ -6,10 +6,10 @@ export * from './collection'
 
 export class UsersApi {
 	static async getSocials(userId: string, client = pb) {
-		const res = await client.collection('users').getOne(userId, {
+		const res = (await client.collection('users').getOne(userId, {
 			expand: 'socials',
 			fields: 'expand,expand.socials'
-		}) as Pick<
+		})) as Pick<
 			UsersResponse<{
 				socials: SocialsResponse
 			}>,

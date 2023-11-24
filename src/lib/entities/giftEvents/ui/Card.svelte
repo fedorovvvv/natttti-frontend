@@ -49,7 +49,7 @@
 	<div class="GiftEventsCard__footer">
 		{#if $$slots.buttons}
 			<div class="GiftEventsCard__buttons">
-				<slot name='buttons'/>
+				<slot name="buttons" />
 			</div>
 		{/if}
 	</div>
