@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Button from '@smui/button'
 	import type { ComponentProps } from 'svelte'
 	import { GiftEventsCard } from '$entities/giftEvents'
+	import Registration from './Registration/Registration.svelte'
 
 	interface $$Props extends ComponentProps<GiftEventsCard> {
 		class?: string
@@ -12,12 +12,6 @@
 	export let data: $$Props['data']
 </script>
 
-<div class={`GiftEventsCard ${className}`} />
-
-<GiftEventsCard {data}>
-	<Button variant="unelevated" slot="buttons">Регистрация</Button>
+<GiftEventsCard {data} class={`GiftEventsCard ${className}`}>
+	<Registration variant="unelevated" slot="buttons">Регистрация</Registration>
 </GiftEventsCard>
-
-<style lang="sass">
-    .GiftEventsCard
-</style>

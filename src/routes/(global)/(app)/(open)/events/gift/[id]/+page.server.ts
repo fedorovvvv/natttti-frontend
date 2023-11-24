@@ -1,5 +1,5 @@
 import { error, type ServerLoad } from '@sveltejs/kit'
-import { getGiftEventsCollection, GiftEventsApi } from '$entities/giftEvents/api'
+import { GiftEventsApi } from '$entities/giftEvents/api'
 
 export const load: ServerLoad = async ({ params, locals }) => {
 	const { id } = params
