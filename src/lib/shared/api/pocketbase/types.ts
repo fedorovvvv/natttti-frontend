@@ -1,22 +1,22 @@
 /**
- * This file was @generated using pocketbase-typegen
- */
+* This file was @generated using pocketbase-typegen
+*/
 
 import type PocketBase from 'pocketbase'
 import type { RecordService } from 'pocketbase'
 
 export enum Collections {
-	Addresses = 'addresses',
-	Events = 'events',
-	GiftEventMembers = 'giftEventMembers',
-	GiftEvents = 'giftEvents',
-	Gifts = 'gifts',
-	HackathonEvents = 'hackathonEvents',
-	Projects = 'projects',
-	Socials = 'socials',
-	Sponsors = 'sponsors',
-	Teams = 'teams',
-	Users = 'users'
+	Addresses = "addresses",
+	Events = "events",
+	GiftEventMembers = "giftEventMembers",
+	GiftEvents = "giftEvents",
+	Gifts = "gifts",
+	HackathonEvents = "hackathonEvents",
+	Projects = "projects",
+	Socials = "socials",
+	Sponsors = "sponsors",
+	Teams = "teams",
+	Users = "users",
 }
 
 // Alias types for improved usability
@@ -48,18 +48,13 @@ export type AddressesRecord = {
 	name?: string
 }
 
-export enum EventsTypeOptions {
-	'event' = 'event',
-	'meetUp' = 'meetUp'
-}
 export type EventsRecord = {
+	description?: HTMLString
 	endAt?: IsoDateString
-	members?: RecordIdString[]
 	name: string
 	owners?: RecordIdString[]
 	registrationIsOpen?: boolean
 	startAt?: IsoDateString
-	type: EventsTypeOptions
 }
 
 export type GiftEventMembersRecord = {
@@ -69,11 +64,8 @@ export type GiftEventMembersRecord = {
 }
 
 export type GiftEventsRecord = {
-	description?: HTMLString
-	endAt?: IsoDateString
+	event: RecordIdString
 	members?: RecordIdString[]
-	name: string
-	startAt?: IsoDateString
 }
 
 export type GiftsRecord = {
@@ -127,21 +119,15 @@ export type UsersRecord = {
 }
 
 // Response types include system fields and match responses from the PocketBase API
-export type AddressesResponse<Texpand = unknown> = Required<AddressesRecord> &
-	BaseSystemFields<Texpand>
+export type AddressesResponse<Texpand = unknown> = Required<AddressesRecord> & BaseSystemFields<Texpand>
 export type EventsResponse<Texpand = unknown> = Required<EventsRecord> & BaseSystemFields<Texpand>
-export type GiftEventMembersResponse<Texpand = unknown> = Required<GiftEventMembersRecord> &
-	BaseSystemFields<Texpand>
-export type GiftEventsResponse<Texpand = unknown> = Required<GiftEventsRecord> &
-	BaseSystemFields<Texpand>
+export type GiftEventMembersResponse<Texpand = unknown> = Required<GiftEventMembersRecord> & BaseSystemFields<Texpand>
+export type GiftEventsResponse<Texpand = unknown> = Required<GiftEventsRecord> & BaseSystemFields<Texpand>
 export type GiftsResponse<Texpand = unknown> = Required<GiftsRecord> & BaseSystemFields<Texpand>
-export type HackathonEventsResponse<Texpand = unknown> = Required<HackathonEventsRecord> &
-	BaseSystemFields<Texpand>
-export type ProjectsResponse<Texpand = unknown> = Required<ProjectsRecord> &
-	BaseSystemFields<Texpand>
+export type HackathonEventsResponse<Texpand = unknown> = Required<HackathonEventsRecord> & BaseSystemFields<Texpand>
+export type ProjectsResponse<Texpand = unknown> = Required<ProjectsRecord> & BaseSystemFields<Texpand>
 export type SocialsResponse<Texpand = unknown> = Required<SocialsRecord> & BaseSystemFields<Texpand>
-export type SponsorsResponse<Texpand = unknown> = Required<SponsorsRecord> &
-	BaseSystemFields<Texpand>
+export type SponsorsResponse<Texpand = unknown> = Required<SponsorsRecord> & BaseSystemFields<Texpand>
 export type TeamsResponse<Texpand = unknown> = Required<TeamsRecord> & BaseSystemFields<Texpand>
 export type UsersResponse<Texpand = unknown> = Required<UsersRecord> & AuthSystemFields<Texpand>
 

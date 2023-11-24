@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { UsersUpdate } from '$features/users'
+	import { UsersFeature } from '$features/users'
 </script>
 
-<UsersUpdate />
+<UsersFeature.Update />

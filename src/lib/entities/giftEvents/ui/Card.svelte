@@ -1,25 +1,31 @@
 <script lang="ts">
 	import Button from '@smui/button/src/Button.svelte'
 	import dayjs from 'dayjs'
+	import type { EventsRecord, GiftEventsResponse } from '$shared/api/pocketbase'
 	import { Box } from '$shared/ui/Box'
-	import type { GiftEvent } from '../types'
 
 	interface $$Props {
 		class?: string
-		data: GiftEvent
+		data: GiftEventsResponse<{
+			event: EventsRecord
+		}>
 	}
 
 	let className = ''
 	export { className as class }
 
 	export let data: $$Props['data']
+
+	$: event = data.expand?.event
 </script>
 
 <Box class={`GiftEventsCard ${className}`}>
-	<h2>{data.name}</h2>
-	{#if data.description}
+	{#if event?.name}
+		<h2>{event.name}</h2>
+	{/if}
+	{#if event?.description}
 		<div class="GiftEventsCard__description">
-			{@html data.description}
+			{@html event.description}
 		</div>
 	{/if}
 	<ul class="GiftEventsCard__info">
@@ -27,23 +33,25 @@
 			<b>Участников:</b>
 			{data.members.length}
 		</li>
-		{#if data.startAt}
+		{#if event?.startAt}
 			<li>
 				<b>Начало:</b>
-				{dayjs(data.startAt).format('DD MMMM YYYY')}
+				{dayjs(event.startAt).format('DD MMMM YYYY')}
 			</li>
 		{/if}
-		{#if data.endAt}
+		{#if event?.endAt}
 			<li>
 				<b>Конец:</b>
-				{dayjs(data.endAt).format('DD MMMM YYYY')}
+				{dayjs(event.endAt).format('DD MMMM YYYY')}
 			</li>
 		{/if}
 	</ul>
 	<div class="GiftEventsCard__footer">
-		<div class="GiftEventsCard__buttons">
-			<Button variant="unelevated">Регистрация</Button>
-		</div>
+		{#if $$slots.buttons}
+			<div class="GiftEventsCard__buttons">
+				<slot name='buttons'/>
+			</div>
+		{/if}
 	</div>
 </Box>
 

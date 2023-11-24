@@ -1,1 +1,1 @@
-export { GitHub as UsersOAuth2GitHub, List as UsersOAuth2List } from './ui'
+export * as UsersFeatureOAuth2 from './ui'

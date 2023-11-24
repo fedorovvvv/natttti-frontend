@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { UsersSocialsUpdate } from '$features/users/socials/ui'
+	import { UsersFeatureSocials } from '$features/users'
 	import { SocialsSchema } from '$entities/socials/index.js'
 	import type { SocialsRecord } from '$shared/api/pocketbase/types.js'
 
@@ -9,5 +9,5 @@
 </script>
 
 {#if socials && data.user}
-	<UsersSocialsUpdate userId={data.user.id} initialData={socials} />
+	<UsersFeatureSocials.Update userId={data.user.id} initialData={socials} />
 {/if}
