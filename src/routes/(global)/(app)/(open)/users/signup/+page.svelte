@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { UsersAuthRegistration } from '$features/users'
+	import { UsersFeatureAuth } from '$features/users'
 	import { CONFIG } from '$shared/config'
 	import { SectionContainer, SectionTitle } from '$shared/ui/Section'
 </script>
@@ -13,5 +13,5 @@
 		<h2>Регистрация</h2>
 		<p>Пу пу пу</p>
 	</SectionTitle>
-	<UsersAuthRegistration />
+	<UsersFeatureAuth.Registration />
 </SectionContainer>

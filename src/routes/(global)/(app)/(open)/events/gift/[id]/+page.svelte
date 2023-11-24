@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { GiftEventsCard } from '$entities/giftEvents/index.js'
+	import { GiftEventsFeature } from '$features/giftEvents'
 	import { SectionContainer, SectionTitle } from '$shared/ui/Section'
 	import { dev } from '$app/environment'
 
@@ -9,7 +9,7 @@
 <SectionContainer>
 	<SectionTitle>
 		{#if dev}
-			<GiftEventsCard data={data.post} />
+			<GiftEventsFeature.Card data={data.giftEvent} />
 		{:else}
 			<h1>Скоро будет🎅🏻</h1>
 		{/if}

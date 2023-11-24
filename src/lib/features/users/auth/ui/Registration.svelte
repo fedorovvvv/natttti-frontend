@@ -5,7 +5,7 @@
 	import { createMutation } from '@tanstack/svelte-query'
 	import type { ComponentEvents } from 'svelte'
 	import { derived, writable } from 'svelte/store'
-	import { UsersOAuth2GitHub, UsersOAuth2List } from '$features/users/OAuth2'
+	import { UsersFeatureOAuth2 } from '$features/users'
 	import { UsersSchema } from '$entities/users'
 	import { validateSchema } from '$shared/lib/validation'
 	import { Box } from '$shared/ui/Box'
@@ -67,9 +67,9 @@
 
 <Box class={`UsersAuthRegistration ${className}`}>
 	<Form method="POST" action="/users/signup" on:submit={handler.submit}>
-		<UsersOAuth2List slot="header">
-			<UsersOAuth2GitHub />
-		</UsersOAuth2List>
+		<UsersFeatureOAuth2.List slot="header">
+			<UsersFeatureOAuth2.GitHub />
+		</UsersFeatureOAuth2.List>
 		<FormCol>
 			<FormRow>
 				<Textfield

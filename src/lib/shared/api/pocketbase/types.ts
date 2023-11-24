@@ -48,18 +48,13 @@ export type AddressesRecord = {
 	name?: string
 }
 
-export enum EventsTypeOptions {
-	'event' = 'event',
-	'meetUp' = 'meetUp'
-}
 export type EventsRecord = {
+	description?: HTMLString
 	endAt?: IsoDateString
-	members?: RecordIdString[]
 	name: string
 	owners?: RecordIdString[]
 	registrationIsOpen?: boolean
 	startAt?: IsoDateString
-	type: EventsTypeOptions
 }
 
 export type GiftEventMembersRecord = {
@@ -69,11 +64,8 @@ export type GiftEventMembersRecord = {
 }
 
 export type GiftEventsRecord = {
-	description?: HTMLString
-	endAt?: IsoDateString
+	event: RecordIdString
 	members?: RecordIdString[]
-	name: string
-	startAt?: IsoDateString
 }
 
 export type GiftsRecord = {
