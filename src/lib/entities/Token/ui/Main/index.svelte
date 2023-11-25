@@ -132,19 +132,9 @@
 	</div>
 	{#if $state.edit}
 		<div class="Token__footer" transition:slide|local={CONFIG.TRANSITION}>
-			<TokenFields
-				bind:expiresAt={$fields.expiresAt}
-				bind:accessType={$fields.accessType}
-				bind:grantedTo={$fields.grantedTo}
-			>
+			<TokenFields bind:expiresAt={$fields.expiresAt} bind:accessType={$fields.accessType} bind:grantedTo={$fields.grantedTo}>
 				<svelte:fragment slot="button" let:valid>
-					<Button
-						variant="unelevated"
-						disabled={!valid || $state.fetching}
-						on:click={handler.updateClick}
-					>
-						Сохранить
-					</Button>
+					<Button variant="unelevated" disabled={!valid || $state.fetching} on:click={handler.updateClick}>Сохранить</Button>
 				</svelte:fragment>
 			</TokenFields>
 		</div>

@@ -46,12 +46,7 @@
 
 {#if show}
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
-	<div
-		class={`EasterPeca ${className}`}
-		on:click={handler.click}
-		on:mouseenter={handler.mouseenter}
-		on:mouseleave={handler.mouseleave}
-	>
+	<div class={`EasterPeca ${className}`} on:click={handler.click} on:mouseenter={handler.mouseenter} on:mouseleave={handler.mouseleave}>
 		<img src="/images/easter/peca.png" alt="peca peca" />
 	</div>
 {/if}

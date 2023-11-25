@@ -26,16 +26,13 @@
 
 	const fields = writable(passwordAuthSchema.getDefault())
 
-	const passwordAuthSchemaResult = derived(
-		[fields, isErrorVisible],
-		([$fields, $isErrorVisible]) => {
-			const res = validateSchema(passwordAuthSchema, $fields)
-			if (!$isErrorVisible) {
-				res.errors = {}
-			}
-			return res
+	const passwordAuthSchemaResult = derived([fields, isErrorVisible], ([$fields, $isErrorVisible]) => {
+		const res = validateSchema(passwordAuthSchema, $fields)
+		if (!$isErrorVisible) {
+			res.errors = {}
 		}
-	)
+		return res
+	})
 
 	const loginMutation = createMutation({
 		async mutationFn(form: HTMLFormElement) {
@@ -74,33 +71,14 @@
 		</UsersFeatureOAuth2.List>
 		<FormCol>
 			<FormRow>
-				<Textfield
-					invalid={!!$passwordAuthSchemaResult?.errors.identity}
-					bind:value={$fields.identity}
-					required
-					variant="outlined"
-					input$name="identity"
-					type="text"
-					label="Логин"
-				/>
+				<Textfield invalid={!!$passwordAuthSchemaResult?.errors.identity} bind:value={$fields.identity} required variant="outlined" input$name="identity" type="text" label="Логин" />
 			</FormRow>
 			<FormRow>
-				<Textfield
-					invalid={!!$passwordAuthSchemaResult?.errors.password}
-					bind:value={$fields.password}
-					required
-					variant="outlined"
-					input$name="password"
-					type="password"
-					label="Пароль"
-				/>
+				<Textfield invalid={!!$passwordAuthSchemaResult?.errors.password} bind:value={$fields.password} required variant="outlined" input$name="password" type="password" label="Пароль" />
 			</FormRow>
 		</FormCol>
 		<svelte:fragment slot="button">
-			<Button
-				variant="unelevated"
-				disabled={$loginMutation.isPending || $passwordAuthSchemaResult.isError}
-			>
+			<Button variant="unelevated" disabled={$loginMutation.isPending || $passwordAuthSchemaResult.isError}>
 				{#if $loginMutation.isPending}
 					Проверяем...
 				{:else if $loginResult?.type === 'failure'}

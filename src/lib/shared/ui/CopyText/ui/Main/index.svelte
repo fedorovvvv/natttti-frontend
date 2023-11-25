@@ -27,9 +27,7 @@
 			first: [0, offset],
 			last: [length - offset, length]
 		}
-		return `${str.slice(...chunk.first)}${'*'.repeat(length - offset * 2)}${str.slice(
-			...chunk.last
-		)}`
+		return `${str.slice(...chunk.first)}${'*'.repeat(length - offset * 2)}${str.slice(...chunk.last)}`
 	}
 
 	const handler = {

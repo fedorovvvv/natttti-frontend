@@ -1,14 +1,5 @@
 <script lang="ts">
-	import {
-		CategoryScale,
-		Chart,
-		Filler,
-		LinearScale,
-		LineElement,
-		PointElement,
-		Tooltip,
-		type ChartOptions
-	} from 'chart.js'
+	import { CategoryScale, Chart, Filler, LinearScale, LineElement, PointElement, Tooltip, type ChartOptions } from 'chart.js'
 	import dayjs from 'dayjs'
 	import _ from 'lodash'
 	import { onMount, tick } from 'svelte'
@@ -35,16 +26,7 @@
 
 	let chart: ChartGridInstance | undefined = undefined
 
-	Chart.register(
-		Filler,
-		Tooltip,
-		verticalLinePointPlugin,
-		LineElement,
-		LinearScale,
-		PointElement,
-		CategoryScale,
-		...(register || [])
-	)
+	Chart.register(Filler, Tooltip, verticalLinePointPlugin, LineElement, LinearScale, PointElement, CategoryScale, ...(register || []))
 
 	let assignedOptions: ChartOptions<'line'> = {}
 	const defaultOptions: typeof assignedOptions = {
@@ -158,11 +140,4 @@
 	$: assignedData = controller.getData(_.cloneDeep(data), chart)
 </script>
 
-<Line
-	bind:chart
-	data={assignedData}
-	options={assignedOptions}
-	width="100%"
-	height="100%"
-	class={`ChartGrid ${className}`}
-/>
+<Line bind:chart data={assignedData} options={assignedOptions} width="100%" height="100%" class={`ChartGrid ${className}`} />

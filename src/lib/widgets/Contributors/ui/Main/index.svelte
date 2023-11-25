@@ -14,8 +14,7 @@
 
 	const gitRequests = new GitRequests()
 
-	let awaitedData: Awaited<ReturnType<(typeof gitRequests)['getContributors']>> | undefined =
-		undefined
+	let awaitedData: Awaited<ReturnType<(typeof gitRequests)['getContributors']>> | undefined = undefined
 
 	onMount(() => {
 		mounted = true

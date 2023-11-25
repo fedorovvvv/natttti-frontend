@@ -30,11 +30,7 @@
 {#if items.length}
 	<nav class={`HeaderMenu ${className}`}>
 		{#each items as item (item.id)}
-			<a
-				href={item.href}
-				class="HeaderMenu__item"
-				class:HeaderMenu__item_active={$page.url.pathname.startsWith(item.href)}
-			>
+			<a href={item.href} class="HeaderMenu__item" class:HeaderMenu__item_active={$page.url.pathname.startsWith(item.href)}>
 				{item.text}
 			</a>
 		{/each}

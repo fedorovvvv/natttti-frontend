@@ -5,9 +5,7 @@ import type { PocketBaseAuthSchema } from '$shared/model'
 
 export const actions = {
 	password: async ({ locals, request, fetch }) => {
-		const data = Object.fromEntries(await request.formData()) as InferType<
-			typeof PocketBaseAuthSchema.withPassword
-		>
+		const data = Object.fromEntries(await request.formData()) as InferType<typeof PocketBaseAuthSchema.withPassword>
 		try {
 			await locals.pb.collection('users').authWithPassword(data.identity, data.password, {
 				fetch

@@ -9,9 +9,7 @@ export const actions = {
 			return fail(500)
 		}
 
-		const data = Object.fromEntries(await request.formData()) as unknown as InferType<
-			typeof UsersSchema.update
-		>
+		const data = Object.fromEntries(await request.formData()) as unknown as InferType<typeof UsersSchema.update>
 
 		try {
 			const res = await locals.pb.collection('users').update(params.id, data)

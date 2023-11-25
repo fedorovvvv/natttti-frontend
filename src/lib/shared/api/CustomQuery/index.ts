@@ -1,11 +1,5 @@
 export * from './store'
-import {
-	createQuery,
-	type QueryFunction,
-	type QueryKey,
-	type QueryOptions,
-	type UndefinedInitialDataOptions
-} from '@tanstack/svelte-query'
+import { createQuery, type QueryFunction, type QueryKey, type QueryOptions, type UndefinedInitialDataOptions } from '@tanstack/svelte-query'
 import { derived, get, type Readable } from 'svelte/store'
 
 type CustomQueryOptions = Omit<UndefinedInitialDataOptions, 'queryKey' | 'queryFn'>
@@ -16,20 +10,12 @@ type CustomQueryDataResult<T extends CustomQueryData> = {
 	[K in keyof T]: T[K] extends Readable<infer R> ? R : T[K]
 }
 
-export class CustomQuery<
-	TData extends CustomQueryData,
-	TKey extends QueryKey,
-	TQueryFnData = unknown
-> {
+export class CustomQuery<TData extends CustomQueryData, TKey extends QueryKey, TQueryFnData = unknown> {
 	queryKey
 	options
 	queryFn
 	data
-	constructor(
-		queryKey: TKey,
-		queryFn: QueryFunction<TData, [...TKey, ...TData], never>,
-		options?: CustomQueryOptions
-	) {
+	constructor(queryKey: TKey, queryFn: QueryFunction<TData, [...TKey, ...TData], never>, options?: CustomQueryOptions) {
 		this.queryKey = queryKey
 		this.queryFn = queryFn
 		this.options = options

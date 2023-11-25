@@ -75,23 +75,11 @@
 </script>
 
 <Box size="m" class={`TokensCreate ${className}`}>
-	<TokenFields
-		bind:accessType={$fields.accessType}
-		bind:expiresAt={$fields.expiresAt}
-		bind:grantedTo={$fields.grantedTo}
-	>
+	<TokenFields bind:accessType={$fields.accessType} bind:expiresAt={$fields.expiresAt} bind:grantedTo={$fields.grantedTo}>
 		<svelte:fragment slot="button" let:valid>
 			<Group variant="unelevated">
-				<Button variant="unelevated" color="secondary" on:click={handler.cancelClick}>
-					Отмена
-				</Button>
-				<Button
-					variant="unelevated"
-					on:click={handler.createClick}
-					disabled={!valid || $state.fetching}
-				>
-					Создать
-				</Button>
+				<Button variant="unelevated" color="secondary" on:click={handler.cancelClick}>Отмена</Button>
+				<Button variant="unelevated" on:click={handler.createClick} disabled={!valid || $state.fetching}>Создать</Button>
 			</Group>
 		</svelte:fragment>
 	</TokenFields>

@@ -13,12 +13,7 @@ export class ChartColors {
 		this.ctx = chart.ctx
 	}
 
-	static getGradient(options: {
-		ctx: CanvasRenderingContext2D
-		color: Colors
-		theme?: 'light'
-		gradientPosition: Parameters<(typeof CanvasHelper)['createGradient']>[0]['gradientPosition']
-	}) {
+	static getGradient(options: { ctx: CanvasRenderingContext2D; color: Colors; theme?: 'light'; gradientPosition: Parameters<(typeof CanvasHelper)['createGradient']>[0]['gradientPosition'] }) {
 		const color = ChartColors.getGradientColor(options.color)
 		return CanvasHelper.createGradient({
 			ctx: options.ctx,

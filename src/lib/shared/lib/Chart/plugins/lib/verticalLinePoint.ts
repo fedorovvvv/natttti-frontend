@@ -1,16 +1,10 @@
 import type { Plugin, TooltipModel } from 'chart.js'
 import { CanvasHelper } from '$shared/lib/CanvasHelper'
 
-const drawLine = (
-	tooltip: TooltipModel<'line'>,
-	options: Parameters<(typeof CanvasHelper)['roundedRectPath']>[0]
-) => {
+const drawLine = (tooltip: TooltipModel<'line'>, options: Parameters<(typeof CanvasHelper)['roundedRectPath']>[0]) => {
 	const ctx = tooltip.chart.ctx
 
-	const colorRgb = (tooltip.labelColors[0].borderColor as string).replace(
-		new RegExp('[rgb\\(\\)]', 'g'),
-		''
-	)
+	const colorRgb = (tooltip.labelColors[0].borderColor as string).replace(new RegExp('[rgb\\(\\)]', 'g'), '')
 	const gradient = CanvasHelper.createGradient({
 		ctx,
 		colors: [
@@ -42,11 +36,7 @@ export const verticalLinePoint: Plugin<'line'> = {
 		const width = 28
 		const x = tooltip.caretX - width / 2
 		const y = (() => {
-			if (
-				['index', 'y'].includes(chart.options.interaction?.mode || '') &&
-				tooltip.dataPoints.length > 1
-			)
-				return 0
+			if (['index', 'y'].includes(chart.options.interaction?.mode || '') && tooltip.dataPoints.length > 1) return 0
 			return tooltip.caretY - (pointRadius + 4)
 		})()
 		const height = yAxis.bottom - y
