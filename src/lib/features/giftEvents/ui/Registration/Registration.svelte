@@ -15,8 +15,6 @@
 
 <RegistrationDialog {giftEventId} on:success>
 	<svelte:fragment slot="trigger" let:trigger>
-		<Button class={`GiftEventsRegistration ${className}`} use={[trigger.action]} {...$$restProps}>
-			<slot>Регистрация</slot>
-		</Button>
+		<Button class={`GiftEventsRegistration ${className}`} use={[trigger.action]} {...$$restProps}>Регистрация</Button>
 	</svelte:fragment>
 </RegistrationDialog>

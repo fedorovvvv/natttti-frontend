@@ -22,5 +22,5 @@
 			данного функционала с <b>полноценной регистрацией</b>💜
 		</p>
 	</SectionTitle>
-	<GiftEventsFeature.Card on:success={handler.success} data={data.giftEvent} isAllow={data.isAllow} />
+	<GiftEventsFeature.Card on:success={handler.success} data={data.giftEvent} isRegistered={data.isRegistered} />
 </SectionContainer>
