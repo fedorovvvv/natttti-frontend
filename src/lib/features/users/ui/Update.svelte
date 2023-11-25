@@ -74,50 +74,18 @@
 	<Form method="POST" action={`/users/update/${$userStore.current?.id}`} on:submit={handler.submit}>
 		<FormCol>
 			<FormRow>
-				<Textfield
-					invalid={!!$userSchemaResult.errors.username}
-					bind:value={$fields.username}
-					required
-					input$name="username"
-					variant="outlined"
-					label="Username"
-				/>
+				<Textfield invalid={!!$userSchemaResult.errors.username} bind:value={$fields.username} required input$name="username" variant="outlined" label="Username" />
 			</FormRow>
 			<FormRow>
-				<Textfield
-					invalid={!!$userSchemaResult.errors.firstName}
-					bind:value={$fields.firstName}
-					required
-					input$name="firstName"
-					variant="outlined"
-					label="Имя"
-				/>
-				<Textfield
-					invalid={!!$userSchemaResult.errors.lastName}
-					bind:value={$fields.lastName}
-					required
-					input$name="lastName"
-					variant="outlined"
-					label="Фамилия"
-				/>
+				<Textfield invalid={!!$userSchemaResult.errors.firstName} bind:value={$fields.firstName} required input$name="firstName" variant="outlined" label="Имя" />
+				<Textfield invalid={!!$userSchemaResult.errors.lastName} bind:value={$fields.lastName} required input$name="lastName" variant="outlined" label="Фамилия" />
 			</FormRow>
 			<FormRow>
-				<Textfield
-					invalid={!!$userSchemaResult.errors.email}
-					bind:value={$fields.email}
-					disabled
-					input$name="email"
-					variant="outlined"
-					type="email"
-					label="Email"
-				/>
+				<Textfield invalid={!!$userSchemaResult.errors.email} bind:value={$fields.email} disabled input$name="email" variant="outlined" type="email" label="Email" />
 			</FormRow>
 		</FormCol>
 		<svelte:fragment slot="button">
-			<Button
-				variant="unelevated"
-				disabled={$userUpdateMutation.isPending || $userSchemaResult.isError}
-			>
+			<Button variant="unelevated" disabled={$userUpdateMutation.isPending || $userSchemaResult.isError}>
 				{#if $userUpdateMutation.isPending}
 					Обновление...
 				{:else if $updateResult?.type === 'failure'}

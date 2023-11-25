@@ -19,10 +19,7 @@ export class UsersApi {
 }
 
 export class UsersQueries {
-	static getSocials = new QueryBase(
-		'usersGetSocials',
-		async (...data: Parameters<typeof UsersApi.getSocials>) => {
-			return await UsersApi.getSocials(...data)
-		}
-	)
+	static getSocials = new QueryBase('usersGetSocials', async (...data: Parameters<typeof UsersApi.getSocials>) => {
+		return await UsersApi.getSocials(...data)
+	})
 }

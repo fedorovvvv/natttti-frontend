@@ -25,10 +25,7 @@
 </script>
 
 <a href="/" class={`Logo ${className}`}>
-	na{#each repeat.t as { color }, i}<span
-			style:--color={color}
-			style:transition-delay={`${i * 50}ms`}>t</span
-		>{/each}i<i class="Logo__dot">.</i>
+	na{#each repeat.t as { color }, i}<span style:--color={color} style:transition-delay={`${i * 50}ms`}>t</span>{/each}i<i class="Logo__dot">.</i>
 </a>
 
 <style lang="sass">

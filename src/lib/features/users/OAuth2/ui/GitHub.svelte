@@ -22,10 +22,7 @@
 	class={`UsersOAuth2GitHub ${className}`}
 >
 	<button>
-		<img
-			src="https://raw.githubusercontent.com/rdimascio/icons/master/icons/github.svg"
-			alt="github"
-		/>
+		<img src="https://raw.githubusercontent.com/rdimascio/icons/master/icons/github.svg" alt="github" />
 	</button>
 </form>
 

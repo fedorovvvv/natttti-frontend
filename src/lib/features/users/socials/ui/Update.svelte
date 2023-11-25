@@ -66,17 +66,10 @@
 </script>
 
 <Box class={`UsersSocialsUpdate ${className}`}>
-	<Form
-		method="POST"
-		action={`/users/socials/${userId}?/createOrUpdate`}
-		on:submit={handler.submit}
-	>
+	<Form method="POST" action={`/users/socials/${userId}?/createOrUpdate`} on:submit={handler.submit}>
 		<SocialsUpdateFields {fields} bind:validateResult bind:isErrorVisible />
 		<svelte:fragment slot="button">
-			<Button
-				variant="unelevated"
-				disabled={$socialsMutation.isPending || $validateResult?.isError}
-			>
+			<Button variant="unelevated" disabled={$socialsMutation.isPending || $validateResult?.isError}>
 				{#if $socialsMutation.isPending}
 					Обновление...
 				{:else}

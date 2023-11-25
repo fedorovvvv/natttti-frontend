@@ -72,46 +72,14 @@
 		</UsersFeatureOAuth2.List>
 		<FormCol>
 			<FormRow>
-				<Textfield
-					invalid={!!$userSchemaResult.errors.username}
-					bind:value={$fields.username}
-					required
-					input$name="username"
-					variant="outlined"
-					type="text"
-					label="Username"
-				/>
+				<Textfield invalid={!!$userSchemaResult.errors.username} bind:value={$fields.username} required input$name="username" variant="outlined" type="text" label="Username" />
 			</FormRow>
 			<FormRow>
-				<Textfield
-					invalid={!!$userSchemaResult.errors.firstName}
-					bind:value={$fields.firstName}
-					required
-					input$name="firstName"
-					variant="outlined"
-					type="text"
-					label="Имя"
-				/>
-				<Textfield
-					invalid={!!$userSchemaResult.errors.lastName}
-					bind:value={$fields.lastName}
-					required
-					input$name="lastName"
-					variant="outlined"
-					type="text"
-					label="Фамилия"
-				/>
+				<Textfield invalid={!!$userSchemaResult.errors.firstName} bind:value={$fields.firstName} required input$name="firstName" variant="outlined" type="text" label="Имя" />
+				<Textfield invalid={!!$userSchemaResult.errors.lastName} bind:value={$fields.lastName} required input$name="lastName" variant="outlined" type="text" label="Фамилия" />
 			</FormRow>
 			<FormRow>
-				<Textfield
-					invalid={!!$userSchemaResult.errors.password}
-					bind:value={$fields.password}
-					required
-					input$name="password"
-					variant="outlined"
-					type="password"
-					label="Пароль"
-				/>
+				<Textfield invalid={!!$userSchemaResult.errors.password} bind:value={$fields.password} required input$name="password" variant="outlined" type="password" label="Пароль" />
 			</FormRow>
 			<FormRow>
 				<Textfield
@@ -126,10 +94,7 @@
 			</FormRow>
 		</FormCol>
 		<svelte:fragment slot="button">
-			<Button
-				variant="unelevated"
-				disabled={$registrationMutation.isPending || $userSchemaResult.isError}
-			>
+			<Button variant="unelevated" disabled={$registrationMutation.isPending || $userSchemaResult.isError}>
 				{#if $registrationMutation.isPending}
 					Записываем...
 				{:else if $registrationResult?.type === 'failure'}

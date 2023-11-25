@@ -32,28 +32,10 @@
 
 <FormCol class={`SocialsUpdateFields ${className}`}>
 	<FormRow>
-		<Textfield
-			variant="outlined"
-			invalid={!!$validateResult.errors.telegramUsername}
-			bind:value={$fields.telegramUsername}
-			input$name="telegramUsername"
-			label="Telegram username"
-		/>
+		<Textfield variant="outlined" invalid={!!$validateResult.errors.telegramUsername} bind:value={$fields.telegramUsername} input$name="telegramUsername" label="Telegram username" />
 	</FormRow>
 	<FormRow>
-		<Textfield
-			variant="outlined"
-			invalid={!!$validateResult.errors.gitHubUsername}
-			bind:value={$fields.gitHubUsername}
-			input$name="gitHubUsername"
-			label="GitHub username"
-		/>
-		<Textfield
-			variant="outlined"
-			invalid={!!$validateResult.errors.gitLabUsername}
-			bind:value={$fields.gitLabUsername}
-			input$name="gitLabUsername"
-			label="GitLab username"
-		/>
+		<Textfield variant="outlined" invalid={!!$validateResult.errors.gitHubUsername} bind:value={$fields.gitHubUsername} input$name="gitHubUsername" label="GitHub username" />
+		<Textfield variant="outlined" invalid={!!$validateResult.errors.gitLabUsername} bind:value={$fields.gitLabUsername} input$name="gitLabUsername" label="GitLab username" />
 	</FormRow>
 </FormCol>

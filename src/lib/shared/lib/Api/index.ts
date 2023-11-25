@@ -15,9 +15,7 @@ export type ApiReturn<T = unknown, R = object> = Promise<
 	  })
 >
 
-export type ApiOkReturn<T extends ApiReturn> = T extends ApiReturn<infer Ok>
-	? Promise<Ok & { _error?: false }>
-	: never
+export type ApiOkReturn<T extends ApiReturn> = T extends ApiReturn<infer Ok> ? Promise<Ok & { _error?: false }> : never
 
 export const genError = (data: IApiError, title = 'Fetch error') => {
 	const _message = data.title || data.title || title
@@ -123,11 +121,7 @@ export class Api<T = unknown, R = object> {
 		} catch (error) {
 			const _error = error as IApiError<R>
 			// captureException(_error)
-			console.error(
-				`Api fetch <${this.#url}> Error: <${JSON.stringify(_error)}>. JSON: ${JSON.stringify(
-					_error
-				)}`
-			)
+			console.error(`Api fetch <${this.#url}> Error: <${JSON.stringify(_error)}>. JSON: ${JSON.stringify(_error)}`)
 
 			if (_error.title === 'Unauthorized') {
 				// await logout()

@@ -17,10 +17,7 @@ type IsValidResult<T extends Schema> = {
 
 export type ValidateSchemaResult<T extends Schema> = IsErrorResult<T> | IsValidResult<T>
 
-export const validateSchema = <T extends Schema>(
-	schema: Schema,
-	data: InferType<T>
-): ValidateSchemaResult<T> => {
+export const validateSchema = <T extends Schema>(schema: Schema, data: InferType<T>): ValidateSchemaResult<T> => {
 	const errors: ValidateSchemaResult<T>['errors'] = {}
 	let resultData: typeof data | undefined = undefined
 
@@ -46,10 +43,7 @@ export const validateSchema = <T extends Schema>(
 	}
 }
 
-export const createValidateSchemaStore = <T extends Schema>(
-	schema: T,
-	data: Readable<InferType<T>>
-) => {
+export const createValidateSchemaStore = <T extends Schema>(schema: T, data: Readable<InferType<T>>) => {
 	const errorVisible = writable(false)
 
 	const { subscribe } = derived([data, errorVisible], ([$data, $errorVisible]) => {

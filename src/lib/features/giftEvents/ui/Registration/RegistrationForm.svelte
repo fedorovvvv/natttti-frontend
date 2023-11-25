@@ -72,12 +72,7 @@
 	}
 </script>
 
-<Form
-	method="POST"
-	action={`/events/gift/${giftEventId}?/registration`}
-	class={`GiftEventsRegistrationForm ${className}`}
-	on:submit={handler.submit}
->
+<Form method="POST" action={`/events/gift/${giftEventId}?/registration`} class={`GiftEventsRegistrationForm ${className}`} on:submit={handler.submit}>
 	<RegistrationFields bind:schemaResult />
 	<svelte:fragment slot="button">
 		<Button variant="unelevated" disabled={$schemaResult?.isError || $mutation.isPending}>

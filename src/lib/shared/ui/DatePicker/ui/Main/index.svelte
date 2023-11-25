@@ -5,8 +5,7 @@
 	import { createFormat, parse } from 'date-picker-svelte/parse'
 	import type { ComponentProps } from 'svelte'
 
-	interface $$Props
-		extends Omit<ComponentProps<Textfield>, 'value' | 'class' | 'format' | 'visible'> {
+	interface $$Props extends Omit<ComponentProps<Textfield>, 'value' | 'class' | 'format' | 'visible'> {
 		class?: string
 		value: Date
 		format?: string
@@ -62,14 +61,7 @@
 
 <div class={`DatePicker ${className}`}>
 	<DateInput {format} bind:value on:select={handler.select} bind:visible />
-	<Textfield
-		invalid={!valid}
-		bind:value={textFieldValue}
-		on:change={handler.inputChange}
-		on:focus={handler.focus}
-		on:blur={handler.blur}
-		{...$$restProps}
-	/>
+	<Textfield invalid={!valid} bind:value={textFieldValue} on:change={handler.inputChange} on:focus={handler.focus} on:blur={handler.blur} {...$$restProps} />
 </div>
 
 <style lang="sass">

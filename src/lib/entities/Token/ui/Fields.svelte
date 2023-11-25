@@ -48,19 +48,9 @@
 	<FormCol>
 		<FormRow>
 			{#if expiresAt instanceof Date}
-				<DatePicker
-					bind:valid={$valid.expiresAt}
-					bind:value={expiresAt}
-					label="Действует до"
-					variant="outlined"
-				/>
+				<DatePicker bind:valid={$valid.expiresAt} bind:value={expiresAt} label="Действует до" variant="outlined" />
 			{/if}
-			<Textfield
-				invalid={!$valid.grantedTo}
-				bind:value={grantedTo}
-				label="Кому"
-				variant="outlined"
-			/>
+			<Textfield invalid={!$valid.grantedTo} bind:value={grantedTo} label="Кому" variant="outlined" />
 			<Select label="Доступ" key={(t) => `${t}`} bind:value={accessType} variant="outlined">
 				{#each accessTypes as { id, label } (id)}
 					<Option value={id}>

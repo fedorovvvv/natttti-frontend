@@ -45,10 +45,7 @@
 			{
 				id: 'messages',
 				title: '✉️ Телеграммы',
-				avg:
-					+(
-						parsedData.reduce((val, cur) => val + cur.messagesCount, 0) / parsedData.length
-					).toFixed(0) || 0,
+				avg: +(parsedData.reduce((val, cur) => val + cur.messagesCount, 0) / parsedData.length).toFixed(0) || 0,
 				datasets: [
 					{
 						label: 'Написано',
@@ -66,10 +63,7 @@
 			{
 				id: 'members',
 				title: '🐣 Новые люди профсоюза',
-				avg:
-					+(
-						parsedData.reduce((val, cur) => val + cur.newMembersCount, 0) / parsedData.length
-					).toFixed(0) || 0,
+				avg: +(parsedData.reduce((val, cur) => val + cur.newMembersCount, 0) / parsedData.length).toFixed(0) || 0,
 				datasets: [
 					{
 						label: 'Вступило',

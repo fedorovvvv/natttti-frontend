@@ -28,15 +28,8 @@
 		</div>
 		<hr />
 		<HeaderLinkList>
-			<HeaderLink
-				href="https://github.com/fedorovvvv/natttti-frontend"
-				target="_blank"
-				rel="noreferrer"
-			>
-				<img
-					src="https://raw.githubusercontent.com/rdimascio/icons/master/icons/github.svg"
-					alt="github"
-				/>
+			<HeaderLink href="https://github.com/fedorovvvv/natttti-frontend" target="_blank" rel="noreferrer">
+				<img src="https://raw.githubusercontent.com/rdimascio/icons/master/icons/github.svg" alt="github" />
 			</HeaderLink>
 		</HeaderLinkList>
 	</div>

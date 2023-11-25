@@ -1,13 +1,5 @@
 <script lang="ts">
-	import {
-		Chart as ChartJS,
-		LineElement,
-		LinearScale,
-		PointElement,
-		CategoryScale,
-		type ChartOptions,
-		Filler
-	} from 'chart.js'
+	import { Chart as ChartJS, LineElement, LinearScale, PointElement, CategoryScale, type ChartOptions, Filler } from 'chart.js'
 	import _ from 'lodash'
 	import { onMount, tick } from 'svelte'
 	import { Line } from 'svelte-chartjs'
@@ -67,11 +59,4 @@
 	$: assignedData = controller.getData(_.cloneDeep(data), chart)
 </script>
 
-<Line
-	bind:chart
-	data={assignedData}
-	{options}
-	width="100%"
-	height="100%"
-	class={`ChartLine ${className}`}
-/>
+<Line bind:chart data={assignedData} {options} width="100%" height="100%" class={`ChartLine ${className}`} />

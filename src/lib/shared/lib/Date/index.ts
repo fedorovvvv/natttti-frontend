@@ -38,10 +38,7 @@ export const getJSONDate = (date: Date) => {
 	return normalizeDateOffset(date)
 }
 
-export const sortDates = <T extends Date[]>(
-	dates: T,
-	sortFn: (a: Date, b: Date) => number = (a, b) => +a - +b
-): T => {
+export const sortDates = <T extends Date[]>(dates: T, sortFn: (a: Date, b: Date) => number = (a, b) => +a - +b): T => {
 	return dates?.sort(sortFn)
 }
 
@@ -53,8 +50,7 @@ export const findNearestDate = (current: Date, dates: Date[]) => {
 	return found && new Date(found)
 }
 
-export const clearDate = (date: Date) =>
-	dayjs(date).hour(0).minute(0).second(0).millisecond(0).toDate()
+export const clearDate = (date: Date) => dayjs(date).hour(0).minute(0).second(0).millisecond(0).toDate()
 
 export const isDifferentDates = (dates: Date[]) => {
 	return dates.every((current, index, arr) => {

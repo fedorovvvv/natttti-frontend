@@ -40,14 +40,7 @@ This is a singleton component to manage toasts - should be placed somewhere in t
 	{#each $toasts as { id, data } (id)}
 		{@const toastColor = `var(--clue-color-${typeToColor[data.type] ?? 'invalid'})`}
 		<!-- using a single transition directive breaks transitions on the topmost toast, dunno why -->
-		<div
-			use:melt={$content(id)}
-			use:onDestroy={data.onClose}
-			in:fly={{ x: '100%' }}
-			out:fly={{ x: '100%' }}
-			animate:flip={{ duration: 500 }}
-			class="ToasterToast"
-		>
+		<div use:melt={$content(id)} use:onDestroy={data.onClose} in:fly={{ x: '100%' }} out:fly={{ x: '100%' }} animate:flip={{ duration: 500 }} class="ToasterToast">
 			<button use:melt={$close(id)} class="ToasterToast__wrapper" style="--color: {toastColor};">
 				<div class="ToasterToast__container">
 					<div class="ToasterToast__content">
