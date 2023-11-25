@@ -15,6 +15,8 @@ export class GiftEventsSchema {
 	static create = this.fields
 
 	static update = this.fields
+	
+	static registration = GiftEventMembersSchema.fields.pick(['description'])
 
 	static record = this.fields.concat(PocketBaseSchema.base)
 }

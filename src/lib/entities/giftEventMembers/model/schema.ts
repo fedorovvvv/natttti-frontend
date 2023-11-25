@@ -1,13 +1,14 @@
 /* eslint-disable boundaries/element-types */
-import { array, object } from 'yup'
+import { array, object, string } from 'yup'
 import { UsersSchema } from '$entities/users'
 import { PocketBaseSchema } from '$shared/model'
 
 export class GiftEventMembersSchema {
 	static fields = object({
-		user: UsersSchema.response.required(),
-		targets: array(UsersSchema.response).default([]).required(),
-		gifts: array().default([]).required()
+		user: UsersSchema.response,
+		description: string().default(''),
+		targets: array(UsersSchema.response).default([]),
+		gifts: array().default([])
 	})
 
 	static create = this.fields

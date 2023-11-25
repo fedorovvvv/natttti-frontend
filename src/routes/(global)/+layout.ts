@@ -2,7 +2,7 @@ import type { Load } from '@sveltejs/kit'
 import { QueryClient } from '@tanstack/svelte-query'
 import { browser } from '$app/environment'
 
-export const load: Load = async () => {
+export const load = async () => {
 	const queryClient = new QueryClient({
 		defaultOptions: {
 			queries: {

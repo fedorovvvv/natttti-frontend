@@ -2,7 +2,6 @@ import { pb, type SocialsResponse, type UsersResponse } from '$shared/api/pocket
 import { QueryBase } from '$shared/lib/Query'
 
 export * from './create'
-export * from './collection'
 
 export class UsersApi {
 	static async getSocials(userId: string, client = pb) {

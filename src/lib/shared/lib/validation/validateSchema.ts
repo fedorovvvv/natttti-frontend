@@ -1,3 +1,4 @@
+import { derived, get, writable, type Readable } from 'svelte/store'
 import type { InferType, Schema, ValidationError } from 'yup'
 
 type ValidateSchemaErrors<T extends Schema> = Partial<Record<keyof InferType<T>, ValidationError>>
@@ -42,5 +43,36 @@ export const validateSchema = <T extends Schema>(
 		isError,
 		errors,
 		data: resultData
+	}
+}
+
+export const createValidateSchemaStore = <T extends Schema>(schema:T, data:Readable<InferType<T>>) => {
+	const errorVisible = writable(false)
+
+	const {subscribe} = derived([data, errorVisible], ([$data, $errorVisible]) => {
+		const res = validateSchema(schema, $data)
+
+		const original = { ...res }
+
+		if (!$errorVisible) {
+			res.isError = false
+			res.errors = {}
+		}
+		return { ...res, original }
+	})
+
+	const toggle = (visible = !get(errorVisible)) => {
+		return errorVisible.set(visible)
+	}
+
+	const show = () => toggle(true)
+
+	const hide = () => toggle(false)
+
+	return {
+		subscribe,
+		toggle,
+		show,
+		hide
 	}
 }

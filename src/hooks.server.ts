@@ -1,11 +1,10 @@
 import type { Handle } from '@sveltejs/kit'
-import { getUsersCollection } from '$entities/users'
 import { createPocketBaseInstance, type UsersResponse } from '$shared/api/pocketbase'
 import { dev } from '$app/environment'
 
 export const handle: Handle = async ({ event, resolve }) => {
 	const pb = createPocketBaseInstance()
-
+	
 	event.locals.pb = pb
 
 	// load the store data from the request cookie string
@@ -13,7 +12,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 	try {
 		// get an up-to-date auth store state by verifying and refreshing the loaded auth model (if any)
 		if (pb.authStore.isValid) {
-			await getUsersCollection(pb).authRefresh()
+			await pb.collection('users').authRefresh()
 		}
 	} catch (_) {
 		// clear the auth store on failed refresh
