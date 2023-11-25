@@ -21,7 +21,7 @@ export const load = async ({ params, locals, fetch }) => {
 
 	return {
 		id,
-		isRegistered: !!giftEvent.expand?.members?.some((member) => member.user === locals.user!.id),
+		isRegistered: !!giftEvent?.expand?.members?.some((member) => member.user === locals.user?.id),
 		giftEvent
 	}
 }

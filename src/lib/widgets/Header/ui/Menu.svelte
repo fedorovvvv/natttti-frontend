@@ -12,7 +12,7 @@
 	$: items = [
 		{
 			id: 'santa',
-			href: '/events/gift/9p3s1pk3mx88swv',
+			href: '/events/gift/sbi9qa9h0llixn9',
 			text: 'Тайный Cанта🎅'
 		},
 		...($userStore.current?.isAdmin

@@ -8,7 +8,3 @@
 </script>
 
 <div class={`SocialsUpdateFields ${className}`} />
-
-<style lang="sass">
-    .SocialsUpdateFields
-</style>
