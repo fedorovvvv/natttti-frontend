@@ -8,7 +8,3 @@
 </script>
 
 <div class={`Load ${className}`} />
-
-<style lang="sass">
-	.Load
-</style>
