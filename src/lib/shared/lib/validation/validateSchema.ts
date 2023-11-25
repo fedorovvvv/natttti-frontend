@@ -46,10 +46,13 @@ export const validateSchema = <T extends Schema>(
 	}
 }
 
-export const createValidateSchemaStore = <T extends Schema>(schema:T, data:Readable<InferType<T>>) => {
+export const createValidateSchemaStore = <T extends Schema>(
+	schema: T,
+	data: Readable<InferType<T>>
+) => {
 	const errorVisible = writable(false)
 
-	const {subscribe} = derived([data, errorVisible], ([$data, $errorVisible]) => {
+	const { subscribe } = derived([data, errorVisible], ([$data, $errorVisible]) => {
 		const res = validateSchema(schema, $data)
 
 		const original = { ...res }

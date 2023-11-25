@@ -4,7 +4,7 @@ import { dev } from '$app/environment'
 
 export const handle: Handle = async ({ event, resolve }) => {
 	const pb = createPocketBaseInstance()
-	
+
 	event.locals.pb = pb
 
 	// load the store data from the request cookie string

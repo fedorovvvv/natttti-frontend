@@ -7,17 +7,17 @@
 
 	$: userStore.set(data.user)
 
-    onNavigate((navigation) => {
-        //@ts-ignore
-		if (!document.startViewTransition) return;
+	onNavigate((navigation) => {
+		//@ts-ignore
+		if (!document.startViewTransition) return
 		return new Promise((resolve) => {
-             //@ts-ignore
+			//@ts-ignore
 			document.startViewTransition(async () => {
-				resolve();
-				await navigation.complete;
-			});
-		});
-	});
+				resolve()
+				await navigation.complete
+			})
+		})
+	})
 </script>
 
 <Header />

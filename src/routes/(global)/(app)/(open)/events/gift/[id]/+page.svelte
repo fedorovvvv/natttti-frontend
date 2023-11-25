@@ -11,13 +11,16 @@
 			invalidateAll()
 		}
 	}
-
 </script>
 
 <SectionContainer>
 	<SectionTitle>
 		{#if dev}
-			<GiftEventsFeature.Card on:success={handler.success} data={data.giftEvent} isAllow={data.isAllow} />
+			<GiftEventsFeature.Card
+				on:success={handler.success}
+				data={data.giftEvent}
+				isAllow={data.isAllow}
+			/>
 		{:else}
 			<h1>Скоро будет🎅🏻</h1>
 		{/if}

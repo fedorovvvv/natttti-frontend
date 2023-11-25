@@ -1,91 +1,76 @@
-<script lang='ts'>
-    import { createDialog, melt } from "@melt-ui/svelte"
-	import Button from "@smui/button"
-	import { fade, fly } from "svelte/transition"
-	import { CONFIG } from "$shared/config"
+<script lang="ts">
+	import { createDialog, melt } from '@melt-ui/svelte'
+	import Button from '@smui/button'
+	import { fade, fly } from 'svelte/transition'
+	import { CONFIG } from '$shared/config'
 
-    interface $$Props extends Exclude<Parameters<typeof createDialog>[0], undefined> {
-        class?:string
-    }
-    
-    let className = ''
-    export { className as class }
+	interface $$Props extends Exclude<Parameters<typeof createDialog>[0], undefined> {
+		class?: string
+	}
 
-    const {
-        elements: {
-            trigger:_trigger,
-            overlay,
-            content,
-            title,
-            description,
-            close,
-            portalled,
-        },
-        states: { open: _open },
-    } = createDialog({
-        forceVisible: true,
-        ...$$restProps,
-    })
-    export const trigger = _trigger
-    export const open = _open
+	let className = ''
+	export { className as class }
 
-    let scrolled = false
-    
-    const handler = {
-        scroll(e:Event) {
-            const element = e.currentTarget as HTMLElement
-            const {scrollTop} = element
-            scrolled = scrollTop > 20
-        }
-    }
+	const {
+		elements: { trigger: _trigger, overlay, content, title, description, close, portalled },
+		states: { open: _open }
+	} = createDialog({
+		forceVisible: true,
+		...$$restProps
+	})
+	export const trigger = _trigger
+	export const open = _open
 
+	let scrolled = false
+
+	const handler = {
+		scroll(e: Event) {
+			const element = e.currentTarget as HTMLElement
+			const { scrollTop } = element
+			scrolled = scrollTop > 20
+		}
+	}
 </script>
 
-<slot name='trigger' trigger={$trigger}/>
+<slot name="trigger" trigger={$trigger} />
 
 <div class={`Dialog ${className}`} use:melt={$portalled}>
-    {#if $open}
-        <div
-            use:melt={$overlay}
-            class='Dialog__overlay'
-            transition:fade={CONFIG.TRANSITION}
-        />
-        <div
-            class="Dialog__scroll"
-            on:scroll={handler.scroll}
-            use:melt={$content}
-            in:fly={{
-                ...CONFIG.TRANSITION,
-                y: -50,
-                opacity: 0,
-            }}
-            out:fly={{
-                ...CONFIG.TRANSITION,
-                y: 50,
-                opacity: 0,
-            }}
-        >
-            <div
-                class='Dialog__content'
-            >
-                <div class="Dialog__header" class:Dialog__header_floated={scrolled}>
-                    {#if $$slots.title}
-                        <h2 use:melt={$title}><slot name='title'/></h2>
-                    {/if}
-                    <Button class='Dialog__close' use={[$close.action]}>уйти</Button>
-                </div>
-                <div class="Dialog__main">
-                    {#if $$slots.description}
-                        <p use:melt={$description} class='Dialog__description'><slot name='description'/></p>
-                    {/if}
-                    <slot/>
-                </div>
-            </div>
-        </div>
-    {/if}
+	{#if $open}
+		<div use:melt={$overlay} class="Dialog__overlay" transition:fade={CONFIG.TRANSITION} />
+		<div
+			class="Dialog__scroll"
+			on:scroll={handler.scroll}
+			use:melt={$content}
+			in:fly={{
+				...CONFIG.TRANSITION,
+				y: -50,
+				opacity: 0
+			}}
+			out:fly={{
+				...CONFIG.TRANSITION,
+				y: 50,
+				opacity: 0
+			}}
+		>
+			<div class="Dialog__content">
+				<div class="Dialog__header" class:Dialog__header_floated={scrolled}>
+					{#if $$slots.title}
+						<h2 use:melt={$title}><slot name="title" /></h2>
+					{/if}
+					<Button class="Dialog__close" use={[$close.action]}>уйти</Button>
+				</div>
+				<div class="Dialog__main">
+					{#if $$slots.description}
+						<p use:melt={$description} class="Dialog__description"><slot name="description" /></p>
+					{/if}
+					<slot />
+				</div>
+			</div>
+		</div>
+	{/if}
 </div>
 
-<style lang='sass'>
+<style lang="sass">
     .Dialog
         --dialog-padding-x: var(--containerPadding)
         --dialog-padding-y: 16px
