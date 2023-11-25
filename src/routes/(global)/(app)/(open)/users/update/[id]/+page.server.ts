@@ -2,7 +2,6 @@ import { fail } from '@sveltejs/kit'
 import type { ClientResponseError } from 'pocketbase'
 import type { InferType } from 'yup'
 import type { UsersSchema } from '$entities/users'
-import { getUsersCollection } from '$entities/users'
 
 export const actions = {
 	default: async ({ locals, request, params }) => {

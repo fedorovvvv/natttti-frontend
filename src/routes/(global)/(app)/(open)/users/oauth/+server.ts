@@ -1,5 +1,4 @@
 import { redirect } from '@sveltejs/kit'
-import { getUsersCollection } from '$entities/users'
 
 export const GET = async ({ locals, url, cookies }) => {
 	const redirectURL = `${url.origin}/users/oauth`
@@ -9,7 +8,7 @@ export const GET = async ({ locals, url, cookies }) => {
 	const state = url.searchParams.get('state')
 	const code = url.searchParams.get('code')
 
-	const usersCollection = getUsersCollection(locals.pb)
+	const usersCollection = locals.pb.collection('users')
 
 	//as a side effect this will generate a new code verifier, hence why we need to pass the verifier back in through the cookie
 	const authMethods = await usersCollection.listAuthMethods()

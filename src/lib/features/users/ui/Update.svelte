@@ -132,7 +132,3 @@
 		</svelte:fragment>
 	</Form>
 </Box>
-
-<style lang="sass">
-    .UsersUpdate
-</style>

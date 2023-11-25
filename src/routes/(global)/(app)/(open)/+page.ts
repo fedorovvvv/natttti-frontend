@@ -2,7 +2,7 @@ import type { Load } from '@sveltejs/kit'
 import dayjs from 'dayjs'
 import { StatsRequests } from '$shared/api/stats'
 
-export const load: Load = async ({ fetch }) => {
+export const load = async ({ fetch }) => {
 	const statsRequests = new StatsRequests(undefined, fetch)
 
 	return {

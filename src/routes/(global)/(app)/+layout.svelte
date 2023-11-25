@@ -1,10 +1,23 @@
 <script lang="ts">
 	import { Header } from '$widgets/Header'
 	import { userStore } from '$entities/users'
+	import { onNavigate } from '$app/navigation'
 
 	export let data
 
 	$: userStore.set(data.user)
+
+	onNavigate((navigation) => {
+		//@ts-ignore
+		if (!document.startViewTransition) return
+		return new Promise((resolve) => {
+			//@ts-ignore
+			document.startViewTransition(async () => {
+				resolve()
+				await navigation.complete
+			})
+		})
+	})
 </script>
 
 <Header />

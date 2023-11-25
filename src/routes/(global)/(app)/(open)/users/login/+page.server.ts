@@ -1,16 +1,17 @@
 import { fail, redirect } from '@sveltejs/kit'
 import type { ClientResponseError } from 'pocketbase'
 import type { InferType } from 'yup'
-import { getUsersCollection } from '$entities/users'
 import type { PocketBaseAuthSchema } from '$shared/model'
 
 export const actions = {
-	password: async ({ locals, request }) => {
+	password: async ({ locals, request, fetch }) => {
 		const data = Object.fromEntries(await request.formData()) as InferType<
 			typeof PocketBaseAuthSchema.withPassword
 		>
 		try {
-			await getUsersCollection(locals.pb).authWithPassword(data.identity, data.password)
+			await locals.pb.collection('users').authWithPassword(data.identity, data.password, {
+				fetch
+			})
 		} catch (_error) {
 			const error = _error as ClientResponseError
 			return fail(error.status, error.data)
@@ -19,7 +20,7 @@ export const actions = {
 		throw redirect(303, '/')
 	},
 	github: async ({ cookies, url, locals }) => {
-		const usersCollection = getUsersCollection(locals.pb)
+		const usersCollection = locals.pb.collection('users')
 		const authMethods = await usersCollection.listAuthMethods()
 
 		const redirectURL = `${url.origin}/users/oauth`
