@@ -71,5 +71,4 @@
             margin-top: 40px
             padding-top: 20px
             border-top: 1px solid var(--clue-color-gray-100)
-        &__buttons
 </style>

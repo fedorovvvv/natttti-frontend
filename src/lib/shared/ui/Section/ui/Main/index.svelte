@@ -8,7 +8,3 @@
 </script>
 
 <div class={`Section ${className}`} />
-
-<style lang="sass">
-	.Section
-</style>
