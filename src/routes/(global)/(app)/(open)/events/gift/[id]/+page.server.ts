@@ -78,19 +78,21 @@ export const actions = {
 			return fail(error.status, error.data)
 		}
 	},
-	exit: async ({params, locals}) => {
+	exit: async ({ params, locals }) => {
 		if (!locals.user?.id) return fail(403)
 		if (!params.id) return fail(404)
 
 		try {
-			const eventMembers = await locals.pb.collection('giftEvents').getFirstListItem<GiftEventsResponse<{
-				members?: GiftEventMembersResponse[]
-			}>>(`members.user.id ?= "${locals.user.id}"`, {
+			const eventMembers = await locals.pb.collection('giftEvents').getFirstListItem<
+				GiftEventsResponse<{
+					members?: GiftEventMembersResponse[]
+				}>
+			>(`members.user.id ?= "${locals.user.id}"`, {
 				expand: 'members',
 				fields: 'expand.members'
 			})
 
-			const member = eventMembers?.expand?.members?.find(member => member.user === locals.user!.id)
+			const member = eventMembers?.expand?.members?.find((member) => member.user === locals.user!.id)
 
 			if (!member?.id) return fail(404)
 
@@ -99,7 +101,6 @@ export const actions = {
 			})
 
 			return giftEvent
-
 		} catch (_error) {
 			const error = _error as ClientResponseError
 			return fail(error.status, error.data)

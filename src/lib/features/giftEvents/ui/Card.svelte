@@ -22,9 +22,9 @@
 	<svelte:fragment slot="buttons">
 		{#if $userStore.isLoggedIn}
 			{#if !isRegistered}
-				<Registration giftEventId={data.id} variant="unelevated" on:success/>
+				<Registration giftEventId={data.id} variant="unelevated" on:success />
 			{:else}
-				<Exit giftEventId={data.id}/>
+				<Exit giftEventId={data.id} />
 			{/if}
 		{:else}
 			<Button variant="unelevated" href="/users/login">Войдите, чтобы зарегистрироваться</Button>
