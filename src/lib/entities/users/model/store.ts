@@ -5,9 +5,13 @@ import { UsersSchema } from './schema'
 
 export const createUserStore = () => {
 	const { set, update, subscribe } = writable<{
-		current?: UsersResponse | null
-		socials?: SocialsRecord | null
-		isLoggedIn: boolean
+		current?: null
+		socials?: null
+		isLoggedIn: false
+	} | {
+		current: UsersResponse
+		socials: SocialsRecord
+		isLoggedIn: true
 	}>({
 		current: undefined,
 		isLoggedIn: false

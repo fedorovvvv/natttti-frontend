@@ -9,19 +9,15 @@ export const load = async ({ params, locals, fetch }) => {
 
 	if (!id) throw error(404)
 
-	const giftEvent = (await locals.pb.collection('giftEvents').getOne(id, {
-		expand: 'event,members.user',
-		fetch
-	})) as GiftEventsResponse<{
+	const giftEvent = (await locals.pb.collection('giftEvents').getOne<GiftEventsResponse<{
 		event: EventsResponse
-		members?: GiftEventMembersResponse<{
-			user: UsersResponse
-		}>[]
-	}>
+	}>>(id, {
+		expand: 'event',
+		fetch
+	}))
 
 	return {
 		id,
-		isRegistered: !!giftEvent?.expand?.members?.some((member) => member.user === locals.user?.id),
 		giftEvent
 	}
 }
