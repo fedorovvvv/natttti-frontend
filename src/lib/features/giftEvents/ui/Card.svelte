@@ -26,15 +26,16 @@
 	const handler = {
 		registrationSuccess() {
 			$query?.refetch()
+			$isUserRegisteredQuery?.refetch()
 		},
 		exitSuccess() {
 			$query?.refetch()
+			$isUserRegisteredQuery?.refetch()
 		}
 	}
 
 
 </script>
-
 <GiftEventsCard {initialData} {giftEventId} bind:query class={`GiftEventsCard ${className}`}>
 	<svelte:fragment slot="buttons">
 		{#if $userStore.isLoggedIn}
@@ -42,9 +43,9 @@
 				<Button variant="unelevated" disabled>Запрашиваем...</Button>
 			{:else}
 				{#if $isUserRegisteredQuery?.data?.result}
-					<Registration {giftEventId} variant="unelevated" on:success={handler.registrationSuccess} />
-				{:else}
 					<Exit {giftEventId} on:success={handler.exitSuccess} />
+				{:else}
+					<Registration {giftEventId} on:success={handler.registrationSuccess} />
 				{/if}
 			{/if}
 		{:else}
