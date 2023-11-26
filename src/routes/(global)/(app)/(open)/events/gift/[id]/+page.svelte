@@ -1,15 +1,8 @@
 <script lang="ts">
 	import { GiftEventsFeature } from '$features/giftEvents'
 	import { SectionContainer, SectionTitle } from '$shared/ui/Section'
-	import { invalidateAll } from '$app/navigation'
 
 	export let data
-
-	const handler = {
-		success() {
-			invalidateAll()
-		}
-	}
 </script>
 
 <SectionContainer>
@@ -22,5 +15,5 @@
 			данного функционала с <b>полноценной регистрацией</b>💜
 		</p>
 	</SectionTitle>
-	<GiftEventsFeature.Card on:success={handler.success} data={data.giftEvent} isRegistered={data.isRegistered} />
+	<GiftEventsFeature.Card giftEventId={data.id} initialData={data.giftEvent}/>
 </SectionContainer>

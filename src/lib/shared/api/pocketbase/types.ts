@@ -53,7 +53,7 @@ export type EventsRecord = {
 	endAt?: IsoDateString
 	name: string
 	owners?: RecordIdString[]
-	registrationIsOpen?: boolean
+	isRegistrationOpen?: boolean
 	startAt?: IsoDateString
 }
 
@@ -66,6 +66,7 @@ export type GiftEventMembersRecord = {
 export type GiftEventsRecord = {
 	event: RecordIdString
 	members?: RecordIdString[]
+	maxPrice?:number
 }
 
 export type GiftsRecord = {
