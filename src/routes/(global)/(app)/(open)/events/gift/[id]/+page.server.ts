@@ -9,12 +9,14 @@ export const load = async ({ params, locals, fetch }) => {
 
 	if (!id) throw error(404)
 
-	const giftEvent = (await locals.pb.collection('giftEvents').getOne<GiftEventsResponse<{
-		event: EventsResponse
-	}>>(id, {
+	const giftEvent = await locals.pb.collection('giftEvents').getOne<
+		GiftEventsResponse<{
+			event: EventsResponse
+		}>
+	>(id, {
 		expand: 'event',
 		fetch
-	}))
+	})
 
 	return {
 		id,

@@ -16,12 +16,14 @@
 	export let initialData: $$Props['initialData'] = undefined
 	export let giftEventId: $$Props['giftEventId']
 
-	let query:ComponentProps<GiftEventsCard>['query']
+	let query: ComponentProps<GiftEventsCard>['query']
 
-	const isUserRegisteredQuery = $userStore.isLoggedIn ? createQuery({
-		queryKey: GiftEventsQueries.isUserRegistered.createKey(giftEventId, $userStore.current.id),
-		queryFn: async (...data) => GiftEventsQueries.isUserRegistered.queryFn(...data)
-	}) : undefined
+	const isUserRegisteredQuery = $userStore.isLoggedIn
+		? createQuery({
+				queryKey: GiftEventsQueries.isUserRegistered.createKey(giftEventId, $userStore.current.id),
+				queryFn: async (...data) => GiftEventsQueries.isUserRegistered.queryFn(...data)
+		  })
+		: undefined
 
 	const handler = {
 		registrationSuccess() {
@@ -33,20 +35,17 @@
 			$isUserRegisteredQuery?.refetch()
 		}
 	}
-
-
 </script>
+
 <GiftEventsCard {initialData} {giftEventId} bind:query class={`GiftEventsCard ${className}`}>
 	<svelte:fragment slot="buttons">
 		{#if $userStore.isLoggedIn}
 			{#if $isUserRegisteredQuery?.isPending}
 				<Button variant="unelevated" disabled>Запрашиваем...</Button>
+			{:else if $isUserRegisteredQuery?.data?.result}
+				<Exit {giftEventId} on:success={handler.exitSuccess} />
 			{:else}
-				{#if $isUserRegisteredQuery?.data?.result}
-					<Exit {giftEventId} on:success={handler.exitSuccess} />
-				{:else}
-					<Registration {giftEventId} on:success={handler.registrationSuccess} />
-				{/if}
+				<Registration {giftEventId} on:success={handler.registrationSuccess} />
 			{/if}
 		{:else}
 			<Button variant="unelevated" href="/users/login">Войдите, чтобы зарегистрироваться</Button>

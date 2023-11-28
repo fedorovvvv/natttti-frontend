@@ -22,11 +22,10 @@ export const actions = {
 				await locals.pb.collection('users').update(userId, {
 					address: address.id
 				})
-				
+
 				return address
 			}
 		} catch (_error) {
-			console.error(_error)
 			const error = _error as ClientResponseError
 			return fail(error.status, error.data)
 		}

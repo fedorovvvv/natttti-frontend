@@ -1,33 +1,43 @@
-<script lang='ts'>
-    import { createQuery } from "@tanstack/svelte-query"
-	import { AddressesForm } from "$entities/addresses"
-	import { UsersQueries } from "$entities/users"
-	import type { AddressesResponse } from "$shared/api/pocketbase"
-	import { Box } from "$shared/ui/Box"
+<script lang="ts">
+	import { createQuery, useQueryClient } from '@tanstack/svelte-query'
+	import type { ComponentEvents } from 'svelte'
+	import { AddressesForm } from '$entities/addresses'
+	import { UsersQueries } from '$entities/users'
+	import type { AddressesResponse } from '$shared/api/pocketbase'
+	import { Box } from '$shared/ui/Box'
 
+	interface $$Props {
+		class?: string
+		userId: string
+		initialData?: AddressesResponse | null
+	}
 
-    interface $$Props {
-        class?:string
-        userId:string
-        initialData?:AddressesResponse | null
-    }
-    
-    let className = ''
-    export { className as class }
+	let className = ''
+	export { className as class }
 
-    export let userId:$$Props['userId']
-    export let initialData:$$Props['initialData'] = undefined
+	export let userId: $$Props['userId']
+	export let initialData: $$Props['initialData'] = undefined
 
-    const query = createQuery({
-        queryKey: UsersQueries.getAddress.createKey(userId),
-        queryFn: async (...data) => UsersQueries.getAddress.queryFn(...data),
-        initialData: initialData as Exclude<typeof initialData, undefined>
-    })
-    
+	const queryKey = UsersQueries.getAddress.createKey(userId)
+
+	const client = useQueryClient()
+
+	const query = createQuery({
+		queryKey,
+		queryFn: async (...data) => UsersQueries.getAddress.queryFn(...data),
+		initialData: initialData as Exclude<typeof initialData, undefined>
+	})
+
+	const handler = {
+		success(e: ComponentEvents<AddressesForm>['success']) {
+			console.log(e.detail.address)
+			client.setQueryData(queryKey, e.detail.address)
+		}
+	}
 </script>
 
 <Box>
-    {#if $query.status === 'success'}
-        <AddressesForm class={`FeatureUsersAddressesUpdate ${className}`} initialData={$query.data} action={`/users/addresses/${userId}?/createOrUpdate`}/>
-    {/if}
+	{#if $query.status === 'success'}
+		<AddressesForm class={`FeatureUsersAddressesUpdate ${className}`} initialData={$query.data} on:success={handler.success} action={`/users/addresses/${userId}?/createOrUpdate`} />
+	{/if}
 </Box>
