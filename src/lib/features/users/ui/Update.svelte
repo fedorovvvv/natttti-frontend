@@ -87,11 +87,11 @@
 		<svelte:fragment slot="button">
 			<Button variant="unelevated" disabled={$userUpdateMutation.isPending || $userSchemaResult.isError}>
 				{#if $userUpdateMutation.isPending}
-					Обновление...
+					Сохранение...
 				{:else if $updateResult?.type === 'failure'}
 					Упс, чет не то
 				{:else}
-					Обновить
+					Сохранить
 				{/if}
 			</Button>
 			<form method="POST" use:enhance={usersLogoutEnhance} action="/users/logout">

@@ -71,9 +71,9 @@
 		<svelte:fragment slot="button">
 			<Button variant="unelevated" disabled={$socialsMutation.isPending || $validateResult?.isError}>
 				{#if $socialsMutation.isPending}
-					Обновление...
+					Сохранение...
 				{:else}
-					Обновить
+					Сохранить
 				{/if}
 			</Button>
 		</svelte:fragment>

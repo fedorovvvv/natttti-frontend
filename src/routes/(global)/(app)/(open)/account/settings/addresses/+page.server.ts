@@ -7,6 +7,6 @@ export const load = async ({ locals, parent, fetch }) => {
 	if (!user?.id) throw redirect(303, '/')
 
 	return {
-		socials: await new UsersApi(locals.pb, fetch).getSocials(user.id)
+		address: await new UsersApi(locals.pb, fetch).getAddress(user.id)
 	}
 }

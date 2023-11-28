@@ -32,7 +32,6 @@
 	const mutation = createMutation({
 		async mutationFn(form: HTMLFormElement) {
 			if (!$schemaResult || $schemaResult.original.isError) throw new Error('error')
-			await new Promise((res) => setTimeout(res, 1000))
 
 			const response = await fetch(form.action, {
 				method: 'POST',
@@ -46,8 +45,6 @@
 				},
 				undefined
 			>(await response.text())
-
-			console.log(result)
 
 			await applyAction(result)
 

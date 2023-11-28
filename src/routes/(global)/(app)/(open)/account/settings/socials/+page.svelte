@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { UsersFeatureSocials } from '$features/users'
-	import { SocialsSchema } from '$entities/socials/index.js'
-	import type { SocialsRecord } from '$shared/api/pocketbase/types.js'
+	import { SocialsSchema } from '$entities/socials'
+	import type { SocialsRecord } from '$shared/api/pocketbase'
 
 	export let data
 

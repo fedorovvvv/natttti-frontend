@@ -4,12 +4,12 @@ import { UsersApi } from '$entities/users'
 import type { SocialsRecord } from '$shared/api/pocketbase'
 
 export const actions = {
-	createOrUpdate: async ({ locals, request, params }) => {
+	createOrUpdate: async ({ locals, request, params, fetch }) => {
 		const data = Object.fromEntries(await request.formData()) as unknown as SocialsRecord
 		const socialsCollection = locals.pb.collection('socials')
 		const userId = params.id
 		try {
-			const userSocials = await UsersApi.getSocials(userId, locals.pb)
+			const userSocials = await new UsersApi(locals.pb, fetch).getSocials(userId)
 			if (userSocials) {
 				return await socialsCollection.update(userSocials.id, data)
 			} else {
