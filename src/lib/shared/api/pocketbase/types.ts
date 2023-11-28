@@ -44,8 +44,9 @@ export type AuthSystemFields<T = never> = {
 // Record types for each collection
 
 export type AddressesRecord = {
-	country?: string
 	name?: string
+	country: string
+	city: string
 }
 
 export type EventsRecord = {

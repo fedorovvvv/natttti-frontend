@@ -20,7 +20,7 @@
 
 	const isUserRegisteredQuery = $userStore.isLoggedIn ? createQuery({
 		queryKey: GiftEventsQueries.isUserRegistered.createKey(giftEventId, $userStore.current.id),
-		queryFn: async (...data) => GiftEventsQueries.isUserRegistered.queryFn(...data) 
+		queryFn: async (...data) => GiftEventsQueries.isUserRegistered.queryFn(...data)
 	}) : undefined
 
 	const handler = {

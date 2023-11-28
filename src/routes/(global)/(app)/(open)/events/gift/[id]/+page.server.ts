@@ -1,8 +1,8 @@
 import { error, fail } from '@sveltejs/kit'
 import type { ClientResponseError } from 'pocketbase'
 import type { InferType } from 'yup'
-import type { GiftEventsSchema } from '$entities/giftEvents/index.js'
-import type { EventsResponse, GiftEventMembersResponse, GiftEventsResponse, UsersResponse } from '$shared/api/pocketbase/types.js'
+import type { GiftEventsSchema } from '$entities/giftEvents'
+import type { EventsResponse, GiftEventMembersResponse, GiftEventsResponse, UsersResponse } from '$shared/api/pocketbase'
 
 export const load = async ({ params, locals, fetch }) => {
 	const { id } = params

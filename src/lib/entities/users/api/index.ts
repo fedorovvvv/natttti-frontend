@@ -1,25 +1,41 @@
-import { pb, type SocialsResponse, type UsersResponse } from '$shared/api/pocketbase'
+import { PocketBaseApi, type AddressesResponse, type SocialsResponse, type UsersResponse } from '$shared/api/pocketbase'
 import { QueryBase } from '$shared/lib/Query'
 
 export * from './create'
 
-export class UsersApi {
-	static async getSocials(userId: string, client = pb) {
-		const res = (await client.collection('users').getOne(userId, {
+export class UsersApi extends PocketBaseApi {
+	async getAddress(userId:string) {
+        const res = await this.client.collection('users').getOne<UsersResponse<{
+            address?: AddressesResponse
+        }>>(userId, {
+            fetch: this.fetch,
+            expand: 'address',
+            fields: 'expand.address'
+        })
+        return res.expand?.address ?? null
+    }
+
+	async getSocials(userId: string) {
+		const res = await this.client.collection('users').getOne<UsersResponse<{
+			socials: SocialsResponse
+		}>>(userId, {
+			fetch: this.fetch,
 			expand: 'socials',
 			fields: 'expand,expand.socials'
-		})) as Pick<
-			UsersResponse<{
-				socials: SocialsResponse
-			}>,
-			'expand'
-		>
-		return res.expand?.socials
+		})
+
+		return res.expand?.socials ?? null
 	}
 }
 
 export class UsersQueries {
-	static getSocials = new QueryBase('usersGetSocials', async (...data: Parameters<typeof UsersApi.getSocials>) => {
-		return await UsersApi.getSocials(...data)
+	static getSocials = new QueryBase('users.getSocials', async (userId:string) => {
+		return await new UsersApi().getSocials(userId)
 	})
+	static getAddress = new QueryBase(
+        'users.getAddress',
+        async (userId:string) => {
+            return await new UsersApi().getAddress(userId)
+        }
+    )
 }

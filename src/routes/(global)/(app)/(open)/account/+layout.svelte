@@ -21,6 +21,11 @@
 			id: 'socials',
 			name: 'Соц. сети',
 			href: '/account/settings/socials'
+		},
+		{
+			id: 'addresses',
+			name: 'Адрес',
+			href: '/account/settings/addresses'
 		}
 	]
 </script>
