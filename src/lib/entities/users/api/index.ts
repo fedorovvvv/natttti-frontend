@@ -12,7 +12,7 @@ export class UsersApi extends PocketBaseApi {
 		>(userId, {
 			fetch: this.fetch,
 			expand: 'address',
-			fields: 'expand.address'
+			fields: 'expand,expand.address'
 		})
 		return res.expand?.address ?? null
 	}
