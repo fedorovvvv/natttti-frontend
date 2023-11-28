@@ -9,7 +9,7 @@
 		class?: string
 		giftEventId: string
 	}
-	
+
 	interface $$Events {
 		success: CustomEvent<GiftEventsResponse>
 	}
@@ -20,16 +20,15 @@
 
 	const dispatch = createEventDispatcher()
 
-	const enhanceFn:SubmitFunction<GiftEventsResponse> = async () => {
-		return async ({result}) => {
+	const enhanceFn: SubmitFunction<GiftEventsResponse> = async () => {
+		return async ({ result }) => {
 			if (result.type === 'success') {
 				dispatch('success', result.data!)
 			}
-			
+
 			await applyAction(result)
 		}
 	}
-
 </script>
 
 <form method="POST" action={`/events/gift/${giftEventId}?/exit`} use:enhance={enhanceFn} class={`GiftEventsExit ${className}`}>

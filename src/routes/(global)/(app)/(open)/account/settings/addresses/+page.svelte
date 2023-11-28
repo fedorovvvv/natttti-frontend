@@ -1,9 +1,9 @@
-<script lang='ts'>
-	import { UsersFeatureAddresses } from "$features/users/addresses"
+<script lang="ts">
+	import { UsersFeatureAddresses } from '$features/users/addresses'
 
-    export let data
+	export let data
 </script>
 
 {#if data.user}
-    <UsersFeatureAddresses.Update initialData={data.address} userId={data.user.id}/>
+	<UsersFeatureAddresses.Update initialData={data.address} userId={data.user.id} />
 {/if}

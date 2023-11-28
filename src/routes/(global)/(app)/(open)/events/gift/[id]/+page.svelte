@@ -15,5 +15,5 @@
 			данного функционала с <b>полноценной регистрацией</b>💜
 		</p>
 	</SectionTitle>
-	<GiftEventsFeature.Card giftEventId={data.id} initialData={data.giftEvent}/>
+	<GiftEventsFeature.Card giftEventId={data.id} initialData={data.giftEvent} />
 </SectionContainer>

@@ -7,7 +7,7 @@
 
 	interface $$Props {
 		class?: string
-		giftEventId:string
+		giftEventId: string
 		initialData?: GiftEventsResponse<{
 			event: EventsRecord
 		}>
@@ -18,7 +18,6 @@
 
 	export let giftEventId: $$Props['giftEventId']
 	export let initialData: $$Props['initialData'] = undefined
-
 
 	export const query = createQuery({
 		queryKey: GiftEventsQueries.getOne.createKey(giftEventId),

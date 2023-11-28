@@ -4,15 +4,18 @@ import type { SocialsRecord, SocialsResponse, UsersResponse } from '$shared/api/
 import { UsersSchema } from './schema'
 
 export const createUserStore = () => {
-	const { set, update, subscribe } = writable<{
-		current?: null
-		socials?: null
-		isLoggedIn: false
-	} | {
-		current: UsersResponse
-		socials: SocialsRecord
-		isLoggedIn: true
-	}>({
+	const { set, update, subscribe } = writable<
+		| {
+				current?: null
+				socials?: null
+				isLoggedIn: false
+		  }
+		| {
+				current: UsersResponse
+				socials: SocialsRecord
+				isLoggedIn: true
+		  }
+	>({
 		current: undefined,
 		isLoggedIn: false
 	})
