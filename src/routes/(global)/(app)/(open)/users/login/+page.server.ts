@@ -33,12 +33,12 @@ export const actions = {
 		const verifier = authProvider.codeVerifier
 
 		cookies.set('state', state, {
-			httpOnly: false,
-			sameSite: 'lax'
+			httpOnly: true,
+			sameSite: 'strict'
 		})
 		cookies.set('verifier', verifier, {
-			httpOnly: false,
-			sameSite: 'lax'
+			httpOnly: true,
+			sameSite: 'strict'
 		})
 
 		throw redirect(302, authProviderRedirect)
