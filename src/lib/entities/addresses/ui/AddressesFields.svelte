@@ -29,7 +29,7 @@
 	</FormRow>
 	<FormRow>
 		<Select bind:value={$fields.country} hiddenInput invalid={!!$validate.errors.country} variant="outlined" required input$name="country" label="Страна">
-			{#each COUNTRY_LIST as {name, code} (code)}
+			{#each COUNTRY_LIST as { name, code } (code)}
 				<Option value={code}>{name}</Option>
 			{/each}
 		</Select>

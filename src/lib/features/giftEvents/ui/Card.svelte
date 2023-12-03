@@ -18,10 +18,12 @@
 
 	let query: ComponentProps<GiftEventsCard>['query']
 
-	const userAddress = $userStore.isLoggedIn ? createQuery({
-		queryKey: UsersQueries.getAddress.createKey($userStore.current.id),
-		queryFn: async (...data) => UsersQueries.getAddress.queryFn(...data)
-	}) : undefined
+	const userAddress = $userStore.isLoggedIn
+		? createQuery({
+				queryKey: UsersQueries.getAddress.createKey($userStore.current.id),
+				queryFn: async (...data) => UsersQueries.getAddress.queryFn(...data)
+		  })
+		: undefined
 
 	const isUserRegisteredQuery = $userStore.isLoggedIn
 		? createQuery({
@@ -48,7 +50,7 @@
 			{#if $isUserRegisteredQuery?.isPending || $userAddress?.isPending}
 				<Button variant="unelevated" disabled>Запрашиваем...</Button>
 			{:else if !$userAddress?.data?.country}
-				<Button variant="unelevated" href='/account/settings/address'>Заполнить адрес</Button>
+				<Button variant="unelevated" href="/account/settings/address">Заполнить адрес</Button>
 			{:else if $isUserRegisteredQuery?.data?.result}
 				<Exit {giftEventId} on:success={handler.exitSuccess} />
 			{:else}

@@ -23,7 +23,7 @@
 		queryKey: GiftEventsQueries.getOne.createKey(giftEventId),
 		refetchInterval: 1000 * 60 * 2, //2 min
 		queryFn: async (...data) => await GiftEventsQueries.getOne.queryFn(...data),
-		initialData: initialData as Exclude<typeof initialData, undefined>,
+		initialData: initialData as Exclude<typeof initialData, undefined>
 	})
 
 	$: event = $query.data?.expand?.event
