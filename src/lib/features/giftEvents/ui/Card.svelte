@@ -3,7 +3,7 @@
 	import { createQuery } from '@tanstack/svelte-query'
 	import type { ComponentProps } from 'svelte'
 	import { GiftEventsCard, GiftEventsQueries } from '$entities/giftEvents'
-	import { userStore } from '$entities/users'
+	import { UsersApi, UsersQueries, userStore } from '$entities/users'
 	import Exit from './Exit/Exit.svelte'
 	import Registration from './Registration/Registration.svelte'
 
@@ -17,6 +17,11 @@
 	export let giftEventId: $$Props['giftEventId']
 
 	let query: ComponentProps<GiftEventsCard>['query']
+
+	const userAddress = $userStore.isLoggedIn ? createQuery({
+		queryKey: UsersQueries.getAddress.createKey($userStore.current.id),
+		queryFn: async (...data) => UsersQueries.getAddress.queryFn(...data)
+	}) : undefined
 
 	const isUserRegisteredQuery = $userStore.isLoggedIn
 		? createQuery({
@@ -40,8 +45,10 @@
 <GiftEventsCard {initialData} {giftEventId} bind:query class={`GiftEventsCard ${className}`}>
 	<svelte:fragment slot="buttons">
 		{#if $userStore.isLoggedIn}
-			{#if $isUserRegisteredQuery?.isPending}
+			{#if $isUserRegisteredQuery?.isPending || $userAddress?.isPending}
 				<Button variant="unelevated" disabled>Запрашиваем...</Button>
+			{:else if !$userAddress?.data?.country}
+				<Button variant="unelevated" href='/account/settings/address'>Заполнить адрес</Button>
 			{:else if $isUserRegisteredQuery?.data?.result}
 				<Exit {giftEventId} on:success={handler.exitSuccess} />
 			{:else}
