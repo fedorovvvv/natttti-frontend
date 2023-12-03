@@ -34,12 +34,10 @@ export const actions = {
 
 		cookies.set('state', state, {
 			httpOnly: false,
-			secure: true,
 			sameSite: 'lax'
 		})
 		cookies.set('verifier', verifier, {
 			httpOnly: false,
-			secure: true,
 			sameSite: 'lax'
 		})
 
