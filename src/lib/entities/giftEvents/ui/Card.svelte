@@ -44,6 +44,11 @@
 				<b>Участников:</b>
 				{$query.data.members.length}
 			</li>
+			{#if $query.data.maxPrice}
+				<li>
+					<b>Максимальная цена:</b> {$query.data.maxPrice}р
+				</li>
+			{/if}
 			{#if event?.startAt}
 				<li>
 					<b>Начало:</b>
