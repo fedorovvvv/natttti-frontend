@@ -1,9 +1,9 @@
 import { userStore } from '$entities/users'
 import { pb, type UsersResponse } from '$shared/api/pocketbase'
-import { dev } from '$app/environment'
+import { CONFIG } from '$shared/config'
 
 pb.authStore.loadFromCookie(document.cookie)
 pb.authStore.onChange(() => {
 	userStore.set(pb.authStore.model as UsersResponse)
-	document.cookie = pb.authStore.exportToCookie(dev ? { httpOnly: false } : { httpOnly: true, sameSite: 'strict' })
+	document.cookie = pb.authStore.exportToCookie(CONFIG.COOKIES.OPTIONS)
 }, true)
