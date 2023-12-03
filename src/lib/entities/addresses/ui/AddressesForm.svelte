@@ -35,7 +35,7 @@
 
 	const mutation = createMutation({
 		mutationFn: async (form: HTMLFormElement) => {
-			if ($validate?.original.isError) return
+			if ($validate?.original.isError) throw new Error('validate')
 
 			const response = await fetch(form.action, {
 				method: 'POST',

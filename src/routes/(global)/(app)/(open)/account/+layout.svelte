@@ -25,7 +25,7 @@
 		{
 			id: 'addresses',
 			name: 'Адрес',
-			href: '/account/settings/addresses'
+			href: '/account/settings/address'
 		}
 	]
 </script>

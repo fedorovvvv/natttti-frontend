@@ -20,7 +20,7 @@ export class UsersApi extends PocketBaseApi {
 	async getSocials(userId: string) {
 		const res = await this.client.collection('users').getOne<
 			UsersResponse<{
-				socials: SocialsResponse
+				socials?: SocialsResponse
 			}>
 		>(userId, {
 			fetch: this.fetch,

@@ -30,7 +30,6 @@
 
 	const handler = {
 		success(e: ComponentEvents<AddressesForm>['success']) {
-			console.log(e.detail.address)
 			client.setQueryData(queryKey, e.detail.address)
 		}
 	}
