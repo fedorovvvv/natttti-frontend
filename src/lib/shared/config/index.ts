@@ -1,4 +1,5 @@
 import { API } from './api'
+import { COOKIES } from './cookies'
 
 export const CONFIG = {
 	APP: {
@@ -7,5 +8,6 @@ export const CONFIG = {
 	TRANSITION: {
 		duration: 300
 	},
-	API
+	API,
+	COOKIES
 } as const

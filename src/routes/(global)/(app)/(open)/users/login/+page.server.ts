@@ -1,6 +1,8 @@
 import { fail, redirect } from '@sveltejs/kit'
+import type { CookieSerializeOptions } from 'cookie'
 import type { ClientResponseError } from 'pocketbase'
 import type { InferType } from 'yup'
+import { CONFIG } from '$shared/config'
 import type { PocketBaseAuthSchema } from '$shared/model'
 
 export const actions = {
@@ -32,14 +34,8 @@ export const actions = {
 		const state = authProvider.state
 		const verifier = authProvider.codeVerifier
 
-		cookies.set('state', state, {
-			httpOnly: true,
-			sameSite: 'strict'
-		})
-		cookies.set('verifier', verifier, {
-			httpOnly: true,
-			sameSite: 'strict'
-		})
+		cookies.set('state', state, CONFIG.COOKIES.OPTIONS as CookieSerializeOptions)
+		cookies.set('verifier', verifier, CONFIG.COOKIES.OPTIONS as CookieSerializeOptions)
 
 		throw redirect(302, authProviderRedirect)
 	}
