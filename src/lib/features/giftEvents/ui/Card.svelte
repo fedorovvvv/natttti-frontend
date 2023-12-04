@@ -25,6 +25,13 @@
 		  })
 		: undefined
 
+	const userSocials = $userStore.isLoggedIn
+		? createQuery({
+				queryKey: UsersQueries.getSocials.createKey($userStore.current.id),
+				queryFn: async (...data) => UsersQueries.getSocials.queryFn(...data)
+		  })
+		: undefined
+
 	const isUserRegisteredQuery = $userStore.isLoggedIn
 		? createQuery({
 				queryKey: GiftEventsQueries.isUserRegistered.createKey(giftEventId, $userStore.current.id),
@@ -47,10 +54,12 @@
 <GiftEventsCard {initialData} {giftEventId} bind:query class={`GiftEventsCard ${className}`}>
 	<svelte:fragment slot="buttons">
 		{#if $userStore.isLoggedIn}
-			{#if $isUserRegisteredQuery?.isPending || $userAddress?.isPending}
+			{#if $isUserRegisteredQuery?.isPending || $userAddress?.isPending || $userSocials?.isPending}
 				<Button variant="unelevated" disabled>Запрашиваем...</Button>
+			{:else if !$userSocials?.data?.telegramUsername}
+				<Button variant="unelevated" href="/account/settings/socials">Укажите ваш @Telegram</Button>
 			{:else if !$userAddress?.data?.country}
-				<Button variant="unelevated" href="/account/settings/address">Заполнить адрес</Button>
+				<Button variant="unelevated" href="/account/settings/address">Укажите страну</Button>
 			{:else if $isUserRegisteredQuery?.data?.result}
 				<Exit {giftEventId} on:success={handler.exitSuccess} />
 			{:else}

@@ -68,6 +68,7 @@ export type GiftEventsRecord = {
 	event: RecordIdString
 	members?: RecordIdString[]
 	maxPrice?: number
+	minPrice?: number
 }
 
 export type GiftsRecord = {

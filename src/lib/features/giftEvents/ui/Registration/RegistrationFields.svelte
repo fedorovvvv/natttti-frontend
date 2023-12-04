@@ -20,15 +20,13 @@
 </script>
 
 <FormCol class={`RegistrationFields ${className}`}>
-	<FormRow>
-		<Textfield
-			invalid={!!$schemaResult.errors.description}
-			textarea
-			input$rows={10}
-			bind:value={$fields.description}
-			input$name="description"
-			variant="outlined"
-			label="Я увлекаюсь ... и мне нравятся..."
-		/>
-	</FormRow>
+	<Textfield
+		invalid={!!$schemaResult.errors.description}
+		textarea
+		input$rows={10}
+		bind:value={$fields.description}
+		input$name="description"
+		variant="outlined"
+		label="Тут я напишу о том, что мне нравится и чем я увлекаюсь"
+	/>
 </FormCol>
