@@ -1,1 +1,1 @@
-export {default as RichContent} from './RichContent.svelte'
+export { default as RichContent } from './RichContent.svelte'

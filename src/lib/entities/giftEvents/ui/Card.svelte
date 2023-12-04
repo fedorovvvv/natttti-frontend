@@ -3,7 +3,7 @@
 	import dayjs from 'dayjs'
 	import type { EventsRecord, GiftEventsResponse } from '$shared/api/pocketbase'
 	import { Box } from '$shared/ui/Box'
-	import {RichContent} from '$shared/ui/RichContent'
+	import { RichContent } from '$shared/ui/RichContent'
 	import { GiftEventsQueries } from '../api'
 
 	interface $$Props {
@@ -47,12 +47,14 @@
 			</li>
 			{#if $query.data.minPrice}
 				<li>
-					<b>Минимальная цена:</b> {$query.data.minPrice}р
+					<b>Минимальная цена:</b>
+					{$query.data.minPrice}р
 				</li>
 			{/if}
 			{#if $query.data.maxPrice}
 				<li>
-					<b>Максимальная цена:</b> {$query.data.maxPrice}р
+					<b>Максимальная цена:</b>
+					{$query.data.maxPrice}р
 				</li>
 			{/if}
 			{#if event?.startAt}
