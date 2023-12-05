@@ -22,4 +22,13 @@
             transition-property: color
             &:hover
                 color: var(--clue-color-active-600)
+        :global(ul)
+            list-style: disc
+        :global(ol)
+            list-style: decimal
+        :global(ul), :global(ol)
+            padding-left: 30px
+        :global(li)
+            &:not(:last-child)
+                margin-bottom: 6px
 </style>
