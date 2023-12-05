@@ -1,4 +1,3 @@
-import type PocketBase from 'pocketbase'
 import { pb } from './instance'
 export * from './types'
 export * from './instance'
