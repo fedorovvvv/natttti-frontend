@@ -10,11 +10,6 @@
 	export { className as class }
 
 	$: items = [
-		{
-			id: 'santa',
-			href: '/events/gift/sbi9qa9h0llixn9',
-			text: 'Тайный Cанта🎅'
-		},
 		...($userStore.current?.isAdmin
 			? [
 					{

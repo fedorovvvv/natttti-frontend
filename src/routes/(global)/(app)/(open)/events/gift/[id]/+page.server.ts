@@ -1,28 +1,9 @@
-import { error, fail } from '@sveltejs/kit'
+import { fail } from '@sveltejs/kit'
 import type { ClientResponseError } from 'pocketbase'
 import type { InferType } from 'yup'
 import type { GiftEventsSchema } from '$entities/giftEvents'
-import type { EventsResponse, GiftEventMembersResponse, GiftEventsResponse, UsersResponse } from '$shared/api/pocketbase'
+import type { GiftEventMembersResponse, GiftEventsResponse, UsersResponse } from '$shared/api/pocketbase'
 
-export const load = async ({ params, locals, fetch }) => {
-	const { id } = params
-
-	if (!id) throw error(404)
-
-	const giftEvent = await locals.pb.collection('giftEvents').getOne<
-		GiftEventsResponse<{
-			event: EventsResponse
-		}>
-	>(id, {
-		expand: 'event',
-		fetch
-	})
-
-	return {
-		id,
-		giftEvent
-	}
-}
 
 export const actions = {
 	registration: async ({ locals, request, params, fetch }) => {
