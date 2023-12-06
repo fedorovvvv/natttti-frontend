@@ -71,7 +71,7 @@
 <style lang="sass">
     .page
         $root: &
-        padding-top: 100px
+        padding-top: var(--main-padding)
         h2
             text-align: center
             margin-bottom: 30px

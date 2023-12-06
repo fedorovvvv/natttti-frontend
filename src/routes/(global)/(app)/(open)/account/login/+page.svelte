@@ -32,7 +32,7 @@
 
 <style lang="sass">
     .account-login-page
-        padding-top: 100px
+        padding-top: var(--main-padding)
         p
             color: var(--clue-color-gray-400)
             margin-top: 5px

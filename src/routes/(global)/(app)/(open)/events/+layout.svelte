@@ -7,5 +7,5 @@
 
 <style lang="sass">
     .events-layout
-        padding-top: 100px
+        padding-top: var(--main-padding)
 </style>

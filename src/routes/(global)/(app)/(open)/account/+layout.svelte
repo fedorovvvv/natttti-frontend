@@ -46,7 +46,7 @@
 
 <style lang="sass">
     .account-layout
-        padding-top: 100px
+        padding-top: var(--main-padding)
         &__grid
             display: grid
             grid-template-columns: 200px 1fr

@@ -13,5 +13,5 @@
 
 <style lang="sass">
     .tokens-layout
-        padding-top: 100px
+        padding-top: var(--main-padding)
 </style>

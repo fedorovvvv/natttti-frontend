@@ -26,5 +26,5 @@
 
 <style lang="sass">
     // .tokens-page
-    //     padding-top: 100px
+    //     padding-top: var(--main-padding)
 </style>
