@@ -20,7 +20,7 @@
 		<div class="Header__buttons">
 			{#if $userStore.isLoggedIn}
 				<Button variant="outlined" href="/account">
-					<span class='Header__username-text'>{$userStore.current?.username}</span>
+					<span class="Header__username-text">{$userStore.current?.username}</span>
 				</Button>
 			{:else}
 				<Button href="/users/login" variant="unelevated">Вход</Button>
