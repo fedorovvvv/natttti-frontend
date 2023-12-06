@@ -31,6 +31,10 @@
 <style lang="sass">
 	.Logo
 		$root: &
+		font-size: 24px
+		font-weight: 700
+		@media (max-width: 540px)
+			font-size: 20px
 		&:not(:hover)
 			& > *
 				@at-root :global &

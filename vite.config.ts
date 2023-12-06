@@ -1,9 +1,10 @@
 import { resolve } from 'path'
+import { clueIconsPlugin } from '@cluue/icons/plugin'
 import { sveltekit } from '@sveltejs/kit/vite'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-	plugins: [sveltekit()],
+	plugins: [sveltekit(), clueIconsPlugin()],
 	logLevel: 'info',
 	build: {
 		minify: true

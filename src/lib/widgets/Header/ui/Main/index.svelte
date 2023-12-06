@@ -20,7 +20,7 @@
 		<div class="Header__buttons">
 			{#if $userStore.isLoggedIn}
 				<Button variant="outlined" href="/account">
-					{$userStore.current?.username}
+					<span class='Header__username-text'>{$userStore.current?.username}</span>
 				</Button>
 			{:else}
 				<Button href="/users/login" variant="unelevated">Вход</Button>
@@ -42,16 +42,18 @@
 		box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1), inset 0px 1px 0px rgba(233, 233, 233, 0.5)
 		display: flex
 		align-items: center
+		@media (max-width: 540px)
+			padding-top: 12px
+			padding-bottom: 12px
 		&__container
 			flex: 1
 			display: flex
+			padding: 0 10px
 		&__logo
 			@at-root :global &
 				flex: none
 				display: block
-				margin-right: 20px
-				font-size: 24px
-				font-weight: 700
+				margin-right: 10px
 		&__tail
 			margin-left: auto
 			display: flex
@@ -63,10 +65,21 @@
 				width: 1px
 				background: var(--clue-color-gray-100)
 				margin: auto 12px
+				@media (max-width: 540px)
+					display: none
 		&__buttons
 			display: flex
 			align-items: center
 			gap: 20px
+		&__username
+			&-text
+				@media (max-width: 540px)
+					width: 50px
+					overflow: hidden
+					text-overflow: ellipsis
 		&__user
 			margin-right: 20px
+		:global(.HeaderLinkList)
+			@media (max-width: 540px)
+				display: none
 </style>
