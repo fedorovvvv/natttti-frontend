@@ -36,7 +36,7 @@ export const actions = {
 
 		const cookiesOptions = {
 			...CONFIG.COOKIES.OPTIONS,
-			path: '/'
+			path: '*'
 		}
 
 		cookies.set('state', state, cookiesOptions)
