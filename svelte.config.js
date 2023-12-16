@@ -1,5 +1,5 @@
 import { preprocessMeltUI } from '@melt-ui/pp'
-import adapter from '@sveltejs/adapter-auto'
+import adapter from '@sveltejs/adapter-vercel'
 import autoprefixer from 'autoprefixer'
 import sveltePreprocess from 'svelte-preprocess'
 import sequence from 'svelte-sequential-preprocessor'
