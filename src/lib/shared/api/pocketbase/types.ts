@@ -61,6 +61,7 @@ export type EventsRecord = {
 export type GiftEventMembersRecord = {
 	gifts?: RecordIdString[]
 	targets?: RecordIdString[]
+	description?: string
 	user?: RecordIdString
 }
 
