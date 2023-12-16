@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { GiftEventsFeature } from '$features/giftEvents'
-	import { SectionContainer, SectionTitle } from '$shared/ui/Section'
+	import { SectionContainer } from '$shared/ui/Section'
 
 	export let data
 </script>
