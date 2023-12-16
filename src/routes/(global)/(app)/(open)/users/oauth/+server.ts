@@ -15,17 +15,17 @@ export const GET = async ({ locals, url, cookies }) => {
 
 	if (!code || !expectedVerifier) {
 		console.log('No Auth Data')
-		throw redirect(303, '/users/signup');
+		throw redirect(303, '/users/signup')
 	}
 	const provider = authMethods.authProviders.find(({ name }) => name === 'github')
 	if (!provider) {
 		console.log('Provider Not Found')
-		throw redirect(303, '/users/signup');
+		throw redirect(303, '/users/signup')
 	}
 
 	if (expectedState !== state) {
 		console.log('Returned State Does not Match Expected', expectedState, state)
-		throw redirect(303, '/users/signup');
+		throw redirect(303, '/users/signup')
 	}
 
 	try {
@@ -37,5 +37,5 @@ export const GET = async ({ locals, url, cookies }) => {
 		console.log('Error logging in with OAuth2 user', err)
 	}
 
-	throw redirect(303, '/');
+	throw redirect(303, '/')
 }

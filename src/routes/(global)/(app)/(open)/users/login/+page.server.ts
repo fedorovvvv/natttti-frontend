@@ -17,7 +17,7 @@ export const actions = {
 			return fail(error.status, error.data)
 		}
 
-		throw redirect(303, '/');
+		throw redirect(303, '/')
 	},
 	github: async ({ cookies, url, locals }) => {
 		const usersCollection = locals.pb.collection('users')
@@ -27,7 +27,7 @@ export const actions = {
 		const authProvider = authMethods.authProviders.find(({ name }) => name === 'github')
 
 		if (!authProvider) {
-			throw redirect(303, '/users/signup');
+			throw redirect(303, '/users/signup')
 		}
 		const authProviderRedirect = `${authProvider.authUrl}${redirectURL}`
 
@@ -37,6 +37,6 @@ export const actions = {
 		cookies.set('state', state, CONFIG.COOKIES.OPTIONS as CookieSerializeOptions)
 		cookies.set('verifier', verifier, CONFIG.COOKIES.OPTIONS as CookieSerializeOptions)
 
-		throw redirect(302, authProviderRedirect);
+		throw redirect(302, authProviderRedirect)
 	}
 }

@@ -2,19 +2,21 @@ import { pb, type GiftEventsResponse, type EventsResponse, type GiftEventMembers
 import { QueryBase } from '$shared/lib/Query'
 
 export class GiftEventsApi extends PocketBaseApi {
-	async getTargetsByUserId(giftEventId:string, userId:string) {
-		const result = await this.client.collection('giftEvents').getOne<GiftEventsResponse<{
-			members: GiftEventMembersResponse<{
-				targets: GiftEventMembersResponse<{
-					user: UsersResponse
+	async getTargetsByUserId(giftEventId: string, userId: string) {
+		const result = await this.client.collection('giftEvents').getOne<
+			GiftEventsResponse<{
+				members: GiftEventMembersResponse<{
+					targets: GiftEventMembersResponse<{
+						user: UsersResponse
+					}>[]
 				}>[]
-			}>[]
-		}>>(giftEventId, {
+			}>
+		>(giftEventId, {
 			expand: 'members.targets, members.targets.user',
 			fields: 'expand.members.user, expand.members.expand.targets.description, expand.members.expand.targets.expand.user'
 		})
 
-		const member = result.expand?.members.find(({user}) => user === userId)
+		const member = result.expand?.members.find(({ user }) => user === userId)
 		const targets = member?.expand?.targets || []
 
 		return targets as unknown as Array<Pick<Exclude<typeof targets, undefined>[0], 'description' | 'expand'>>

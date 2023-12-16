@@ -7,7 +7,7 @@ import type { EventsResponse, GiftEventMembersResponse, GiftEventsResponse, User
 export const load = async ({ params, locals, fetch }) => {
 	const { id } = params
 
-	if (!id) error(404);
+	if (!id) error(404)
 
 	const giftEvent = await locals.pb.collection('giftEvents').getOne<
 		GiftEventsResponse<{
