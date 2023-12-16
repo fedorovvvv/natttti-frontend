@@ -27,6 +27,7 @@ export const actions = {
 		const authProvider = authMethods.authProviders.find(({ name }) => name === 'github')
 
 		if (!authProvider) {
+			console.log({authProvider})
 			throw redirect(303, '/users/signup')
 		}
 		const authProviderRedirect = `${authProvider.authUrl}${redirectURL}`
@@ -34,13 +35,8 @@ export const actions = {
 		const state = authProvider.state
 		const verifier = authProvider.codeVerifier
 
-		const cookiesOptions = {
-			...CONFIG.COOKIES.OPTIONS,
-			path: '*'
-		}
-
-		cookies.set('state', state, cookiesOptions)
-		cookies.set('verifier', verifier, cookiesOptions)
+		cookies.set('state', state, CONFIG.COOKIES.OPTIONS)
+		cookies.set('verifier', verifier, CONFIG.COOKIES.OPTIONS)
 
 		throw redirect(302, authProviderRedirect)
 	}
