@@ -21,12 +21,12 @@
 	<div class="Counter__value" data-value={value.toString().replace(/[0-9]/g, '0')}>
 		{#key value}
 			<span
-				in:fly|local={{
+				in:fly={{
 					y: 40,
 					duration: 500,
 					opacity: 1
 				}}
-				out:fly|local={{
+				out:fly={{
 					y: -40,
 					duration: 500,
 					opacity: 1

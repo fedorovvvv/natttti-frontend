@@ -74,19 +74,19 @@
 
 <div class={`Tokens ${className}`}>
 	{#if !$state.create}
-		<div class="Tokens__header" transition:slide|local={CONFIG.TRANSITION}>
+		<div class="Tokens__header" transition:slide={CONFIG.TRANSITION}>
 			<Button variant="unelevated" on:click={handler.toCreateClick}>Создать</Button>
 		</div>
 	{/if}
 	{#if $state.create}
-		<div class="Tokens__create" transition:slide|local={CONFIG.TRANSITION}>
+		<div class="Tokens__create" transition:slide={CONFIG.TRANSITION}>
 			<TokensCreate on:cancel={handler.createCancel} on:create={handler.tokenCreate} />
 		</div>
 	{/if}
 	{#if items.length}
 		<ul class="Tokens__list">
 			{#each sortedItems as item (item.id)}
-				<li class="Tokens__item" transition:slide|local={CONFIG.TRANSITION}>
+				<li class="Tokens__item" transition:slide={CONFIG.TRANSITION}>
 					<Token data={item} on:remove={handler.tokenRemove} on:update={handler.tokenUpdate} />
 				</li>
 			{/each}

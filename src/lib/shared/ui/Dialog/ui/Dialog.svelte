@@ -36,17 +36,17 @@
 
 <div class={`Dialog ${className}`} use:melt={$portalled}>
 	{#if $open}
-		<div use:melt={$overlay} class="Dialog__overlay" transition:fade={CONFIG.TRANSITION} />
+		<div use:melt={$overlay} class="Dialog__overlay" transition:fade|global={CONFIG.TRANSITION} />
 		<div
 			class="Dialog__scroll"
 			on:scroll={handler.scroll}
 			use:melt={$content}
-			in:fly={{
+			in:fly|global={{
 				...CONFIG.TRANSITION,
 				y: -50,
 				opacity: 0
 			}}
-			out:fly={{
+			out:fly|global={{
 				...CONFIG.TRANSITION,
 				y: 50,
 				opacity: 0

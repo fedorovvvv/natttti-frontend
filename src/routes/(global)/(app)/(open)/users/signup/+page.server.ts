@@ -15,6 +15,6 @@ export const actions = {
 			return fail(error.status, error.data)
 		}
 
-		throw redirect(303, '/')
+		throw redirect(303, '/');
 	}
 }
