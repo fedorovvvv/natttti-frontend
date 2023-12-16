@@ -35,8 +35,13 @@ export const actions = {
 		const state = authProvider.state
 		const verifier = authProvider.codeVerifier
 
-		cookies.set('state', state, CONFIG.COOKIES.OPTIONS)
-		cookies.set('verifier', verifier, CONFIG.COOKIES.OPTIONS)
+		const cookiesOptions = {
+			...CONFIG.COOKIES.OPTIONS,
+			path: '.'
+		}
+
+		cookies.set('state', state, cookiesOptions)
+		cookies.set('verifier', verifier, cookiesOptions)
 
 		throw redirect(302, authProviderRedirect)
 	}
