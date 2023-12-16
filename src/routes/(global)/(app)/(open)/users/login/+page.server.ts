@@ -34,8 +34,8 @@ export const actions = {
 		const state = authProvider.state
 		const verifier = authProvider.codeVerifier
 
-		cookies.set('state', state, CONFIG.COOKIES.OPTIONS as CookieSerializeOptions)
-		cookies.set('verifier', verifier, CONFIG.COOKIES.OPTIONS as CookieSerializeOptions)
+		cookies.set('state', state, CONFIG.COOKIES.OPTIONS)
+		cookies.set('verifier', verifier, CONFIG.COOKIES.OPTIONS)
 
 		throw redirect(302, authProviderRedirect)
 	}

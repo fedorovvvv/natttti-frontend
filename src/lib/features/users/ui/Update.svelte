@@ -25,7 +25,7 @@
 	const isErrorVisible = writable(false)
 	const userSchema = UsersSchema.base
 
-	const fields = writable(userStore.clone()!)
+	const fields = writable(userStore.clone())
 
 	const userSchemaResult = derived([fields, isErrorVisible], ([$fields, $isErrorVisible]) => {
 		const res = validateSchema(userSchema, $fields)
@@ -71,32 +71,34 @@
 </script>
 
 <Box class={`UsersUpdate ${className}`}>
-	<Form method="POST" action={`/users/update/${$userStore.current?.id}`} on:submit={handler.submit}>
-		<FormCol>
-			<FormRow>
-				<Textfield invalid={!!$userSchemaResult.errors.username} bind:value={$fields.username} required input$name="username" variant="outlined" label="Username" />
-			</FormRow>
-			<FormRow>
-				<Textfield invalid={!!$userSchemaResult.errors.firstName} bind:value={$fields.firstName} required input$name="firstName" variant="outlined" label="Имя" />
-				<Textfield invalid={!!$userSchemaResult.errors.lastName} bind:value={$fields.lastName} required input$name="lastName" variant="outlined" label="Фамилия" />
-			</FormRow>
-			<FormRow>
-				<Textfield invalid={!!$userSchemaResult.errors.email} bind:value={$fields.email} disabled input$name="email" variant="outlined" type="email" label="Email" />
-			</FormRow>
-		</FormCol>
-		<svelte:fragment slot="button">
-			<Button variant="unelevated" disabled={$userUpdateMutation.isPending || $userSchemaResult.isError}>
-				{#if $userUpdateMutation.isPending}
-					Сохранение...
-				{:else if $updateResult?.type === 'failure'}
-					Упс, чет не то
-				{:else}
-					Сохранить
-				{/if}
-			</Button>
-			<form method="POST" use:enhance={usersLogoutEnhance} action="/users/logout">
-				<Button variant="outlined">Выйти</Button>
-			</form>
-		</svelte:fragment>
-	</Form>
+	{#if $fields}
+		<Form method="POST" action={`/users/update/${$userStore.current?.id}`} on:submit={handler.submit}>
+			<FormCol>
+				<FormRow>
+					<Textfield invalid={!!$userSchemaResult.errors.username} bind:value={$fields.username} required input$name="username" variant="outlined" label="Username" />
+				</FormRow>
+				<FormRow>
+					<Textfield invalid={!!$userSchemaResult.errors.firstName} bind:value={$fields.firstName} required input$name="firstName" variant="outlined" label="Имя" />
+					<Textfield invalid={!!$userSchemaResult.errors.lastName} bind:value={$fields.lastName} required input$name="lastName" variant="outlined" label="Фамилия" />
+				</FormRow>
+				<FormRow>
+					<Textfield invalid={!!$userSchemaResult.errors.email} bind:value={$fields.email} disabled input$name="email" variant="outlined" type="email" label="Email" />
+				</FormRow>
+			</FormCol>
+			<svelte:fragment slot="button">
+				<Button variant="unelevated" disabled={$userUpdateMutation.isPending || $userSchemaResult.isError}>
+					{#if $userUpdateMutation.isPending}
+						Сохранение...
+					{:else if $updateResult?.type === 'failure'}
+						Упс, чет не то
+					{:else}
+						Сохранить
+					{/if}
+				</Button>
+				<form method="POST" use:enhance={usersLogoutEnhance} action="/users/logout">
+					<Button variant="outlined">Выйти</Button>
+				</form>
+			</svelte:fragment>
+		</Form>
+	{/if}
 </Box>
